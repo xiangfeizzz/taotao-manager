@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.TbDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.TbDept" >
+    <id column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_addr" property="deptAddr" jdbcType="VARCHAR" />
+    <result column="dept_fax" property="deptFax" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_tel" property="deptTel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="deptmanager" property="deptmanager" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dept_id, dept_addr, dept_fax, dept_name, dept_tel, email, deptmanager
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbDeptExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dept
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_dept
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.TbDeptExample" >
+    delete from tb_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.TbDept" >
+    insert into tb_dept (dept_id, dept_addr, dept_fax, 
+      dept_name, dept_tel, email, 
+      deptmanager)
+    values (#{deptId,jdbcType=VARCHAR}, #{deptAddr,jdbcType=VARCHAR}, #{deptFax,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{deptTel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{deptmanager,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.TbDept" >
+    insert into tb_dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="deptAddr != null" >
+        dept_addr,
+      </if>
+      <if test="deptFax != null" >
+        dept_fax,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="deptTel != null" >
+        dept_tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="deptmanager != null" >
+        deptmanager,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddr != null" >
+        #{deptAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="deptFax != null" >
+        #{deptFax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTel != null" >
+        #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="deptmanager != null" >
+        #{deptmanager,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.TbDeptExample" resultType="java.lang.Integer" >
+    select count(*) from tb_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_dept
+    <set >
+      <if test="record.deptId != null" >
+        dept_id = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptAddr != null" >
+        dept_addr = #{record.deptAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptFax != null" >
+        dept_fax = #{record.deptFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null" >
+        dept_name = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptTel != null" >
+        dept_tel = #{record.deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptmanager != null" >
+        deptmanager = #{record.deptmanager,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_dept
+    set dept_id = #{record.deptId,jdbcType=VARCHAR},
+      dept_addr = #{record.deptAddr,jdbcType=VARCHAR},
+      dept_fax = #{record.deptFax,jdbcType=VARCHAR},
+      dept_name = #{record.deptName,jdbcType=VARCHAR},
+      dept_tel = #{record.deptTel,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      deptmanager = #{record.deptmanager,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.TbDept" >
+    update tb_dept
+    <set >
+      <if test="deptAddr != null" >
+        dept_addr = #{deptAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="deptFax != null" >
+        dept_fax = #{deptFax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTel != null" >
+        dept_tel = #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="deptmanager != null" >
+        deptmanager = #{deptmanager,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbDept" >
+    update tb_dept
+    set dept_addr = #{deptAddr,jdbcType=VARCHAR},
+      dept_fax = #{deptFax,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_tel = #{deptTel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      deptmanager = #{deptmanager,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </update>
+</mapper>
