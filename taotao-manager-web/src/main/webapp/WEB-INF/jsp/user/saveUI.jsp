@@ -26,7 +26,7 @@
     	<s:hidden name="id"></s:hidden>
     
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 用户信息 </div> 
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" /> 用户信息 </div> 
         </div>
         
         <!-- 表单内容显示 -->
@@ -72,7 +72,7 @@
         </div>
         
 		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 岗位设置 </div> 
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" /> 岗位设置 </div> 
         </div>
         
         <!-- 表单内容显示 -->

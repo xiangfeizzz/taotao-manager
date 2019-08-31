@@ -43,11 +43,11 @@
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
 		<table schema="root" tableName="tb_role"></table>
-		<table schema="root" tableName="tb_user"></table>
 		<table schema="root" tableName="tb_dept"></table>
 		<table schema="root" tableName="tb_position"></table>
 		<table schema="root" tableName="tb_menu"></table>
 		<table schema="root" tableName="tb_role_menu"></table>
+		<table schema="root" tableName="tb_user"></table>
 
 	</context>
 </generatorConfiguration>

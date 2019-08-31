@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotao.mapper.TbMenuMapper" >
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbMenu" >
-    <id column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <id column="menu_id" property="menuId" jdbcType="BIGINT" />
     <result column="is_show" property="isShow" jdbcType="VARCHAR" />
     <result column="menu_grade" property="menuGrade" jdbcType="VARCHAR" />
     <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from tb_menu
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tb_menu
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.taotao.pojo.TbMenuExample" >
     delete from tb_menu
@@ -106,7 +106,7 @@
     insert into tb_menu (menu_id, is_show, menu_grade, 
       menu_icon, menu_name, menu_url, 
       parent_id, sort_id)
-    values (#{menuId,jdbcType=VARCHAR}, #{isShow,jdbcType=VARCHAR}, #{menuGrade,jdbcType=VARCHAR}, 
+    values (#{menuId,jdbcType=BIGINT}, #{isShow,jdbcType=VARCHAR}, #{menuGrade,jdbcType=VARCHAR}, 
       #{menuIcon,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=VARCHAR}, #{sortId,jdbcType=VARCHAR})
   </insert>
@@ -140,7 +140,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="menuId != null" >
-        #{menuId,jdbcType=VARCHAR},
+        #{menuId,jdbcType=BIGINT},
       </if>
       <if test="isShow != null" >
         #{isShow,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
     update tb_menu
     <set >
       <if test="record.menuId != null" >
-        menu_id = #{record.menuId,jdbcType=VARCHAR},
+        menu_id = #{record.menuId,jdbcType=BIGINT},
       </if>
       <if test="record.isShow != null" >
         is_show = #{record.isShow,jdbcType=VARCHAR},
@@ -205,7 +205,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_menu
-    set menu_id = #{record.menuId,jdbcType=VARCHAR},
+    set menu_id = #{record.menuId,jdbcType=BIGINT},
       is_show = #{record.isShow,jdbcType=VARCHAR},
       menu_grade = #{record.menuGrade,jdbcType=VARCHAR},
       menu_icon = #{record.menuIcon,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
         sort_id = #{sortId,jdbcType=VARCHAR},
       </if>
     </set>
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbMenu" >
     update tb_menu
@@ -253,6 +253,6 @@
       menu_url = #{menuUrl,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=VARCHAR},
       sort_id = #{sortId,jdbcType=VARCHAR}
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
 </mapper>

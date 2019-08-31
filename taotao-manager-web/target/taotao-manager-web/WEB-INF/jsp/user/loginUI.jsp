@@ -11,6 +11,7 @@
 			var password=$("input[name='password']").val();
 			if(loginName.trim()==""||password.trim()==""){
 				alert("用户名或密码不能为空");
+				return ;
 			}
 			
 			var url="${pageContext.request.contextPath}/login/checkPassword?loginName="+loginName+"&password="+password;
@@ -21,14 +22,12 @@
 	            dataType: "json",
 	            contentType: "application/json",
 	            success: function (data) {
-	                if (data.resultCode != "000000") {
 	                	if(data.resultCode == "000000"){
-	    					window.location.href="${pageContext.request.contextPath}/home/page/main?preffix=home";
+	    					window.location.href="${pageContext.request.contextPath}/home/page/main?preffix=home&loginName="+loginName;
 	    				}else{
 	    					alert(data.resultMsg);
 	    				}
 	                }
-	            }
 	         });
 		}
 	</script>

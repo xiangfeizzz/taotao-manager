@@ -14,13 +14,9 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- 资源映射 -->
-<!-- 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/> -->
-<!-- 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/> -->
 
 	<!-- 处理静态资源被“/”所拦截的问题 -->
 	<mvc:default-servlet-handler />
-
 	
 	<!-- 定义文件上传解析器 -->
 	<bean id="multipartResolver"

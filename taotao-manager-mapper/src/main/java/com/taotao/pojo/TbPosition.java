@@ -1,53 +1,33 @@
 package com.taotao.pojo;
 
 public class TbPosition {
-    private String positionId;
+    private Long positionId;
 
-    private String level;
+    private String positionName;
 
-    private String name;
+    private String positionDesc;
 
-    private String describtion;
-
-    private String deptid;
-
-    public String getPositionId() {
+    public Long getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(String positionId) {
-        this.positionId = positionId == null ? null : positionId.trim();
+    public void setPositionId(Long positionId) {
+        this.positionId = positionId;
     }
 
-    public String getLevel() {
-        return level;
+    public String getPositionName() {
+        return positionName;
     }
 
-    public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
+    public void setPositionName(String positionName) {
+        this.positionName = positionName == null ? null : positionName.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getPositionDesc() {
+        return positionDesc;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getDescribtion() {
-        return describtion;
-    }
-
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion == null ? null : describtion.trim();
-    }
-
-    public String getDeptid() {
-        return deptid;
-    }
-
-    public void setDeptid(String deptid) {
-        this.deptid = deptid == null ? null : deptid.trim();
+    public void setPositionDesc(String positionDesc) {
+        this.positionDesc = positionDesc == null ? null : positionDesc.trim();
     }
 }

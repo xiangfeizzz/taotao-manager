@@ -10,7 +10,7 @@ public interface TbDeptMapper {
 
     int deleteByExample(TbDeptExample example);
 
-    int deleteByPrimaryKey(String deptId);
+    int deleteByPrimaryKey(Long deptId);
 
     int insert(TbDept record);
 
@@ -18,7 +18,7 @@ public interface TbDeptMapper {
 
     List<TbDept> selectByExample(TbDeptExample example);
 
-    TbDept selectByPrimaryKey(String deptId);
+    TbDept selectByPrimaryKey(Long deptId);
 
     int updateByExampleSelective(@Param("record") TbDept record, @Param("example") TbDeptExample example);
 

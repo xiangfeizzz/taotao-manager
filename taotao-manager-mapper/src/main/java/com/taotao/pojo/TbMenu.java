@@ -1,7 +1,7 @@
 package com.taotao.pojo;
 
 public class TbMenu {
-    private String menuId;
+    private Long menuId;
 
     private String isShow;
 
@@ -17,12 +17,12 @@ public class TbMenu {
 
     private String sortId;
 
-    public String getMenuId() {
+    public Long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId == null ? null : menuId.trim();
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
     }
 
     public String getIsShow() {

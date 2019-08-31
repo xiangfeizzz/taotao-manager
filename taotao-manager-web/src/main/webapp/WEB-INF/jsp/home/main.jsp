@@ -7,7 +7,7 @@
 <script type="text/javascript">
 </script>
 
-	<frameset rows="100,*,35" framespacing=0 border=0 frameborder="0">
+	<frameset rows="70,*,35" framespacing=0 border=0 frameborder="0">
 		<frame noresize name="TopMenu" scrolling="no" src="${pageContext.request.contextPath}/home/page/top?preffix=home&loginName=${loginName}"  >
 		<frameset cols="180,*" id="resize">
 			<frame width="384"  name="menu" scrolling="yes" src="${pageContext.request.contextPath}/home/page/left?preffix=home&loginName=${loginName}" >

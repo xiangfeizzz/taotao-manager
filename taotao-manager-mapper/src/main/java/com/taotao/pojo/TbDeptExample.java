@@ -114,62 +114,52 @@ public class TbDeptExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdEqualTo(String value) {
+        public Criteria andDeptIdEqualTo(Long value) {
             addCriterion("dept_id =", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotEqualTo(String value) {
+        public Criteria andDeptIdNotEqualTo(Long value) {
             addCriterion("dept_id <>", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdGreaterThan(String value) {
+        public Criteria andDeptIdGreaterThan(Long value) {
             addCriterion("dept_id >", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdGreaterThanOrEqualTo(String value) {
+        public Criteria andDeptIdGreaterThanOrEqualTo(Long value) {
             addCriterion("dept_id >=", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdLessThan(String value) {
+        public Criteria andDeptIdLessThan(Long value) {
             addCriterion("dept_id <", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdLessThanOrEqualTo(String value) {
+        public Criteria andDeptIdLessThanOrEqualTo(Long value) {
             addCriterion("dept_id <=", value, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdLike(String value) {
-            addCriterion("dept_id like", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotLike(String value) {
-            addCriterion("dept_id not like", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIn(List<String> values) {
+        public Criteria andDeptIdIn(List<Long> values) {
             addCriterion("dept_id in", values, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotIn(List<String> values) {
+        public Criteria andDeptIdNotIn(List<Long> values) {
             addCriterion("dept_id not in", values, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdBetween(String value1, String value2) {
+        public Criteria andDeptIdBetween(Long value1, Long value2) {
             addCriterion("dept_id between", value1, value2, "deptId");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotBetween(String value1, String value2) {
+        public Criteria andDeptIdNotBetween(Long value1, Long value2) {
             addCriterion("dept_id not between", value1, value2, "deptId");
             return (Criteria) this;
         }
@@ -244,76 +234,6 @@ public class TbDeptExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeptFaxIsNull() {
-            addCriterion("dept_fax is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxIsNotNull() {
-            addCriterion("dept_fax is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxEqualTo(String value) {
-            addCriterion("dept_fax =", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxNotEqualTo(String value) {
-            addCriterion("dept_fax <>", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxGreaterThan(String value) {
-            addCriterion("dept_fax >", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxGreaterThanOrEqualTo(String value) {
-            addCriterion("dept_fax >=", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxLessThan(String value) {
-            addCriterion("dept_fax <", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxLessThanOrEqualTo(String value) {
-            addCriterion("dept_fax <=", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxLike(String value) {
-            addCriterion("dept_fax like", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxNotLike(String value) {
-            addCriterion("dept_fax not like", value, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxIn(List<String> values) {
-            addCriterion("dept_fax in", values, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxNotIn(List<String> values) {
-            addCriterion("dept_fax not in", values, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxBetween(String value1, String value2) {
-            addCriterion("dept_fax between", value1, value2, "deptFax");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptFaxNotBetween(String value1, String value2) {
-            addCriterion("dept_fax not between", value1, value2, "deptFax");
-            return (Criteria) this;
-        }
-
         public Criteria andDeptNameIsNull() {
             addCriterion("dept_name is null");
             return (Criteria) this;
@@ -381,146 +301,6 @@ public class TbDeptExample {
 
         public Criteria andDeptNameNotBetween(String value1, String value2) {
             addCriterion("dept_name not between", value1, value2, "deptName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelIsNull() {
-            addCriterion("dept_tel is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelIsNotNull() {
-            addCriterion("dept_tel is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelEqualTo(String value) {
-            addCriterion("dept_tel =", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelNotEqualTo(String value) {
-            addCriterion("dept_tel <>", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelGreaterThan(String value) {
-            addCriterion("dept_tel >", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelGreaterThanOrEqualTo(String value) {
-            addCriterion("dept_tel >=", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelLessThan(String value) {
-            addCriterion("dept_tel <", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelLessThanOrEqualTo(String value) {
-            addCriterion("dept_tel <=", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelLike(String value) {
-            addCriterion("dept_tel like", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelNotLike(String value) {
-            addCriterion("dept_tel not like", value, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelIn(List<String> values) {
-            addCriterion("dept_tel in", values, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelNotIn(List<String> values) {
-            addCriterion("dept_tel not in", values, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelBetween(String value1, String value2) {
-            addCriterion("dept_tel between", value1, value2, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptTelNotBetween(String value1, String value2) {
-            addCriterion("dept_tel not between", value1, value2, "deptTel");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailIsNull() {
-            addCriterion("email is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailIsNotNull() {
-            addCriterion("email is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailEqualTo(String value) {
-            addCriterion("email =", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailNotEqualTo(String value) {
-            addCriterion("email <>", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailGreaterThan(String value) {
-            addCriterion("email >", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailGreaterThanOrEqualTo(String value) {
-            addCriterion("email >=", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailLessThan(String value) {
-            addCriterion("email <", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailLessThanOrEqualTo(String value) {
-            addCriterion("email <=", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailLike(String value) {
-            addCriterion("email like", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailNotLike(String value) {
-            addCriterion("email not like", value, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailIn(List<String> values) {
-            addCriterion("email in", values, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailNotIn(List<String> values) {
-            addCriterion("email not in", values, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailBetween(String value1, String value2) {
-            addCriterion("email between", value1, value2, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andEmailNotBetween(String value1, String value2) {
-            addCriterion("email not between", value1, value2, "email");
             return (Criteria) this;
         }
 

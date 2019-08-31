@@ -2,12 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotao.mapper.TbDeptMapper" >
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbDept" >
-    <id column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <id column="dept_id" property="deptId" jdbcType="BIGINT" />
     <result column="dept_addr" property="deptAddr" jdbcType="VARCHAR" />
-    <result column="dept_fax" property="deptFax" jdbcType="VARCHAR" />
     <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
-    <result column="dept_tel" property="deptTel" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="deptmanager" property="deptmanager" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    dept_id, dept_addr, dept_fax, dept_name, dept_tel, email, deptmanager
+    dept_id, dept_addr, dept_name, deptmanager
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbDeptExample" >
     select
@@ -85,15 +82,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from tb_dept
-    where dept_id = #{deptId,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tb_dept
-    where dept_id = #{deptId,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.taotao.pojo.TbDeptExample" >
     delete from tb_dept
@@ -102,11 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbDept" >
-    insert into tb_dept (dept_id, dept_addr, dept_fax, 
-      dept_name, dept_tel, email, 
+    insert into tb_dept (dept_id, dept_addr, dept_name, 
       deptmanager)
-    values (#{deptId,jdbcType=VARCHAR}, #{deptAddr,jdbcType=VARCHAR}, #{deptFax,jdbcType=VARCHAR}, 
-      #{deptName,jdbcType=VARCHAR}, #{deptTel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+    values (#{deptId,jdbcType=BIGINT}, #{deptAddr,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
       #{deptmanager,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbDept" >
@@ -118,17 +113,8 @@
       <if test="deptAddr != null" >
         dept_addr,
       </if>
-      <if test="deptFax != null" >
-        dept_fax,
-      </if>
       <if test="deptName != null" >
         dept_name,
-      </if>
-      <if test="deptTel != null" >
-        dept_tel,
-      </if>
-      <if test="email != null" >
-        email,
       </if>
       <if test="deptmanager != null" >
         deptmanager,
@@ -136,22 +122,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="deptId != null" >
-        #{deptId,jdbcType=VARCHAR},
+        #{deptId,jdbcType=BIGINT},
       </if>
       <if test="deptAddr != null" >
         #{deptAddr,jdbcType=VARCHAR},
       </if>
-      <if test="deptFax != null" >
-        #{deptFax,jdbcType=VARCHAR},
-      </if>
       <if test="deptName != null" >
         #{deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="deptTel != null" >
-        #{deptTel,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
       </if>
       <if test="deptmanager != null" >
         #{deptmanager,jdbcType=VARCHAR},
@@ -168,22 +145,13 @@
     update tb_dept
     <set >
       <if test="record.deptId != null" >
-        dept_id = #{record.deptId,jdbcType=VARCHAR},
+        dept_id = #{record.deptId,jdbcType=BIGINT},
       </if>
       <if test="record.deptAddr != null" >
         dept_addr = #{record.deptAddr,jdbcType=VARCHAR},
       </if>
-      <if test="record.deptFax != null" >
-        dept_fax = #{record.deptFax,jdbcType=VARCHAR},
-      </if>
       <if test="record.deptName != null" >
         dept_name = #{record.deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deptTel != null" >
-        dept_tel = #{record.deptTel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.deptmanager != null" >
         deptmanager = #{record.deptmanager,jdbcType=VARCHAR},
@@ -195,12 +163,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_dept
-    set dept_id = #{record.deptId,jdbcType=VARCHAR},
+    set dept_id = #{record.deptId,jdbcType=BIGINT},
       dept_addr = #{record.deptAddr,jdbcType=VARCHAR},
-      dept_fax = #{record.deptFax,jdbcType=VARCHAR},
       dept_name = #{record.deptName,jdbcType=VARCHAR},
-      dept_tel = #{record.deptTel,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
       deptmanager = #{record.deptmanager,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,32 +177,20 @@
       <if test="deptAddr != null" >
         dept_addr = #{deptAddr,jdbcType=VARCHAR},
       </if>
-      <if test="deptFax != null" >
-        dept_fax = #{deptFax,jdbcType=VARCHAR},
-      </if>
       <if test="deptName != null" >
         dept_name = #{deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="deptTel != null" >
-        dept_tel = #{deptTel,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="deptmanager != null" >
         deptmanager = #{deptmanager,jdbcType=VARCHAR},
       </if>
     </set>
-    where dept_id = #{deptId,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbDept" >
     update tb_dept
     set dept_addr = #{deptAddr,jdbcType=VARCHAR},
-      dept_fax = #{deptFax,jdbcType=VARCHAR},
       dept_name = #{deptName,jdbcType=VARCHAR},
-      dept_tel = #{deptTel,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
       deptmanager = #{deptmanager,jdbcType=VARCHAR}
-    where dept_id = #{deptId,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=BIGINT}
   </update>
 </mapper>

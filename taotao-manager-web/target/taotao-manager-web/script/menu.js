@@ -13,18 +13,12 @@ function closeMenu() {
 	alreadyOpenTableId = null;
 }
 
-function menuClick(tableSrc) {
-	var currentTableSrc = tableSrc;
-	if (currentTableSrc.id != alreadyOpenTableId) closeMenu();
-    targetTableId = currentTableSrc.id+"d";
-    targetTable = document.getElementById(targetTableId); // document.all(targetTableId); 
-    if (targetTable.style.display == "none") {
-        targetTable.style.display = '';
-		alreadyOpenTableId = currentTableSrc.id;
-    } else {
-        targetTable.style.display = "none";
-	}
+
+function menuClick(topMenuDiv){
+	$(".MenuLevel2").not( $(topMenuDiv).siblings("ul") ).hide();
+	$(topMenuDiv).siblings("ul").toggle();
 }
+
 
 function subMenuClick(tableSrc) {
     subTableId = tableSrc.id+"d";

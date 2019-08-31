@@ -10,7 +10,7 @@ public interface TbRoleMenuMapper {
 
     int deleteByExample(TbRoleMenuExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(TbRoleMenu record);
 
@@ -18,7 +18,7 @@ public interface TbRoleMenuMapper {
 
     List<TbRoleMenu> selectByExample(TbRoleMenuExample example);
 
-    TbRoleMenu selectByPrimaryKey(String id);
+    TbRoleMenu selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") TbRoleMenu record, @Param("example") TbRoleMenuExample example);
 

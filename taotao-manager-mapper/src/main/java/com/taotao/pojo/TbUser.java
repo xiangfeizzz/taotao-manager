@@ -1,62 +1,58 @@
 package com.taotao.pojo;
 
-import java.util.Date;
-
 public class TbUser {
-    private String userId;
+    private Long userId;
 
     private String address;
+
+    private String bankNo;
 
     private String birth;
 
     private String eamil;
 
-    private Date hireTime;
+    private String loginName;
 
     private String idNo;
 
-    private String imgPath;
-
     private String isDelete;
-
-    private Date lastLoginTime;
 
     private String password;
 
-    private String realName;
-
     private Float salary;
 
-    private String userSchool;
+    private String school;
 
     private String sex;
 
-    private String userEdu;
+    private String edu;
 
     private String userName;
 
-    private String userTel;
+    private String mobile;
 
-    private String deptId;
+    private Long deptId;
 
-    private String positionId;
+    private Long positionId;
 
-    private String roleId;
+    private Long roleId;
 
     private Integer holiday;
 
-    private String loginName;
+    private String lastLoginTime;
 
-    private Date createDate;
+    private String hireDate;
 
-    private Date updateDate;
+    private String createDate;
 
-    public String getUserId() {
+    private String updateDate;
+
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getAddress() {
@@ -65,6 +61,14 @@ public class TbUser {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getBankNo() {
+        return bankNo;
+    }
+
+    public void setBankNo(String bankNo) {
+        this.bankNo = bankNo == null ? null : bankNo.trim();
     }
 
     public String getBirth() {
@@ -83,12 +87,12 @@ public class TbUser {
         this.eamil = eamil == null ? null : eamil.trim();
     }
 
-    public Date getHireTime() {
-        return hireTime;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setHireTime(Date hireTime) {
-        this.hireTime = hireTime;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
     }
 
     public String getIdNo() {
@@ -99,28 +103,12 @@ public class TbUser {
         this.idNo = idNo == null ? null : idNo.trim();
     }
 
-    public String getImgPath() {
-        return imgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath == null ? null : imgPath.trim();
-    }
-
     public String getIsDelete() {
         return isDelete;
     }
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
-    }
-
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
     }
 
     public String getPassword() {
@@ -131,14 +119,6 @@ public class TbUser {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
-    }
-
     public Float getSalary() {
         return salary;
     }
@@ -147,12 +127,12 @@ public class TbUser {
         this.salary = salary;
     }
 
-    public String getUserSchool() {
-        return userSchool;
+    public String getSchool() {
+        return school;
     }
 
-    public void setUserSchool(String userSchool) {
-        this.userSchool = userSchool == null ? null : userSchool.trim();
+    public void setSchool(String school) {
+        this.school = school == null ? null : school.trim();
     }
 
     public String getSex() {
@@ -163,12 +143,12 @@ public class TbUser {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getUserEdu() {
-        return userEdu;
+    public String getEdu() {
+        return edu;
     }
 
-    public void setUserEdu(String userEdu) {
-        this.userEdu = userEdu == null ? null : userEdu.trim();
+    public void setEdu(String edu) {
+        this.edu = edu == null ? null : edu.trim();
     }
 
     public String getUserName() {
@@ -179,36 +159,36 @@ public class TbUser {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getUserTel() {
-        return userTel;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setUserTel(String userTel) {
-        this.userTel = userTel == null ? null : userTel.trim();
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public String getDeptId() {
+    public Long getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(String deptId) {
-        this.deptId = deptId == null ? null : deptId.trim();
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
     }
 
-    public String getPositionId() {
+    public Long getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(String positionId) {
-        this.positionId = positionId == null ? null : positionId.trim();
+    public void setPositionId(Long positionId) {
+        this.positionId = positionId;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId == null ? null : roleId.trim();
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public Integer getHoliday() {
@@ -219,27 +199,35 @@ public class TbUser {
         this.holiday = holiday;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getLastLoginTime() {
+        return lastLoginTime;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName == null ? null : loginName.trim();
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime == null ? null : lastLoginTime.trim();
     }
 
-    public Date getCreateDate() {
+    public String getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(String hireDate) {
+        this.hireDate = hireDate == null ? null : hireDate.trim();
+    }
+
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate == null ? null : createDate.trim();
     }
 
-    public Date getUpdateDate() {
+    public String getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate == null ? null : updateDate.trim();
     }
 }
