@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.taotao.common.redis.JeditCommon;
+
 @Controller
 public class BaseController {
 	
@@ -21,5 +23,11 @@ public class BaseController {
 		request.setAttribute("basePrefix", preffix);
 		return preffix + "/" + optType;
 	}
+    
+    
+    @RequestMapping(value = "page/redisLoad")
+  	public void reload(){
+    	JeditCommon.redisLoad();
+  	}
     
 }

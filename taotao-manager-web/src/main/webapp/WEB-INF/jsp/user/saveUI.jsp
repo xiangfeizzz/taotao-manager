@@ -3,7 +3,6 @@
 <html>
 <head>
 	<title>用户信息</title>
-    <%@ include file="/WEB-INF/jsp/public/common.jspf" %>
 </head>
 <body>
 
