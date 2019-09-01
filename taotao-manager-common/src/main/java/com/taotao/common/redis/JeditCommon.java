@@ -1,14 +1,6 @@
 package com.taotao.common.redis;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Properties;
-
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-
-import com.alibaba.fastjson.JSONObject;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -136,25 +128,5 @@ public class JeditCommon {
 		} finally {
 			jedis.close();
 		}
-	}
-	
-	public static void redisLoad() {
-		InputStream in;
-		HashMap<String,String> resourceMap=new HashMap<>();
-	    try{
-	    	Properties prop = new Properties();   
-	    	in = new FileInputStream("classpath:resource/resource.properties");
-	        prop.load(in);
-	        Iterator<String> it=prop.stringPropertyNames().iterator();
-	        while(it.hasNext()){
-	        	String key=it.next();
-	               resourceMap.put(key, prop.getProperty(key));
-	            }
-	    	in.close();
-	        }catch (Exception e) {
-				e.printStackTrace();
-			}
-		init(resourceMap.get("redis_addr"), Integer.parseInt(resourceMap.get("redis_port")), resourceMap.get("redis_password"));
-		set("resourceMap", JSONObject.toJSONString(resourceMap));
 	}
 }

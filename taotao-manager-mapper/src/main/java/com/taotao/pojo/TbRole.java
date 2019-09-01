@@ -1,17 +1,17 @@
 package com.taotao.pojo;
 
 public class TbRole {
-    private Long roleId;
+    private Integer roleId;
 
     private String roleName;
 
-    private Integer roleDesc;
+    private String roleDesc;
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
@@ -23,11 +23,11 @@ public class TbRole {
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
-    public Integer getRoleDesc() {
+    public String getRoleDesc() {
         return roleDesc;
     }
 
-    public void setRoleDesc(Integer roleDesc) {
-        this.roleDesc = roleDesc;
+    public void setRoleDesc(String roleDesc) {
+        this.roleDesc = roleDesc == null ? null : roleDesc.trim();
     }
 }

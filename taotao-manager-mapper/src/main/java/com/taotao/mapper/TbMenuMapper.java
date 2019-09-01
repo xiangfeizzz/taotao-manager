@@ -10,7 +10,7 @@ public interface TbMenuMapper {
 
     int deleteByExample(TbMenuExample example);
 
-    int deleteByPrimaryKey(Long menuId);
+    int deleteByPrimaryKey(Integer menuId);
 
     int insert(TbMenu record);
 
@@ -18,7 +18,7 @@ public interface TbMenuMapper {
 
     List<TbMenu> selectByExample(TbMenuExample example);
 
-    TbMenu selectByPrimaryKey(Long menuId);
+    TbMenu selectByPrimaryKey(Integer menuId);
 
     int updateByExampleSelective(@Param("record") TbMenu record, @Param("example") TbMenuExample example);
 

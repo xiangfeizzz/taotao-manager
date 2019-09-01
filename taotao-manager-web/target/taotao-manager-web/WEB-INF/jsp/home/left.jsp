@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>导航菜单</title>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/menu.css" />
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/menu.css" />
 	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 	<script language="javascript" src="${pageContext.request.contextPath}/script/menu.js"></script>
 </head>

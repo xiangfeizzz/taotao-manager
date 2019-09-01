@@ -17,8 +17,8 @@ td{
 </style>
 <script type="text/javascript">
 $(function(){
-	var loginName='${loginName}';
-	var param={loginName:loginName};
+	var userId='${userId}';
+	var param={userId:userId};
 	var url="${pageContext.request.contextPath}/user/getUserInfo";
 	$.ajax({
 	    url : url,
@@ -37,10 +37,8 @@ $(function(){
 	    			var text=user[name];
 	    			$(v).text(text);
 	    		});
-	    		
 	    		$("lable[name='positionName']").text(position.positionName);
 	    		$("lable[name='deptName']").text(dept.deptName);
-	    		
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
@@ -63,7 +61,9 @@ $(function(){
 </div>
 
 <div id=MainArea>
-        <div class="ItemBlock_Title1">
+<div style="padding-left: 50px;">
+       <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 用户信息 </div> 
         </div>
         
         <div class="ItemBlockBorder">
@@ -124,6 +124,7 @@ $(function(){
                 </table>
             </div>
         </div>
+   </div>
 </div>
 </body>
 </html>

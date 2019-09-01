@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotao.mapper.TbPositionMapper" >
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbPosition" >
-    <id column="position_id" property="positionId" jdbcType="BIGINT" />
+    <id column="position_id" property="positionId" jdbcType="INTEGER" />
     <result column="position_name" property="positionName" jdbcType="VARCHAR" />
     <result column="position_desc" property="positionDesc" jdbcType="VARCHAR" />
   </resultMap>
@@ -81,15 +81,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_position
-    where position_id = #{positionId,jdbcType=BIGINT}
+    where position_id = #{positionId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_position
-    where position_id = #{positionId,jdbcType=BIGINT}
+    where position_id = #{positionId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.taotao.pojo.TbPositionExample" >
     delete from tb_position
@@ -100,7 +100,7 @@
   <insert id="insert" parameterType="com.taotao.pojo.TbPosition" >
     insert into tb_position (position_id, position_name, position_desc
       )
-    values (#{positionId,jdbcType=BIGINT}, #{positionName,jdbcType=VARCHAR}, #{positionDesc,jdbcType=VARCHAR}
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{positionDesc,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbPosition" >
@@ -118,7 +118,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="positionId != null" >
-        #{positionId,jdbcType=BIGINT},
+        #{positionId,jdbcType=INTEGER},
       </if>
       <if test="positionName != null" >
         #{positionName,jdbcType=VARCHAR},
@@ -138,7 +138,7 @@
     update tb_position
     <set >
       <if test="record.positionId != null" >
-        position_id = #{record.positionId,jdbcType=BIGINT},
+        position_id = #{record.positionId,jdbcType=INTEGER},
       </if>
       <if test="record.positionName != null" >
         position_name = #{record.positionName,jdbcType=VARCHAR},
@@ -153,7 +153,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_position
-    set position_id = #{record.positionId,jdbcType=BIGINT},
+    set position_id = #{record.positionId,jdbcType=INTEGER},
       position_name = #{record.positionName,jdbcType=VARCHAR},
       position_desc = #{record.positionDesc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -170,12 +170,12 @@
         position_desc = #{positionDesc,jdbcType=VARCHAR},
       </if>
     </set>
-    where position_id = #{positionId,jdbcType=BIGINT}
+    where position_id = #{positionId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbPosition" >
     update tb_position
     set position_name = #{positionName,jdbcType=VARCHAR},
       position_desc = #{positionDesc,jdbcType=VARCHAR}
-    where position_id = #{positionId,jdbcType=BIGINT}
+    where position_id = #{positionId,jdbcType=INTEGER}
   </update>
 </mapper>

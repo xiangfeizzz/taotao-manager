@@ -114,52 +114,52 @@ public class TbMenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdEqualTo(Long value) {
+        public Criteria andMenuIdEqualTo(Integer value) {
             addCriterion("menu_id =", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotEqualTo(Long value) {
+        public Criteria andMenuIdNotEqualTo(Integer value) {
             addCriterion("menu_id <>", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdGreaterThan(Long value) {
+        public Criteria andMenuIdGreaterThan(Integer value) {
             addCriterion("menu_id >", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andMenuIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("menu_id >=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdLessThan(Long value) {
+        public Criteria andMenuIdLessThan(Integer value) {
             addCriterion("menu_id <", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdLessThanOrEqualTo(Long value) {
+        public Criteria andMenuIdLessThanOrEqualTo(Integer value) {
             addCriterion("menu_id <=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdIn(List<Long> values) {
+        public Criteria andMenuIdIn(List<Integer> values) {
             addCriterion("menu_id in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotIn(List<Long> values) {
+        public Criteria andMenuIdNotIn(List<Integer> values) {
             addCriterion("menu_id not in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdBetween(Long value1, Long value2) {
+        public Criteria andMenuIdBetween(Integer value1, Integer value2) {
             addCriterion("menu_id between", value1, value2, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotBetween(Long value1, Long value2) {
+        public Criteria andMenuIdNotBetween(Integer value1, Integer value2) {
             addCriterion("menu_id not between", value1, value2, "menuId");
             return (Criteria) this;
         }

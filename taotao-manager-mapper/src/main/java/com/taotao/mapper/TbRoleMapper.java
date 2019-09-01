@@ -10,7 +10,7 @@ public interface TbRoleMapper {
 
     int deleteByExample(TbRoleExample example);
 
-    int deleteByPrimaryKey(Long roleId);
+    int deleteByPrimaryKey(Integer roleId);
 
     int insert(TbRole record);
 
@@ -18,7 +18,7 @@ public interface TbRoleMapper {
 
     List<TbRole> selectByExample(TbRoleExample example);
 
-    TbRole selectByPrimaryKey(Long roleId);
+    TbRole selectByPrimaryKey(Integer roleId);
 
     int updateByExampleSelective(@Param("record") TbRole record, @Param("example") TbRoleExample example);
 

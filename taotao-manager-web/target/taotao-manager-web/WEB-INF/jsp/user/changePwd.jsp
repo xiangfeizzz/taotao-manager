@@ -3,7 +3,7 @@
 <head>
 	<title>密码修改</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 </head>
 <script type="text/javascript">
@@ -65,14 +65,14 @@ function save(){
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr height="50">
 						<td width="150">
-							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" />
+							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请输入原密码
 						</td>
 						<td><input type="password" name="oldPassword" class="InputStyle" /> *</td>
 					</tr>
 					<tr height="25">
 						<td width="150">
-							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" />
+							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请输入新密码
 						</td>
 						<td><input type="password" name="password" class="InputStyle" /> *</td>
@@ -80,7 +80,7 @@ function save(){
 					</tr>
 					<tr height="25">
 						<td width="150">
-							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" />
+							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请再次输入新密码
 						</td>
 						<td><input type="password" name="password2" class="InputStyle" /> *</td>

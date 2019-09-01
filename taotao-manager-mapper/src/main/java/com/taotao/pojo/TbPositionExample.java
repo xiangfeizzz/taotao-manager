@@ -114,52 +114,52 @@ public class TbPositionExample {
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdEqualTo(Long value) {
+        public Criteria andPositionIdEqualTo(Integer value) {
             addCriterion("position_id =", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdNotEqualTo(Long value) {
+        public Criteria andPositionIdNotEqualTo(Integer value) {
             addCriterion("position_id <>", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdGreaterThan(Long value) {
+        public Criteria andPositionIdGreaterThan(Integer value) {
             addCriterion("position_id >", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andPositionIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("position_id >=", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdLessThan(Long value) {
+        public Criteria andPositionIdLessThan(Integer value) {
             addCriterion("position_id <", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdLessThanOrEqualTo(Long value) {
+        public Criteria andPositionIdLessThanOrEqualTo(Integer value) {
             addCriterion("position_id <=", value, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdIn(List<Long> values) {
+        public Criteria andPositionIdIn(List<Integer> values) {
             addCriterion("position_id in", values, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdNotIn(List<Long> values) {
+        public Criteria andPositionIdNotIn(List<Integer> values) {
             addCriterion("position_id not in", values, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdBetween(Long value1, Long value2) {
+        public Criteria andPositionIdBetween(Integer value1, Integer value2) {
             addCriterion("position_id between", value1, value2, "positionId");
             return (Criteria) this;
         }
 
-        public Criteria andPositionIdNotBetween(Long value1, Long value2) {
+        public Criteria andPositionIdNotBetween(Integer value1, Integer value2) {
             addCriterion("position_id not between", value1, value2, "positionId");
             return (Criteria) this;
         }

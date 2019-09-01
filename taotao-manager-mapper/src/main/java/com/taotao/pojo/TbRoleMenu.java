@@ -1,33 +1,33 @@
 package com.taotao.pojo;
 
 public class TbRoleMenu {
-    private Long id;
+    private Integer id;
 
-    private Long menuId;
+    private Integer menuId;
 
-    private Long roleId;
+    private Integer roleId;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getMenuId() {
+    public Integer getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(Long menuId) {
+    public void setMenuId(Integer menuId) {
         this.menuId = menuId;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 }

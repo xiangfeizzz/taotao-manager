@@ -6,7 +6,7 @@
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script type="text/javascript">
     </script>
 </head>
@@ -70,7 +70,7 @@ $(function(){
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
-                        <td>用户姓名</td>
+                        <td>姓名</td>
                         <td><label name="userName"></label></td>
                         <td>登录账号</td>
                         <td><label name="loginName"></label> </td>

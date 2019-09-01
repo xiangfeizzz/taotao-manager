@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -55,16 +56,18 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public Map<String, Object> checkPassword(HttpServletRequest request) {
+	public Map<String, Object> doLogin(HttpServletRequest request) {
 		BaseResult baseResult = new BaseResult();
 		String password = request.getParameter("password");
 		String loginName =request.getParameter("loginName");
-	    TbUser user = loadUserInfoCache(loginName);
+		HttpSession session =request.getSession(); 
+		String sessionId = session.getId();
+	    TbUser user = loadUserInfoCache(loginName,sessionId);
 	    if (user != null ) {
 			String pwd = user.getPassword();
 			String sha256Pass =ShaUtil.encode(password,"");
 			if(pwd.equals(sha256Pass)){
-				return baseResult.getSuccMap();
+				return baseResult.getSuccMap(user);
 			}else{
 				return baseResult.getErrorJsonObj("密码不正确");
 			}
@@ -112,17 +115,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String, Object> getUserInfo(Map<String,String> map) {
 		BaseResult baseResult = new BaseResult();
-	    String loginName = map.get("loginName").toString();
-	    //添加查询条件
-  		TbUserExample example = new TbUserExample();
-  		Criteria criteria = example.createCriteria();
-  		criteria.andLoginNameEqualTo(loginName);
-		criteria.andIsDeleteNotEqualTo("-1");
-  		List<TbUser> list = tbUserMapper.selectByExample(example);
-  		if (list != null && list.size() > 0) {
-  			TbUser user = list.get(0);
-  			Long positionId = user.getPositionId();
-  			Long deptId = user.getDeptId();
+	    String userId = map.get("userId").toString();
+	    TbUser user = tbUserMapper.selectByPrimaryKey(Integer.parseInt(userId));
+  		if (user != null ) {
+  			Integer positionId = user.getPositionId();
+  			Integer deptId = user.getDeptId();
   			TbDept dept = tbDeptMapper.selectByPrimaryKey(deptId);
   			TbPosition position = tbPositionMapper.selectByPrimaryKey(positionId);
   			Map<String,Object> m=new HashMap<String, Object>();
@@ -135,7 +132,7 @@ public class UserServiceImpl implements UserService {
   		}
 	}
 	
-	public TbUser loadUserInfoCache(String loginName) {
+	public TbUser loadUserInfoCache(String loginName,String sessionId) {
   		TbUserExample example = new TbUserExample();
   		Criteria criteria = example.createCriteria();
   		criteria.andLoginNameEqualTo(loginName);
@@ -143,12 +140,9 @@ public class UserServiceImpl implements UserService {
   		List<TbUser> list = tbUserMapper.selectByExample(example);
   		if (list != null && list.size() > 0) {
   			TbUser user = list.get(0);
-			String tokenKey = UUID.randomUUID().toString().replace("-","");
 			String resource = JeditCommon.get("resourceMap");
 			Map map= JSONObject.parseObject(resource, Map.class);
-			
-			JeditCommon.setex(tokenKey, Integer.parseInt(map.get("redis_expire").toString()), JSONObject.toJSONString(user));
-			JeditCommon.setex(user.getLoginName(), Integer.parseInt(map.get("redis_expire").toString()), tokenKey);
+			JeditCommon.setex(sessionId, Integer.parseInt(map.get("redis_expire").toString()), JSONObject.toJSONString(user));
   			return list.get(0);
   		}else{
   			return null;
@@ -158,15 +152,15 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Map<String, Object> getUserList(Map<String,String> map) {
+	public Map<String, Object> getUserList(Map<String,String> map,HttpServletRequest request) {
 		BaseResult baseResult = new BaseResult();
-		String loginName = map.get("loginName");
 		String qryUserName = map.get("qryUserName");
 		String pageNum = map.get("pageNum");
 		String pageSize = map.get("pageSize");
-		String token = JeditCommon.get(loginName);
-		TbUser user= JSONObject.parseObject(JeditCommon.get(token), TbUser.class);
-		Long roleId = user.getRoleId();
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		TbUser user= JSONObject.parseObject( JeditCommon.get(sessionId), TbUser.class);
+		Integer roleId = user.getRoleId();
 		//添加查询条件
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
   		TbUserExample example = new TbUserExample();
@@ -179,5 +173,19 @@ public class UserServiceImpl implements UserService {
   		List<TbUser> list = tbUserMapper.selectByExample(example);
 		PageInfo<TbUser> pageInfo = new PageInfo<>(list);
   		return baseResult.getSuccMap(pageInfo);
+	}
+
+
+	@Override
+	public Map<String, Object> userDel(Map<String, String> map) {
+		BaseResult baseResult = new BaseResult();
+		String loginName = map.get("loginName"); //当前操作人，
+		String userId = map.get("userId");
+		TbUser u=new TbUser();
+		u.setUserId(Integer.parseInt(userId));
+		u.setUpdateDate(DateUtil.getDateAndTime());
+		u.setIsDelete("-1");
+		tbUserMapper.updateByPrimaryKey(u);
+		return baseResult.getSuccMap();
 	}
 }

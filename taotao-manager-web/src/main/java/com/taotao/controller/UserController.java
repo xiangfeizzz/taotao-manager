@@ -43,8 +43,14 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/getUserList")
 	@ResponseBody
-	public Map<String,Object>  getUserList(@RequestBody Map<String,String> map) {
-	    return userService.getUserList(map);
+	public Map<String,Object>  getUserList(@RequestBody Map<String,String> map,HttpServletRequest request) {
+	    return userService.getUserList(map,request);
+	}
+	
+	@RequestMapping("/userDel")
+	@ResponseBody
+	public Map<String,Object>  userDel(@RequestBody Map<String,String> map) {
+		return userService.userDel(map);
 	}
 	
 }

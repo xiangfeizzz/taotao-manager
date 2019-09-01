@@ -1,17 +1,17 @@
 package com.taotao.pojo;
 
 public class TbPosition {
-    private Long positionId;
+    private Integer positionId;
 
     private String positionName;
 
     private String positionDesc;
 
-    public Long getPositionId() {
+    public Integer getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(Long positionId) {
+    public void setPositionId(Integer positionId) {
         this.positionId = positionId;
     }
 

@@ -1,7 +1,7 @@
 package com.taotao.pojo;
 
 public class TbDept {
-    private Long deptId;
+    private Integer deptId;
 
     private String deptAddr;
 
@@ -9,11 +9,13 @@ public class TbDept {
 
     private String deptmanager;
 
-    public Long getDeptId() {
+    private Integer upDeptId;
+
+    public Integer getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Long deptId) {
+    public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
 
@@ -39,5 +41,13 @@ public class TbDept {
 
     public void setDeptmanager(String deptmanager) {
         this.deptmanager = deptmanager == null ? null : deptmanager.trim();
+    }
+
+    public Integer getUpDeptId() {
+        return upDeptId;
+    }
+
+    public void setUpDeptId(Integer upDeptId) {
+        this.upDeptId = upDeptId;
     }
 }

@@ -10,7 +10,7 @@ public interface TbPositionMapper {
 
     int deleteByExample(TbPositionExample example);
 
-    int deleteByPrimaryKey(Long positionId);
+    int deleteByPrimaryKey(Integer positionId);
 
     int insert(TbPosition record);
 
@@ -18,7 +18,7 @@ public interface TbPositionMapper {
 
     List<TbPosition> selectByExample(TbPositionExample example);
 
-    TbPosition selectByPrimaryKey(Long positionId);
+    TbPosition selectByPrimaryKey(Integer positionId);
 
     int updateByExampleSelective(@Param("record") TbPosition record, @Param("example") TbPositionExample example);
 

@@ -1,7 +1,7 @@
 package com.taotao.pojo;
 
 public class TbUser {
-    private Long userId;
+    private Integer userId;
 
     private String address;
 
@@ -31,11 +31,11 @@ public class TbUser {
 
     private String mobile;
 
-    private Long deptId;
+    private Integer deptId;
 
-    private Long positionId;
+    private Integer positionId;
 
-    private Long roleId;
+    private Integer roleId;
 
     private Integer holiday;
 
@@ -47,11 +47,11 @@ public class TbUser {
 
     private String updateDate;
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -167,27 +167,27 @@ public class TbUser {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public Long getDeptId() {
+    public Integer getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Long deptId) {
+    public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
 
-    public Long getPositionId() {
+    public Integer getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(Long positionId) {
+    public void setPositionId(Integer positionId) {
         this.positionId = positionId;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

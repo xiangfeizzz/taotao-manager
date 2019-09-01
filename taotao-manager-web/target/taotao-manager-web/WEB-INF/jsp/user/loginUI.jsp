@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Hunyun OA</title>
-	<link href="${pageContext.request.contextPath}/style/blue/login.css" type=text/css rel=stylesheet>
+	<link href="${pageContext.request.contextPath}/style/css/login.css" type=text/css rel=stylesheet>
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 </head>
 <script type="text/javascript">
@@ -39,7 +39,7 @@
 <!-- 显示表单 -->
     <div id="CenterAreaBg"> 
         <div id="CenterArea" style="left: 700px;">
-            <div id="LogoImg"><img border="0" src="${pageContext.request.contextPath}/style/blue/images/logo.png" /></div>
+            <div id="LogoImg"><img border="0" src="${pageContext.request.contextPath}/style/images/logo.png" /></div>
             <div id="LoginInfo">
                 <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width=100%>
                 	<tr>
@@ -48,16 +48,16 @@
                 		</td>
                 	</tr>
                     <tr>
-                        <td width=45 class="Subject"><img border="0" src="${pageContext.request.contextPath}/style/blue/images/login/userId.gif" /></td>
+                        <td width=45 class="Subject"><img border="0" src="${pageContext.request.contextPath}/style/images/login/userId.gif" /></td>
                         <td>
                         	<input type="text" name="loginName" size="20" tabindex="1"  cssClass="TextField required" />
                         </td>
                         <td rowspan="2" style="padding-left:10px;">
-                        	<input type="image" onclick="login()" tabindex="3" src="${pageContext.request.contextPath}/style/blue/images/login/userLogin_button.gif" />
+                        	<input type="image" onclick="login()" tabindex="3" src="${pageContext.request.contextPath}/style/images/login/userLogin_button.gif" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="Subject"><img border="0" src="${pageContext.request.contextPath}/style/blue/images/login/password.gif" /></td>
+                        <td class="Subject"><img border="0" src="${pageContext.request.contextPath}/style/images/login/password.gif" /></td>
                         <td><input type="password" name="password"  size="20" tabindex="2"  cssClass="TextField required" /></td>
                     </tr>
                 </table>
