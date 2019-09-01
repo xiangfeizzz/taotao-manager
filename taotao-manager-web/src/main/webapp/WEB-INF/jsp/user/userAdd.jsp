@@ -4,8 +4,7 @@
 	<title>个人信息</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
-    <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
-    <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script type="text/javascript">
     </script>
@@ -16,36 +15,82 @@ td{
 }
 </style>
 <script type="text/javascript">
+var userId='${userId}';
+var param={userId:userId};
 $(function(){
-	var userId='${userId}';
-	var param={userId:userId};
-	var url="${pageContext.request.contextPath}/user/getUserInfo";
+	loadDept($("select[name='dept']"));
+	loadPosition($("select[name='position']"));
+});
+
+
+var url="${pageContext.request.contextPath}/user/getUserInfo";
+$.ajax({
+    url : url,
+    type : "POST",
+    async : true,
+    contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(param),
+    dataType : 'json',
+    success : function(data) {
+    	if(data.resultCode=="000000"){
+    		var user=data.data.tbUser;
+    		var dept=data.data.tbDept;
+    		var position=data.data.tbPosition;
+    		$.each($("input"),function(n,v){
+    			var name=$(v).attr("name");
+    			var text=user[name];
+    			$(v).text(text);
+    		});
+    		$("input[name='positionName']").text(position.positionName);
+    		$("input[name='deptName']").text(dept.deptName);
+    	}else{
+    		alert(data.resultMsg)
+    	}
+    }
+});
+
+
+
+
+function loadDept(obj){
+	var url="${pageContext.request.contextPath}/dept/getDeptList";
 	$.ajax({
 	    url : url,
 	    type : "POST",
 	    async : true,
 	    contentType: "application/json; charset=utf-8",
-	    data : JSON.stringify(param),
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
-	    		var user=data.data.tbUser;
-	    		var dept=data.data.tbDept;
-	    		var position=data.data.tbPosition;
-	    		$.each($("input"),function(n,v){
-	    			var name=$(v).attr("name");
-	    			var text=user[name];
-	    			$(v).text(text);
+	    		var option="";
+	    		$.each(data.data,function(n,v){
+	    			 option+="<option value="+v.deptId+">"+v.deptName+"</option>";
 	    		});
-	    		$("input[name='positionName']").text(position.positionName);
-	    		$("input[name='deptName']").text(dept.deptName);
-	    	}else{
-	    		alert(data.resultMsg)
+	    		$(obj).append(option);
 	    	}
 	    }
 	});
-});
+}
 
+function loadPosition(obj){
+	var url="${pageContext.request.contextPath}/position/getPositionList";
+	$.ajax({
+	    url : url,
+	    type : "POST",
+	    async : true,
+	    contentType: "application/json; charset=utf-8",
+	    dataType : 'json',
+	    success : function(data) {
+	    	if(data.resultCode=="000000"){
+	    		var option="";
+	    		$.each(data.data,function(n,v){
+	    			 option+="<option value="+v.positionId+">"+v.positionName+"</option>";
+	    		});
+	    		$(obj).append(option);
+	    	}
+	    }
+	});
+}
 
 </script>
 <body>

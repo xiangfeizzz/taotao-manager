@@ -34,7 +34,6 @@ public class UserController extends BaseController{
 	    return userService.changePwd(map);
 	}
 	
-	
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
 	public Map<String,Object>  getUserInfo(@RequestBody Map<String,String> map) {
@@ -51,6 +50,18 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public Map<String,Object>  userDel(@RequestBody Map<String,String> map) {
 		return userService.userDel(map);
+	}
+	
+	@RequestMapping("/userAdd")
+	@ResponseBody
+	public Map<String,Object>  userAdd(@RequestBody Map<String,String> map) {
+		return userService.userAdd(map);
+	}
+	
+	@RequestMapping("/userUpd")
+	@ResponseBody
+	public Map<String,Object>  userUpd(@RequestBody Map<String,String> map) {
+		return userService.userUpd(map);
 	}
 	
 }

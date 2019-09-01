@@ -3,7 +3,6 @@ package com.taotao.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.common.pojo.BaseResult;
@@ -54,10 +54,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	TbMenuMapperCust tbMenuMapperCust;
 	
+	BaseResult baseResult = new BaseResult();
+	
 
 	@Override
 	public Map<String, Object> doLogin(HttpServletRequest request) {
-		BaseResult baseResult = new BaseResult();
 		String password = request.getParameter("password");
 		String loginName =request.getParameter("loginName");
 		HttpSession session =request.getSession(); 
@@ -79,7 +80,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> changePwd(Map<String,String> map) {
-		BaseResult baseResult = new BaseResult();
 		String oldPassword = map.get("oldPassword");
 	    String password = map.get("password");
 	    String loginName = map.get("loginName");
@@ -114,7 +114,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> getUserInfo(Map<String,String> map) {
-		BaseResult baseResult = new BaseResult();
 	    String userId = map.get("userId").toString();
 	    TbUser user = tbUserMapper.selectByPrimaryKey(Integer.parseInt(userId));
   		if (user != null ) {
@@ -150,10 +149,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-
 	@Override
 	public Map<String, Object> getUserList(Map<String,String> map,HttpServletRequest request) {
-		BaseResult baseResult = new BaseResult();
 		String qryUserName = map.get("qryUserName");
 		String pageNum = map.get("pageNum");
 		String pageSize = map.get("pageSize");
@@ -178,8 +175,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> userDel(Map<String, String> map) {
-		BaseResult baseResult = new BaseResult();
-		String loginName = map.get("loginName"); //当前操作人，
 		String userId = map.get("userId");
 		TbUser u=new TbUser();
 		u.setUserId(Integer.parseInt(userId));
@@ -188,4 +183,37 @@ public class UserServiceImpl implements UserService {
 		tbUserMapper.updateByPrimaryKey(u);
 		return baseResult.getSuccMap();
 	}
+
+
+	@Override
+	public Map<String, Object> userAdd(Map<String, String> map){
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			TbUser user = objectMapper.convertValue(map, TbUser.class);
+			tbUserMapper.insertSelective(user);
+			return baseResult.getSuccMap();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
+	}
+	
+	
+	@Override
+	public Map<String, Object> userUpd(Map<String, String> map){
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			TbUser user = objectMapper.convertValue(map, TbUser.class);
+			tbUserMapper.updateByPrimaryKeySelective(user);
+			return baseResult.getSuccMap();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
+	}
+
+
+	
+
+
 }

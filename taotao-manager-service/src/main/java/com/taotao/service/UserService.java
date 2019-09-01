@@ -15,4 +15,8 @@ public interface UserService {
 	Map<String, Object> userDel(Map<String,String> map);
 
 	Map<String, Object> doLogin(HttpServletRequest request);
+
+	Map<String, Object> userAdd(Map<String, String> map);
+
+	Map<String, Object> userUpd(Map<String, String> map);
 }

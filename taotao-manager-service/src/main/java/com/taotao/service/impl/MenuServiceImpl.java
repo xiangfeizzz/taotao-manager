@@ -27,10 +27,10 @@ public class MenuServiceImpl implements MenuService {
 	TbMenuMapperCust tbMenuMapperCust;
 	@Autowired
 	TbUserMapper tbUserMapper;
+	BaseResult baseResult = new BaseResult();
 	
 	@Override
 	public Map<String, Object> getMenuList(HttpServletRequest request) {
-		BaseResult baseResult = new BaseResult();
 		String loginName =request.getParameter("loginName");
 		HashMap<String, Object> loadLoginData = this.loadLoginData(loginName);
 		return baseResult.getSuccMap(loadLoginData);
