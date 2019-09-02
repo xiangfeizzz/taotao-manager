@@ -23,14 +23,17 @@ import com.taotao.common.utils.DateUtil;
 import com.taotao.common.utils.ShaUtil;
 import com.taotao.mapper.TbDeptMapper;
 import com.taotao.mapper.TbPositionMapper;
+import com.taotao.mapper.TbRoleMapper;
 import com.taotao.mapper.TbUserMapper;
 import com.taotao.mapperCust.TbMenuMapperCust;
 import com.taotao.pojo.TbDept;
 import com.taotao.pojo.TbPosition;
+import com.taotao.pojo.TbRole;
 import com.taotao.pojo.TbUser;
 import com.taotao.pojo.TbUserExample;
 import com.taotao.pojo.TbUserExample.Criteria;
 import com.taotao.service.UserService;
+import com.taotao.validate.UserValidate;
 
 /**
  * 商品管理Service
@@ -51,6 +54,8 @@ public class UserServiceImpl implements UserService {
 	TbDeptMapper tbDeptMapper;
 	@Autowired
 	TbPositionMapper tbPositionMapper;
+	@Autowired
+	TbRoleMapper tbRoleMapper;
 	@Autowired
 	TbMenuMapperCust tbMenuMapperCust;
 	
@@ -119,12 +124,15 @@ public class UserServiceImpl implements UserService {
   		if (user != null ) {
   			Integer positionId = user.getPositionId();
   			Integer deptId = user.getDeptId();
+  			Integer roleId=user.getRoleId();
   			TbDept dept = tbDeptMapper.selectByPrimaryKey(deptId);
   			TbPosition position = tbPositionMapper.selectByPrimaryKey(positionId);
+  			TbRole role = tbRoleMapper.selectByPrimaryKey(roleId);
   			Map<String,Object> m=new HashMap<String, Object>();
   			m.put("tbUser", user);
   			m.put("tbDept", dept);
   			m.put("tbPosition", position);
+  			m.put("tbRole", role);
   			return baseResult.getSuccMap(m);
   		}else{
   			return baseResult.getErrorJsonObj("用户不存在");
@@ -190,6 +198,15 @@ public class UserServiceImpl implements UserService {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
+			UserValidate valid=new UserValidate();
+			String errorMsg=valid.validate(user);
+			if(StringUtils.isNotBlank(errorMsg)){
+				baseResult.getErrorJsonObj(errorMsg);
+			}
+			user.setCreateDate(DateUtil.getDateAndTime());
+			user.setIsDelete("0");
+			String sha256Pass =ShaUtil.encode(user.getLoginName(),"");  //登录密码默认登录账号
+			user.setPassword(sha256Pass);
 			tbUserMapper.insertSelective(user);
 			return baseResult.getSuccMap();
 		} catch (Exception e) {
@@ -204,6 +221,12 @@ public class UserServiceImpl implements UserService {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
+			UserValidate valid=new UserValidate();
+			String errorMsg=valid.validate(user);
+			if(StringUtils.isNotBlank(errorMsg)){
+				baseResult.getErrorJsonObj(errorMsg);
+			}
+			user.setUpdateDate(DateUtil.getDateAndTime());
 			tbUserMapper.updateByPrimaryKeySelective(user);
 			return baseResult.getSuccMap();
 		} catch (Exception e) {

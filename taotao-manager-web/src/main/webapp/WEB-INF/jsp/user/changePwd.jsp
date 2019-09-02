@@ -93,7 +93,7 @@ function save(){
         </div>
        
         <div id="InputDetailBar" style="float: left"> 
-            <input type="image" src="${pageContext.request.contextPath}/style/images/save.png"  onclick="save()" />
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/save.png"  onclick="save()" />
         </div>
      </div>
 </div>

@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Itcast OA</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/jquery_treeview/jquery.cookie.js"></script>
 </head>
 <script type="text/javascript">
 </script>

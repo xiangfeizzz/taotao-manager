@@ -14,7 +14,7 @@
 				return ;
 			}
 			
-			var url="${pageContext.request.contextPath}/login/checkPassword?loginName="+loginName+"&password="+password;
+			var url="${pageContext.request.contextPath}/doLogin?loginName="+loginName+"&password="+password;
 		    $.ajax({
 	            url: url,
 	            type: "GET",
@@ -23,7 +23,8 @@
 	            contentType: "application/json",
 	            success: function (data) {
 	                	if(data.resultCode == "000000"){
-	    					window.location.href="${pageContext.request.contextPath}/home/page/main?preffix=home&loginName="+loginName;
+	                		var userId=data.data.userId;
+	    					window.location.href="${pageContext.request.contextPath}/home/page/main?preffix=home&loginName="+loginName+"&userId="+userId;
 	    				}else{
 	    					alert(data.resultMsg);
 	    				}

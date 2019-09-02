@@ -57,7 +57,9 @@ function save(){
 </div>
 
 <div id=MainArea>
-        <div class="ItemBlock_Title1">
+	<div style="padding-left: 50px;">
+         <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 密码修改 </div> 
         </div>
         
         <div class="ItemBlockBorder">
@@ -91,8 +93,9 @@ function save(){
         </div>
        
         <div id="InputDetailBar" style="float: left"> 
-            <input type="image" src="${pageContext.request.contextPath}/style/images/save.png"  onclick="save()" />
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/save.png"  onclick="save()" />
         </div>
+     </div>
 </div>
 
 <div class="Description">

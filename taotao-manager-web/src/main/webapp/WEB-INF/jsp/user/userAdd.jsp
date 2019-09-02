@@ -18,78 +18,31 @@ td{
 var userId='${userId}';
 var param={userId:userId};
 $(function(){
-	loadDept($("select[name='dept']"));
-	loadPosition($("select[name='position']"));
+	loadDept($("select[name='deptId']"));
+	loadPosition($("select[name='positionId']"));
+	loadRole($("select[name='roleId']"));
 });
 
-
-var url="${pageContext.request.contextPath}/user/getUserInfo";
-$.ajax({
-    url : url,
-    type : "POST",
-    async : true,
-    contentType: "application/json; charset=utf-8",
-    data : JSON.stringify(param),
-    dataType : 'json',
-    success : function(data) {
-    	if(data.resultCode=="000000"){
-    		var user=data.data.tbUser;
-    		var dept=data.data.tbDept;
-    		var position=data.data.tbPosition;
-    		$.each($("input"),function(n,v){
-    			var name=$(v).attr("name");
-    			var text=user[name];
-    			$(v).text(text);
-    		});
-    		$("input[name='positionName']").text(position.positionName);
-    		$("input[name='deptName']").text(dept.deptName);
-    	}else{
-    		alert(data.resultMsg)
-    	}
-    }
-});
-
-
-
-
-function loadDept(obj){
-	var url="${pageContext.request.contextPath}/dept/getDeptList";
+function save(){
+	var url="${pageContext.request.contextPath}/user/userAdd";
+	var jsonObj = $("#MainArea").serializeObject(); // json对象
+	console.log(jsonObj);
 	$.ajax({
 	    url : url,
 	    type : "POST",
 	    async : true,
 	    contentType: "application/json; charset=utf-8",
+	    data : JSON.stringify(jsonObj),
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
-	    		var option="";
-	    		$.each(data.data,function(n,v){
-	    			 option+="<option value="+v.deptId+">"+v.deptName+"</option>";
-	    		});
-	    		$(obj).append(option);
+	    		alert("添加成功");
+	    	}else{
+	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
-}
-
-function loadPosition(obj){
-	var url="${pageContext.request.contextPath}/position/getPositionList";
-	$.ajax({
-	    url : url,
-	    type : "POST",
-	    async : true,
-	    contentType: "application/json; charset=utf-8",
-	    dataType : 'json',
-	    success : function(data) {
-	    	if(data.resultCode=="000000"){
-	    		var option="";
-	    		$.each(data.data,function(n,v){
-	    			 option+="<option value="+v.positionId+">"+v.positionName+"</option>";
-	    		});
-	    		$(obj).append(option);
-	    	}
-	    }
-	});
+	return false;
 }
 
 </script>
@@ -105,7 +58,7 @@ function loadPosition(obj){
     </div>
 </div>
 
-<div id=MainArea>
+<form id="MainArea" >
 <div style="padding-left: 50px;">
        <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 员工添加</div> 
@@ -137,9 +90,9 @@ function loadPosition(obj){
                     </tr>
                      <tr>
                         <td>手机号码</td>
-                        <td><input type="tel" name="mobile"></input> </td>
+                        <td><input type="text" name="mobile"></input> </td>
                         <td>邮箱</td>
-                        <td><input type="email" name="email"></input> </td>
+                        <td><input type="text" name="email"></input> </td>
                     </tr>
                      <tr>
                         <td>生日</td>
@@ -152,7 +105,7 @@ function loadPosition(obj){
                         <td><input type="text" name="school"></input> </td>
                         <td>学历</td>
                         <td>
-                       		 <select name="edu" class="SelectStyle">
+                       		 <select name="edu" >
                                 <option value="0" selected="selected">请选择学历</option>
                                 <option value="1">初中</option>
                                 <option value="2">高中</option>
@@ -168,22 +121,22 @@ function loadPosition(obj){
                     <tr>
                         <td>所属部门</td>
                         <td>
-                        	 <select name="dept" class="SelectStyle">
-                                <option value="0" selected="selected">请选择部门</option>
+                        	 <select name="deptId" >
+                                <option value="" selected="selected">请选择部门</option>
                             </select>
                         </td>
                         <td>职位</td>
                         <td>
-                        	 <select name="position" class="SelectStyle">
-                                <option value="0" selected="selected">请选择职位</option>
+                        	 <select name="positionId" >
+                                <option value="" selected="selected">请选择职位&nbsp;&nbsp;</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>角色</td>
                         <td>
-                        	 <select name="role" class="SelectStyle">
-                                <option value="0" selected="selected">请选择角色</option>
+                        	 <select name="roleId" >
+                                <option value="" selected="selected">请选择角色</option>
                             </select>
                         </td>
                         <td>薪资</td>
@@ -196,7 +149,18 @@ function loadPosition(obj){
                 </table>
             </div>
         </div>
+        
+         <div id="InputDetailBar" style="float: left">
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/save.png"  onclick="return save();" />
+        </div>
+        
    </div>
+</form>
+
+<div class="Description">
+验证规则：</br>
+1，登录账号不能为空，不能是已存在的。</br>
+2，手机号码，邮箱，身份证号，银行卡号，薪资，年假等必须输入正确的格式。</br>
 </div>
 </body>
 </html>

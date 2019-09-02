@@ -1,7 +1,10 @@
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\MenuController.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\UserController.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\PictureController.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\RoleController.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\DeptController.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\HomeController.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\filter\ApiFilter.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\LoginController.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\PositionController.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-web\src\main\java\com\taotao\controller\BaseController.java

@@ -21,6 +21,7 @@ $(function(){
         contentType: "application/json",
         success: function (data) {
             	if(data.resultCode == "000000"){
+            		var userId=data.data.userId;
             		var headerList=data.data.headerList;
             		var menuList=data.data.menuList;
             		var menuHtml="";
@@ -40,7 +41,7 @@ $(function(){
             				if(parentId==menuId){
             					var name=value.menuName;
                     			var id=value.menuId;
-                    			var menuUrl="${pageContext.request.contextPath}/"+value.menuUrl+"&loginName="+loginName;
+                    			var menuUrl="${pageContext.request.contextPath}/"+value.menuUrl+"&userId="+userId+"&loginName="+loginName;
                 				subMenuHtml+="<ul class='MenuLevel2' style='display:none'>";
                 				subMenuHtml+=" <li class='level2'>";
                 				subMenuHtml+=" <div class='level2Style'>";

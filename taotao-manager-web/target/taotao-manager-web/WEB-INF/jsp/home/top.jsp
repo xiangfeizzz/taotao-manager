@@ -28,7 +28,7 @@
                 <img border="0" width="13" height="14" src="${pageContext.request.contextPath}/style/images/top/user.gif" /> 您好，<b>${loginName}</b>&nbsp;&nbsp;
 			</div>
 			<div id="Head1Right_UserName">
-            	<a target="_parent" href="${pageContext.request.contextPath}/user/page/loginUI?preffix=user" style="color:#b3e1ff">
+            	<a target="_parent" href="${pageContext.request.contextPath}/loginOut" style="color:#b3e1ff">
             		<img border="0" width="13" height="14"  src="${pageContext.request.contextPath}/style/images/top/logout.gif"/>
             		 退出系统
                 </a>

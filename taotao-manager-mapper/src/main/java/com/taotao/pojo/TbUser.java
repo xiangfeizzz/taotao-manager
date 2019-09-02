@@ -9,7 +9,7 @@ public class TbUser {
 
     private String birth;
 
-    private String eamil;
+    private String email;
 
     private String loginName;
 
@@ -79,12 +79,12 @@ public class TbUser {
         this.birth = birth == null ? null : birth.trim();
     }
 
-    public String getEamil() {
-        return eamil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEamil(String eamil) {
-        this.eamil = eamil == null ? null : eamil.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getLoginName() {

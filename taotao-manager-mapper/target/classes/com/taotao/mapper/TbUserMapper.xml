@@ -6,7 +6,7 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
     <result column="birth" property="birth" jdbcType="VARCHAR" />
-    <result column="eamil" property="eamil" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
     <result column="id_no" property="idNo" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
@@ -85,7 +85,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, address, bank_no, birth, eamil, login_name, id_no, is_delete, password, 
+    user_id, address, bank_no, birth, email, login_name, id_no, is_delete, password, 
     salary, school, sex, edu, user_name, mobile, dept_id, position_id, role_id, holiday, 
     last_login_time, hire_date, create_date, update_date
   </sql>
@@ -121,7 +121,7 @@
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbUser" >
     insert into tb_user (user_id, address, bank_no, 
-      birth, eamil, login_name, 
+      birth, email, login_name, 
       id_no, is_delete, password, 
       salary, school, sex, edu, 
       user_name, mobile, dept_id, 
@@ -129,7 +129,7 @@
       last_login_time, hire_date, create_date, 
       update_date)
     values (#{userId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, 
-      #{birth,jdbcType=VARCHAR}, #{eamil,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{birth,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
       #{idNo,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salary,jdbcType=REAL}, #{school,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{edu,jdbcType=VARCHAR}, 
       #{userName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{deptId,jdbcType=INTEGER}, 
@@ -152,8 +152,8 @@
       <if test="birth != null" >
         birth,
       </if>
-      <if test="eamil != null" >
-        eamil,
+      <if test="email != null" >
+        email,
       </if>
       <if test="loginName != null" >
         login_name,
@@ -223,8 +223,8 @@
       <if test="birth != null" >
         #{birth,jdbcType=VARCHAR},
       </if>
-      <if test="eamil != null" >
-        #{eamil,jdbcType=VARCHAR},
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
       </if>
       <if test="loginName != null" >
         #{loginName,jdbcType=VARCHAR},
@@ -303,8 +303,8 @@
       <if test="record.birth != null" >
         birth = #{record.birth,jdbcType=VARCHAR},
       </if>
-      <if test="record.eamil != null" >
-        eamil = #{record.eamil,jdbcType=VARCHAR},
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.loginName != null" >
         login_name = #{record.loginName,jdbcType=VARCHAR},
@@ -371,7 +371,7 @@
       address = #{record.address,jdbcType=VARCHAR},
       bank_no = #{record.bankNo,jdbcType=VARCHAR},
       birth = #{record.birth,jdbcType=VARCHAR},
-      eamil = #{record.eamil,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
       login_name = #{record.loginName,jdbcType=VARCHAR},
       id_no = #{record.idNo,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=VARCHAR},
@@ -406,8 +406,8 @@
       <if test="birth != null" >
         birth = #{birth,jdbcType=VARCHAR},
       </if>
-      <if test="eamil != null" >
-        eamil = #{eamil,jdbcType=VARCHAR},
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="loginName != null" >
         login_name = #{loginName,jdbcType=VARCHAR},
@@ -471,7 +471,7 @@
     set address = #{address,jdbcType=VARCHAR},
       bank_no = #{bankNo,jdbcType=VARCHAR},
       birth = #{birth,jdbcType=VARCHAR},
-      eamil = #{eamil,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
       login_name = #{loginName,jdbcType=VARCHAR},
       id_no = #{idNo,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=VARCHAR},
