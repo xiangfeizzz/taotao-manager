@@ -55,8 +55,8 @@ function search(pNum){
 	    			tfont.find("label[name='sex']").text(v["sex"]);
 	    			tfont.find("label[name='mobile']").text(v["mobile"]);
 	    			tfont.find("label[name='eamil']").text(v["eamil"]);
-	    			var hrefInfo="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&type=info&userId=";
-	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&type=upd&userId=";
+	    			var hrefInfo="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&userId=";
+	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userUpd?preffix=user&userId=";
 	    			tfont.find("a[name='userInfo']").attr("href",hrefInfo+userId);
 	    			tfont.find("a[name='userUpd']").attr("href",hrefUpd+userId);
 	    			$("#TableData").prepend(tfont.html());

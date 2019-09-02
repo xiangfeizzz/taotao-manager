@@ -17,6 +17,7 @@ td{
 <script type="text/javascript">
 $(function(){
 	var userId='${userId}';
+	var type='${type}';
 	var param={userId:userId};
 	var url="${pageContext.request.contextPath}/user/getUserInfo";
 	$.ajax({
@@ -51,6 +52,28 @@ $(function(){
 		$("#MainArea").find("input,textarea,select,radio").attr('readonly',true)
 	}
 });
+
+function update(){
+	var url="${pageContext.request.contextPath}/user/userUpd";
+	var jsonObj = $("#MainArea").serializeObject(); // json对象
+	console.log(jsonObj);
+	$.ajax({
+	    url : url,
+	    type : "POST",
+	    async : true,
+	    contentType: "application/json; charset=utf-8",
+	    data : JSON.stringify(jsonObj),
+	    dataType : 'json',
+	    success : function(data) {
+	    	if(data.resultCode=="000000"){
+	    		alert("修改成功");
+	    	}else{
+	    		alert(data.resultMsg)
+	    	}
+	    }
+	});
+	return false;
+}
 
 
 </script>
@@ -160,9 +183,19 @@ $(function(){
             </div>
         </div>
         
+         <div id="InputDetailBar" style="float: left">
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return update();" />
+        </div>
+        
+        
         
    </div>
 </form>
+<div class="Description">
+验证规则：</br>
+1，登录账号不能为空，不能是已存在的。</br>
+2，手机号码，邮箱，身份证号，银行卡号，薪资，年假等必须输入正确的格式。</br>
+</div>
 
 </body>
 </html>
