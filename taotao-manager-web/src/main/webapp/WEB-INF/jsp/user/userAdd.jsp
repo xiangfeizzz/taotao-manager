@@ -25,8 +25,13 @@ $(function(){
 
 function save(){
 	var url="${pageContext.request.contextPath}/user/userAdd";
+	var birth=$("input[name='birth'][type='date']").val();
+	$("input[name='birth'][type='hidden']").val(birth);
+	var hireDate=$("input[name='hireDate'][type='date']").val();
+	$("input[name='hireDate'][type='hidden']").val(hireDate);
+	
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
-	console.log(jsonObj);
+	
 	$.ajax({
 	    url : url,
 	    type : "POST",
@@ -96,9 +101,15 @@ function save(){
                     </tr>
                      <tr>
                         <td>生日</td>
-                        <td><input type="text" name="birth"></input> </td>
+                        <td>
+                        	<input type="date" name="birth" ></input> 
+                        	<input type="hidden" name="birth" ></input>
+                        </td>
                         <td>入职日期</td>
-                        <td><input type="text" name="hireDate"></input> </td>
+                        <td>
+                        	<input type="date" name="hireDate"></input>
+                        	<input type="hidden" name="hireDate"></input>
+                        </td>
                     </tr>
                     <tr>
                         <td>毕业学校</td>
@@ -106,7 +117,7 @@ function save(){
                         <td>学历</td>
                         <td>
                        		 <select name="edu" >
-                                <option value="0" selected="selected">请选择学历</option>
+                                <option value="" selected="selected">请选择学历</option>
                                 <option value="1">初中</option>
                                 <option value="2">高中</option>
                                 <option value="3">中专</option>

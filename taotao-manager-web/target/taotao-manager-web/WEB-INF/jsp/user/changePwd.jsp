@@ -70,14 +70,14 @@ function save(){
 							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请输入原密码
 						</td>
-						<td><input type="password" name="oldPassword" class="InputStyle" /> *</td>
+						<td><input type="password" name="oldPassword"  /> *</td>
 					</tr>
 					<tr height="25">
 						<td width="150">
 							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请输入新密码
 						</td>
-						<td><input type="password" name="password" class="InputStyle" /> *</td>
+						<td><input type="password" name="password"  /> *</td>
 						<td></td>
 					</tr>
 					<tr height="25">
@@ -85,7 +85,7 @@ function save(){
 							<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif" />
 							请再次输入新密码
 						</td>
-						<td><input type="password" name="password2" class="InputStyle" /> *</td>
+						<td><input type="password" name="password2"  /> *</td>
 						<td></td>
 					</tr>
                 </table>

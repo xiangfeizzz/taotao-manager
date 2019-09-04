@@ -1,5 +1,6 @@
 package com.taotao.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,24 +120,41 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> getUserInfo(Map<String,String> map) {
-	    String userId = map.get("userId").toString();
-	    TbUser user = tbUserMapper.selectByPrimaryKey(Integer.parseInt(userId));
-  		if (user != null ) {
-  			Integer positionId = user.getPositionId();
-  			Integer deptId = user.getDeptId();
-  			Integer roleId=user.getRoleId();
-  			TbDept dept = tbDeptMapper.selectByPrimaryKey(deptId);
-  			TbPosition position = tbPositionMapper.selectByPrimaryKey(positionId);
-  			TbRole role = tbRoleMapper.selectByPrimaryKey(roleId);
-  			Map<String,Object> m=new HashMap<String, Object>();
-  			m.put("tbUser", user);
-  			m.put("tbDept", dept);
-  			m.put("tbPosition", position);
-  			m.put("tbRole", role);
-  			return baseResult.getSuccMap(m);
-  		}else{
-  			return baseResult.getErrorJsonObj("用户不存在");
-  		}
+		try {
+		    String userId = map.get("userId").toString();
+		    TbUser user = tbUserMapper.selectByPrimaryKey(Integer.parseInt(userId));
+	  		if (user != null ) {
+	  			Integer positionId = user.getPositionId();
+	  			Integer deptId = user.getDeptId();
+	  			Integer roleId=user.getRoleId();
+	  			TbDept dept = tbDeptMapper.selectByPrimaryKey(deptId);
+	  			TbPosition position = tbPositionMapper.selectByPrimaryKey(positionId);
+	  			TbRole role = tbRoleMapper.selectByPrimaryKey(roleId);
+	  			Map<String,Object> m=new HashMap<String, Object>();
+	  			
+	  			String birth = user.getBirth();
+	  			String hireDate = user.getHireDate();
+	  			if(StringUtils.isNotBlank(birth)){
+	  				birth=birth.substring(0, 8);
+	  				user.setBirth(DateUtil.getDateFormatStr(birth));
+	  			}
+	  			if(StringUtils.isNotBlank(hireDate)){
+	  				hireDate=hireDate.substring(0,8);
+	  				user.setHireDate(DateUtil.getDateFormatStr(hireDate));
+	  			}
+	  				
+	  			m.put("tbUser", user);
+	  			m.put("tbDept", dept);
+	  			m.put("tbPosition", position);
+	  			m.put("tbRole", role);
+	  			return baseResult.getSuccMap(m);
+	  		}else{
+	  			return baseResult.getErrorJsonObj("用户不存在");
+	  		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
 	}
 	
 	public TbUser loadUserInfoCache(String loginName,String sessionId) {
@@ -205,6 +223,15 @@ public class UserServiceImpl implements UserService {
 			}
 			user.setCreateDate(DateUtil.getDateAndTime());
 			user.setIsDelete("0");
+			String birth = user.getBirth();
+  			String hireDate = user.getHireDate();
+  			if(StringUtils.isNotBlank(birth)){
+  				user.setBirth(birth.replace("-",""));
+  			}
+  			if(StringUtils.isNotBlank(hireDate)){
+  				user.setHireDate(hireDate.replace("-",""));
+  			}
+			
 			String sha256Pass =ShaUtil.encode(user.getLoginName(),"");  //登录密码默认登录账号
 			user.setPassword(sha256Pass);
 			tbUserMapper.insertSelective(user);
@@ -227,6 +254,14 @@ public class UserServiceImpl implements UserService {
 				baseResult.getErrorJsonObj(errorMsg);
 			}
 			user.setUpdateDate(DateUtil.getDateAndTime());
+			String birth = user.getBirth();
+  			String hireDate = user.getHireDate();
+			if(StringUtils.isNotBlank(birth)){
+  				user.setBirth(birth.replace("-",""));
+  			}
+  			if(StringUtils.isNotBlank(hireDate)){
+  				user.setHireDate(hireDate.replace("-",""));
+  			}
 			tbUserMapper.updateByPrimaryKeySelective(user);
 			return baseResult.getSuccMap();
 		} catch (Exception e) {

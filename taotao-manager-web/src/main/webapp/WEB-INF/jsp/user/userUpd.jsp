@@ -30,7 +30,7 @@ $(function(){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		var user=data.data.tbUser;
-	    		$.each($("input"),function(n,v){
+	    		$.each($("input").not($("input[type='radio']")),function(n,v){
 	    			var name=$(v).attr("name");
 	    			var value=user[name];
 	    			$(v).val(value);
@@ -42,19 +42,21 @@ $(function(){
 	    		loadPosition($("select[name='positionId']"),position.positionId);
 	    		loadRole($("select[name='roleId']"),role.roleId);
 	    		$("input[name='sex'][value='"+user.sex+"']").attr("checked", true);
-	    		$("select[name='edu']").find("option[value='"+user.edu+"']").attr("disabled", "disabled");
+	    		$("select[name='edu'][option[value='"+user.edu+"']").attr("selected", true);
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
-	if(type=="info"){
-		$("#MainArea").find("input,textarea,select,radio").attr('readonly',true)
-	}
 });
 
 function update(){
 	var url="${pageContext.request.contextPath}/user/userUpd";
+	var birth=$("input[name='birth'][type='date']").val();
+	$("input[name='birth'][type='hidden']").val(birth);
+	var hireDate=$("input[name='hireDate'][type='date']").val();
+	$("input[name='hireDate'][type='hidden']").val(hireDate);
+	
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
 	console.log(jsonObj);
 	$.ajax({
@@ -109,8 +111,8 @@ function update(){
                      <tr>
                         <td>性别</td>
                         <td>
-                        	<input type="radio" name="sex" value="1"></input>男
-                        	<input type="radio" name="sex" value="0"></input>女
+                        	<input type="radio" name="sex" value="1">男</input>
+                        	<input type="radio" name="sex" value="0">女</input>
                          </td>
                         <td>联系地址</td>
                         <td><input type="text" name="address"></input> </td>
@@ -129,9 +131,15 @@ function update(){
                     </tr>
                      <tr>
                         <td>生日</td>
-                        <td><input type="text" name="birth"></input> </td>
+                        <td>
+                        	<input type="date" name="birth" ></input> 
+                        	<input type="hidden" name="birth" ></input>
+                        </td>
                         <td>入职日期</td>
-                        <td><input type="text" name="hireDate"></input> </td>
+                        <td>
+                        	<input type="date" name="hireDate"></input>
+                        	<input type="hidden" name="hireDate"></input>
+                        </td>
                     </tr>
                     <tr>
                         <td>毕业学校</td>
@@ -139,7 +147,7 @@ function update(){
                         <td>学历</td>
                         <td>
                        		 <select name="edu" >
-                                <option value="0" selected="selected">请选择学历</option>
+                                <option value="" selected="selected">请选择学历</option>
                                 <option value="1">初中</option>
                                 <option value="2">高中</option>
                                 <option value="3">中专</option>

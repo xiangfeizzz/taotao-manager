@@ -41,35 +41,16 @@ $(function(){
 	    		loadPosition($("select[name='positionId']"),position.positionId);
 	    		loadRole($("select[name='roleId']"),role.roleId);
 	    		$("input[name='sex'][value='"+user.sex+"']").attr("checked", true);
-	    		$("select[name='edu']").find("option[value='"+user.edu+"']").attr("selected","selected");  
+	    		$("select[name='edu']").find("option[value='"+user.edu+"']").attr("disabled", "disabled");
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
+	if(type=="info"){
+		$("#MainArea").find("input,textarea,select,radio").attr('readonly',true)
+	}
 });
-
-function update(){
-	var url="${pageContext.request.contextPath}/user/userUpd";
-	var jsonObj = $("#MainArea").serializeObject(); // json对象
-	console.log(jsonObj);
-	$.ajax({
-	    url : url,
-	    type : "POST",
-	    async : true,
-	    contentType: "application/json; charset=utf-8",
-	    data : JSON.stringify(jsonObj),
-	    dataType : 'json',
-	    success : function(data) {
-	    	if(data.resultCode=="000000"){
-	    		alert("修改成功");
-	    	}else{
-	    		alert(data.resultMsg)
-	    	}
-	    }
-	});
-	return;
-}
 
 
 </script>
@@ -90,6 +71,8 @@ function update(){
        <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 用户信息 </div> 
         </div>
+        
+        <input type="hidden" name="userId" />
         
           <div class="ItemBlockBorder">
             <div class="ItemBlock">
@@ -177,19 +160,9 @@ function update(){
             </div>
         </div>
         
-         <div id="InputDetailBar" style="float: left">
-            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return update();" />
-        </div>
-        
-        
         
    </div>
 </form>
-<div class="Description">
-验证规则：</br>
-1，登录账号不能为空，不能是已存在的。</br>
-2，手机号码，邮箱，身份证号，银行卡号，薪资，年假等必须输入正确的格式。</br>
-</div>
 
 </body>
 </html>

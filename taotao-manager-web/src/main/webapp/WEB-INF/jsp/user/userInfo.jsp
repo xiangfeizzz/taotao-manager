@@ -29,7 +29,7 @@ $(function(){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		var user=data.data.tbUser;
-	    		$.each($("input"),function(n,v){
+	    		$.each($("input").not($("input[type='radio']")),function(n,v){
 	    			var name=$(v).attr("name");
 	    			var value=user[name];
 	    			$(v).val(value);
@@ -41,15 +41,15 @@ $(function(){
 	    		loadPosition($("select[name='positionId']"),position.positionId);
 	    		loadRole($("select[name='roleId']"),role.roleId);
 	    		$("input[name='sex'][value='"+user.sex+"']").attr("checked", true);
-	    		$("select[name='edu']").find("option[value='"+user.edu+"']").attr("disabled", "disabled");
+	    		$("select[name='edu'][option[value='"+user.edu+"']").attr("selected", true);
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
-	if(type=="info"){
-		$("#MainArea").find("input,textarea,select,radio").attr('readonly',true)
-	}
+	
+	$("#MainArea").find("input,textarea,select,radio").attr('disabled',"disabled");
+	
 });
 
 
@@ -79,44 +79,44 @@ $(function(){
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
                         <td>姓名</td>
-                        <td><input type="text" name="userName"></input></td>
+                        <td><input type="text"  name="userName"></input></td>
                         <td>登录账号</td>
-                        <td><input type="text" name="loginName"></input> </td>
+                        <td><input type="text"  name="loginName"></input> </td>
                     </tr>
                      <tr>
                         <td>性别</td>
                         <td>
-                        	<input type="radio" name="sex" value="1"></input>男
-                        	<input type="radio" name="sex" value="0"></input>女
+                        	<input type="radio" name="sex" value="1"  ></input>男
+                        	<input type="radio" name="sex" value="0"  ></input>女
                          </td>
                         <td>联系地址</td>
-                        <td><input type="text" name="address"></input> </td>
+                        <td><input type="text"  name="address"></input> </td>
                     </tr>
                     <tr>
                         <td>身份证号</td>
-                        <td><input type="text" name="idNo"></input> </td>
+                        <td><input type="text"  name="idNo"></input> </td>
                         <td>银行卡号</td>
-                        <td><input type="text" name="bankNo"></input> </td>
+                        <td><input type="text"  name="bankNo"></input> </td>
                     </tr>
                      <tr>
                         <td>手机号码</td>
-                        <td><input type="text" name="mobile"></input> </td>
+                        <td><input type="text"  name= "mobile"></input> </td>
                         <td>邮箱</td>
-                        <td><input type="text" name="email"></input> </td>
+                        <td><input type="text"  name="email"></input> </td>
                     </tr>
                      <tr>
                         <td>生日</td>
-                        <td><input type="text" name="birth"></input> </td>
+                        <td><input type="date" name="birth" value=""></input> </td>
                         <td>入职日期</td>
-                        <td><input type="text" name="hireDate"></input> </td>
+                        <td><input type="date" name="hireDate"></input> </td>
                     </tr>
                     <tr>
                         <td>毕业学校</td>
-                        <td><input type="text" name="school"></input> </td>
+                        <td><input type="text"  name="school"></input> </td>
                         <td>学历</td>
                         <td>
                        		 <select name="edu" >
-                                <option value="0" selected="selected">请选择学历</option>
+                                <option value="" selected="selected">请选择学历</option>
                                 <option value="1">初中</option>
                                 <option value="2">高中</option>
                                 <option value="3">中专</option>
@@ -145,16 +145,16 @@ $(function(){
                     <tr>
                         <td>角色</td>
                         <td>
-                        	 <select name="roleId" >
+                        	 <select name="roleId"  >
                                 <option value="" selected="selected">请选择角色</option>
                             </select>
                         </td>
                         <td>薪资</td>
-                        <td><input type="text" name="salary"></input> </td>
+                        <td><input type="text"  name="salary"></input> </td>
                     </tr>
                     <tr>
                         <td>年假</td>
-                        <td><input type="text" name="holiday"></input> </td>
+                        <td><input type="text"  name="holiday"></input> </td>
                     </tr>
                 </table>
             </div>
