@@ -48,6 +48,9 @@
 		<table schema="root" tableName="tb_menu"></table>
 		<table schema="root" tableName="tb_role_menu"></table>
 		<table schema="root" tableName="tb_user"></table>
+		<table schema="root" tableName="tb_flow"></table>
+		<table schema="root" tableName="tb_holiday"></table>
+		<table schema="root" tableName="tb_work_ext"></table>
 
 	</context>
 </generatorConfiguration>

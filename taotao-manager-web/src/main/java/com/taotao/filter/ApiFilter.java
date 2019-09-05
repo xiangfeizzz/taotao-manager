@@ -62,7 +62,7 @@ public class ApiFilter implements Filter {
 			
 				String servletPath = httpRequest.getServletPath();
 				if(servletPath.contains(".")||servletPath.equals("/login")|| servletPath.equals("/loginOut")
-						||servletPath.equals("/doLogin")||servletPath.equals("/redisLoad")){ //资源文件和登录登出相关的不校验session超时
+						||servletPath.equals("/doLogin")||servletPath.contains("/redisLoad")){ //资源文件和登录登出相关的不校验session超时
 					chain.doFilter(request, response);
 				}else{
 					HttpSession session =httpRequest.getSession(); 

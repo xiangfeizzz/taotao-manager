@@ -23,8 +23,8 @@
     <result column="holiday" property="holiday" jdbcType="INTEGER" />
     <result column="last_login_time" property="lastLoginTime" jdbcType="VARCHAR" />
     <result column="hire_date" property="hireDate" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
-    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -87,7 +87,7 @@
   <sql id="Base_Column_List" >
     user_id, address, bank_no, birth, email, login_name, id_no, is_delete, password, 
     salary, school, sex, edu, user_name, mobile, dept_id, position_id, role_id, holiday, 
-    last_login_time, hire_date, create_date, update_date
+    last_login_time, hire_date, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbUserExample" >
     select
@@ -126,16 +126,16 @@
       salary, school, sex, edu, 
       user_name, mobile, dept_id, 
       position_id, role_id, holiday, 
-      last_login_time, hire_date, create_date, 
-      update_date)
+      last_login_time, hire_date, create_time, 
+      update_time)
     values (#{userId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, 
       #{birth,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
       #{idNo,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salary,jdbcType=REAL}, #{school,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{edu,jdbcType=VARCHAR}, 
       #{userName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{deptId,jdbcType=INTEGER}, 
       #{positionId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{holiday,jdbcType=INTEGER}, 
-      #{lastLoginTime,jdbcType=VARCHAR}, #{hireDate,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, 
-      #{updateDate,jdbcType=VARCHAR})
+      #{lastLoginTime,jdbcType=VARCHAR}, #{hireDate,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbUser" >
     insert into tb_user
@@ -203,11 +203,11 @@
       <if test="hireDate != null" >
         hire_date,
       </if>
-      <if test="createDate != null" >
-        create_date,
+      <if test="createTime != null" >
+        create_time,
       </if>
-      <if test="updateDate != null" >
-        update_date,
+      <if test="updateTime != null" >
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -274,11 +274,11 @@
       <if test="hireDate != null" >
         #{hireDate,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=VARCHAR},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="updateDate != null" >
-        #{updateDate,jdbcType=VARCHAR},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -354,11 +354,11 @@
       <if test="record.hireDate != null" >
         hire_date = #{record.hireDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.createDate != null" >
-        create_date = #{record.createDate,jdbcType=VARCHAR},
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.updateDate != null" >
-        update_date = #{record.updateDate,jdbcType=VARCHAR},
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -388,8 +388,8 @@
       holiday = #{record.holiday,jdbcType=INTEGER},
       last_login_time = #{record.lastLoginTime,jdbcType=VARCHAR},
       hire_date = #{record.hireDate,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=VARCHAR},
-      update_date = #{record.updateDate,jdbcType=VARCHAR}
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -457,11 +457,11 @@
       <if test="hireDate != null" >
         hire_date = #{hireDate,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null" >
-        create_date = #{createDate,jdbcType=VARCHAR},
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="updateDate != null" >
-        update_date = #{updateDate,jdbcType=VARCHAR},
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
       </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
@@ -488,8 +488,8 @@
       holiday = #{holiday,jdbcType=INTEGER},
       last_login_time = #{lastLoginTime,jdbcType=VARCHAR},
       hire_date = #{hireDate,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=VARCHAR},
-      update_date = #{updateDate,jdbcType=VARCHAR}
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -43,9 +43,9 @@ public class TbUser {
 
     private String hireDate;
 
-    private String createDate;
+    private String createTime;
 
-    private String updateDate;
+    private String updateTime;
 
     public Integer getUserId() {
         return userId;
@@ -215,19 +215,19 @@ public class TbUser {
         this.hireDate = hireDate == null ? null : hireDate.trim();
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate == null ? null : createDate.trim();
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public String getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate == null ? null : updateDate.trim();
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime == null ? null : updateTime.trim();
     }
 }

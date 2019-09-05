@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
   				TbUser u=new TbUser();
   				u.setUserId(user.getUserId());
   				u.setPassword(sha256PassNew);
-  				u.setUpdateDate(dateAndTime);
+  				u.setUpdateTime(dateAndTime);
   				tbUserMapper.updateByPrimaryKeySelective(u);
   				return baseResult.getSuccMap();
   			}else{
@@ -204,7 +204,7 @@ public class UserServiceImpl implements UserService {
 		String userId = map.get("userId");
 		TbUser u=new TbUser();
 		u.setUserId(Integer.parseInt(userId));
-		u.setUpdateDate(DateUtil.getDateAndTime());
+		u.setUpdateTime(DateUtil.getDateAndTime());
 		u.setIsDelete("-1");
 		tbUserMapper.updateByPrimaryKey(u);
 		return baseResult.getSuccMap();
@@ -221,7 +221,7 @@ public class UserServiceImpl implements UserService {
 			if(StringUtils.isNotBlank(errorMsg)){
 				baseResult.getErrorJsonObj(errorMsg);
 			}
-			user.setCreateDate(DateUtil.getDateAndTime());
+			user.setCreateTime(DateUtil.getDateAndTime());
 			user.setIsDelete("0");
 			String birth = user.getBirth();
   			String hireDate = user.getHireDate();
@@ -253,7 +253,7 @@ public class UserServiceImpl implements UserService {
 			if(StringUtils.isNotBlank(errorMsg)){
 				baseResult.getErrorJsonObj(errorMsg);
 			}
-			user.setUpdateDate(DateUtil.getDateAndTime());
+			user.setUpdateTime(DateUtil.getDateAndTime());
 			String birth = user.getBirth();
   			String hireDate = user.getHireDate();
 			if(StringUtils.isNotBlank(birth)){
