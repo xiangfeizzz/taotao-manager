@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapperCust.TbFlowMapperCust" >
+  
+  <select id="getFlowList" resultType="Map" parameterType="Map" >
+    SELECT
+		f.flow_id AS flowId,
+		f.flow_name AS flowName,
+		f.flow_status AS flowStatus,
+		f.create_time AS createTime,
+		u.user_name AS userName 
+	FROM
+		tb_flow f
+		LEFT JOIN tb_user u ON f.user_id = u.user_id
+    WHERE 1=1
+      <if test="flowType != null and flowType!='' " >
+        and f.flow_type=#{flowType,jdbcType=VARCHAR}
+      </if>
+      <if test="flowStatus != null and flowStatus!='' " >
+        and f.flow_status=#{flowStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null and userName!='' " >
+        and u.user_name like CONCAT(CONCAT('%', #{userName,jdbcType=VARCHAR} ), '%')
+      </if>
+      <if test="beforeDate != null and beforeDate!='' " >
+        and f.create_time &gt;= #{beforeDate,jdbcType=VARCHAR}
+      </if>
+    order by f.create_time desc 
+  </select>
+</mapper>

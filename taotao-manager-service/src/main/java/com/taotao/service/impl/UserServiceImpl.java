@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService {
 		String pageSize = map.get("pageSize");
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
-		TbUser user= JSONObject.parseObject( JeditCommon.get(sessionId), TbUser.class);
+		TbUser user= JSONObject.parseObject(JeditCommon.get(sessionId), TbUser.class);
 		Integer roleId = user.getRoleId();
 		//添加查询条件
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));

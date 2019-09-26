@@ -42,15 +42,13 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="root" tableName="tb_role"></table>
 		<table schema="root" tableName="tb_dept"></table>
-		<table schema="root" tableName="tb_position"></table>
+		<table schema="root" tableName="tb_flow"></table>
 		<table schema="root" tableName="tb_menu"></table>
+		<table schema="root" tableName="tb_position"></table>
+		<table schema="root" tableName="tb_role"></table>
 		<table schema="root" tableName="tb_role_menu"></table>
 		<table schema="root" tableName="tb_user"></table>
-		<table schema="root" tableName="tb_flow"></table>
-		<table schema="root" tableName="tb_holiday"></table>
-		<table schema="root" tableName="tb_work_ext"></table>
 
 	</context>
 </generatorConfiguration>

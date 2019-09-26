@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.taotao.service.FlowService;
 
 @Controller
-@RequestMapping("/holiday")
-public class HolidayController extends BaseController{
-	private static final Logger logger = LoggerFactory.getLogger(HolidayController.class);
+@RequestMapping("/flow")
+public class FlowController extends BaseController{
+	private static final Logger logger = LoggerFactory.getLogger(FlowController.class);
 	
 	@Autowired
 	FlowService flowService;
@@ -28,9 +28,9 @@ public class HolidayController extends BaseController{
 		request.setAttribute("basePrefix", "user");
 	}
 	
-	@RequestMapping("/holidayAdd")
+	@RequestMapping("/getFlowList")
 	@ResponseBody
-	public Map<String,Object>  holidayAdd(@RequestBody Map<String,String> map,HttpServletRequest request) {
-		return flowService.holidayAdd(map,request);
+	public Map<String,Object>  getFlowList(@RequestBody Map<String,String> map,HttpServletRequest request) {
+		return flowService.getFlowList(map,request);
 	}
 }

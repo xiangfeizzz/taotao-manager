@@ -3,8 +3,17 @@
 <mapper namespace="com.taotao.mapper.TbFlowMapper" >
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbFlow" >
     <id column="flow_id" property="flowId" jdbcType="INTEGER" />
-    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+    <result column="flow_status" property="flowStatus" jdbcType="VARCHAR" />
     <result column="flow_type" property="flowType" jdbcType="VARCHAR" />
+    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+    <result column="holiday_type" property="holidayType" jdbcType="VARCHAR" />
+    <result column="holiday_start_time" property="holidayStartTime" jdbcType="VARCHAR" />
+    <result column="holiday_end_time" property="holidayEndTime" jdbcType="VARCHAR" />
+    <result column="holiday_hours" property="holidayHours" jdbcType="VARCHAR" />
+    <result column="holiday_desc" property="holidayDesc" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    flow_id, flow_name, flow_type
+    flow_id, flow_status, flow_type, flow_name, holiday_type, holiday_start_time, holiday_end_time, 
+    holiday_hours, holiday_desc, user_id, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowExample" >
     select
@@ -98,9 +108,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbFlow" >
-    insert into tb_flow (flow_id, flow_name, flow_type
+    insert into tb_flow (flow_id, flow_status, flow_type, 
+      flow_name, holiday_type, holiday_start_time, 
+      holiday_end_time, holiday_hours, holiday_desc, 
+      user_id, create_time, update_time
       )
-    values (#{flowId,jdbcType=INTEGER}, #{flowName,jdbcType=VARCHAR}, #{flowType,jdbcType=VARCHAR}
+    values (#{flowId,jdbcType=INTEGER}, #{flowStatus,jdbcType=VARCHAR}, #{flowType,jdbcType=VARCHAR}, 
+      #{flowName,jdbcType=VARCHAR}, #{holidayType,jdbcType=VARCHAR}, #{holidayStartTime,jdbcType=VARCHAR}, 
+      #{holidayEndTime,jdbcType=VARCHAR}, #{holidayHours,jdbcType=VARCHAR}, #{holidayDesc,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlow" >
@@ -109,22 +125,76 @@
       <if test="flowId != null" >
         flow_id,
       </if>
-      <if test="flowName != null" >
-        flow_name,
+      <if test="flowStatus != null" >
+        flow_status,
       </if>
       <if test="flowType != null" >
         flow_type,
+      </if>
+      <if test="flowName != null" >
+        flow_name,
+      </if>
+      <if test="holidayType != null" >
+        holiday_type,
+      </if>
+      <if test="holidayStartTime != null" >
+        holiday_start_time,
+      </if>
+      <if test="holidayEndTime != null" >
+        holiday_end_time,
+      </if>
+      <if test="holidayHours != null" >
+        holiday_hours,
+      </if>
+      <if test="holidayDesc != null" >
+        holiday_desc,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="flowId != null" >
         #{flowId,jdbcType=INTEGER},
       </if>
-      <if test="flowName != null" >
-        #{flowName,jdbcType=VARCHAR},
+      <if test="flowStatus != null" >
+        #{flowStatus,jdbcType=VARCHAR},
       </if>
       <if test="flowType != null" >
         #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayType != null" >
+        #{holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayStartTime != null" >
+        #{holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayEndTime != null" >
+        #{holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayHours != null" >
+        #{holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDesc != null" >
+        #{holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -140,11 +210,38 @@
       <if test="record.flowId != null" >
         flow_id = #{record.flowId,jdbcType=INTEGER},
       </if>
-      <if test="record.flowName != null" >
-        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      <if test="record.flowStatus != null" >
+        flow_status = #{record.flowStatus,jdbcType=VARCHAR},
       </if>
       <if test="record.flowType != null" >
         flow_type = #{record.flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowName != null" >
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayType != null" >
+        holiday_type = #{record.holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayStartTime != null" >
+        holiday_start_time = #{record.holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayEndTime != null" >
+        holiday_end_time = #{record.holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayHours != null" >
+        holiday_hours = #{record.holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayDesc != null" >
+        holiday_desc = #{record.holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -154,8 +251,17 @@
   <update id="updateByExample" parameterType="map" >
     update tb_flow
     set flow_id = #{record.flowId,jdbcType=INTEGER},
+      flow_status = #{record.flowStatus,jdbcType=VARCHAR},
+      flow_type = #{record.flowType,jdbcType=VARCHAR},
       flow_name = #{record.flowName,jdbcType=VARCHAR},
-      flow_type = #{record.flowType,jdbcType=VARCHAR}
+      holiday_type = #{record.holidayType,jdbcType=VARCHAR},
+      holiday_start_time = #{record.holidayStartTime,jdbcType=VARCHAR},
+      holiday_end_time = #{record.holidayEndTime,jdbcType=VARCHAR},
+      holiday_hours = #{record.holidayHours,jdbcType=VARCHAR},
+      holiday_desc = #{record.holidayDesc,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -163,19 +269,55 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.TbFlow" >
     update tb_flow
     <set >
-      <if test="flowName != null" >
-        flow_name = #{flowName,jdbcType=VARCHAR},
+      <if test="flowStatus != null" >
+        flow_status = #{flowStatus,jdbcType=VARCHAR},
       </if>
       <if test="flowType != null" >
         flow_type = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayType != null" >
+        holiday_type = #{holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayStartTime != null" >
+        holiday_start_time = #{holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayEndTime != null" >
+        holiday_end_time = #{holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayHours != null" >
+        holiday_hours = #{holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDesc != null" >
+        holiday_desc = #{holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
       </if>
     </set>
     where flow_id = #{flowId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbFlow" >
     update tb_flow
-    set flow_name = #{flowName,jdbcType=VARCHAR},
-      flow_type = #{flowType,jdbcType=VARCHAR}
+    set flow_status = #{flowStatus,jdbcType=VARCHAR},
+      flow_type = #{flowType,jdbcType=VARCHAR},
+      flow_name = #{flowName,jdbcType=VARCHAR},
+      holiday_type = #{holidayType,jdbcType=VARCHAR},
+      holiday_start_time = #{holidayStartTime,jdbcType=VARCHAR},
+      holiday_end_time = #{holidayEndTime,jdbcType=VARCHAR},
+      holiday_hours = #{holidayHours,jdbcType=VARCHAR},
+      holiday_desc = #{holidayDesc,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
     where flow_id = #{flowId,jdbcType=INTEGER}
   </update>
 </mapper>

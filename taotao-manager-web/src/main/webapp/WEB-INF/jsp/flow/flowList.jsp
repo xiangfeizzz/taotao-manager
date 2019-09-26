@@ -7,7 +7,7 @@
 </head>
 <script type="text/javascript" async="async">
 
-var loginName='${loginName}';
+var userId='${userId}';
 var page;
 var pageNum=1;
 var pageSize=10;
@@ -23,9 +23,12 @@ function search(pNum){
 		}
 		pageNum=pNum;
 	}
-	var qryUserName=$("input[name='qryUserName']").val();
-	var param={loginName:loginName,qryUserName:qryUserName,pageNum:pageNum,pageSize:pageSize};
-	var url="${pageContext.request.contextPath}/user/getUserList";
+	var userName=$("input[name='userName']").val();
+	var flowType=$("select[name='flowType'] option:selected").val();
+	var flowStatus=$("select[name='flowStatus'] option:selected").val();
+	var rangeTime=$("select[name='rangeTime'] option:selected").val();
+	var param={userName:userName,flowType:flowType,flowStatus:flowStatus,rangeTime:rangeTime,pageNum:pageNum,pageSize:pageSize};
+	var url="${pageContext.request.contextPath}/flow/getFlowList";
 	$.ajax({
 	    url : url,
 	    type : "POST",
@@ -48,17 +51,14 @@ function search(pNum){
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot");
-	    			var userId=v["userId"];
-	    			tfont.find("label[name='userId']").text(userId);
-	    			tfont.find("label[name='loginName']").text(v["loginName"]);
+	    			var flowId=v["flowId"];
+	    			tfont.find("label[name='flowId']").text(flowId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
-	    			tfont.find("label[name='sex']").text(v["sex"]);
-	    			tfont.find("label[name='mobile']").text(v["mobile"]);
-	    			tfont.find("label[name='eamil']").text(v["eamil"]);
+	    			tfont.find("label[name='flowName']").text(v["flowName"]);
+	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
+	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var hrefInfo="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&userId=";
-	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userUpd?preffix=user&userId=";
 	    			tfont.find("a[name='info']").attr("href",hrefInfo+userId);
-	    			tfont.find("a[name='upd']").attr("href",hrefUpd+userId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -67,34 +67,6 @@ function search(pNum){
 	    }
 	});
 }
-
-function del(obj){
-	if(window.confirm('确定删除么')){
-		var userId=$(obj).parent().parent().find("label[name='userId']").text();
-		var param={userId:userId,loginName:loginName};
-		var url="${pageContext.request.contextPath}/user/userDel";
-		$.ajax({
-		    url : url,
-		    type : "POST",
-		    async : true,
-		    contentType: "application/json; charset=utf-8",
-		    data : JSON.stringify(param),
-		    dataType : 'json',
-		    success : function(data) {
-		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
-		    		alert("删除成功");
-		    	}else{
-		    		alert(data.resultMsg)
-		    	}
-		    }
-		});
-     }
-}
-
-// function userAdd(){
-// 	window.location.href="${pageContext.request.contextPath}/user/page/userAdd?preffix=user&userName="+loginName;
-// }
 
 </script>
 <body>
@@ -121,12 +93,42 @@ function del(obj){
 			<div class="ItemBlock">
 				<table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
-						<td>姓名&nbsp;&nbsp;<input type="text" name="qryUserName" /></td>
+						<td>姓名<input type="text" name="userName" style="width: 45%" /></td>
+						<td>流程名称
+						 <select name="flowType"  >
+                                <option value="" selected="selected">请选择流程</option>
+                               	<option value="1">请假申请</option>
+                                <option value="2">加班申请</option>
+                                <option value="3">物品申领</option>
+                                <option value="4">出差申请</option>
+                                <option value="5">辞职申请</option>
+                                <option value="6">报销申请</option>
+                            </select>
+						</td>
+						<td>流程状态
+						 <select name="flowStatus" style="width: 60%">
+                                <option value="" selected="selected">请选择流程状态</option>
+                               	<option value="0">待审核</option>
+                               	<option value="1">审核中</option>
+                               	<option value="2">申请通过</option>
+                                <option value="3">申请拒绝</option>
+                            </select>
+						</td>
+						
+						<td>时长
+						 <select name="rangeTime" style="width: 60%">
+                                <option value="" selected="selected">请选择时长</option>
+                               	<option value="3">近三个月</option>
+                               	<option value="6">近半年</option>
+                                <option value="12">近一年</option>
+                            </select>
+						</td>
 						<td>
-							 <div id="InputDetailBar" style="float: left"> 
+						 <div id="InputDetailBar" > 
 					            <input type="image" src="${pageContext.request.contextPath}/style/images/button/query.PNG"  onclick="search(1)" />
 					        </div>
 						</td>
+						</tr> 
 					</tr>
 				</table>
 			</div>
@@ -138,12 +140,11 @@ function del(obj){
          </div>
 			<thead>
 				<tr align=center valign=middle id=TableTitle>
-					<td style="display:none">用户编号</td> 
-					<td >登录名</td> 
+					<td style="display:none">流程id</td> 
 					<td >姓名</td>
-					<td >性别</td>
-					<td >手机</td>
-					<td >邮箱</td>
+					<td >流程名称</td>
+					<td >流程状态</td>
+					<td >创建时间</td>
 					<td >操作</td>
 				</tr>
 			</thead>
@@ -152,16 +153,13 @@ function del(obj){
 			</tbody>
 			<tfoot class="TableDetail1 template" style="display:none">
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
-					<td style="display:none"><label name="userId">1</label></td>
-					<td><label name="loginName">xucc</label></td>
-					<td><label name="userName">xucc</label></td>
-					<td><label name="sex">男</label></td>
-					<td><label name="mobile">15150476209</label></td>
-					<td><label name="eamil">15150476209@139.com</label></td>
+					<td style="display:none"><label name="flowId"></label></td>
+					<td><label name="userName"></label></td>
+					<td><label name="flowName"></label></td>
+					<td><label name="flowStatus"></label></td>
+					<td><label name="createTime"></label></td>
 					<td> 
 						<a name="info" href="" >查看</a> 
-						<a onclick="del(this)">删除</a> 
-						<a name="upd"  href="" >修改</a> 
 					</td>
 				</tr>
 			</tfoot>

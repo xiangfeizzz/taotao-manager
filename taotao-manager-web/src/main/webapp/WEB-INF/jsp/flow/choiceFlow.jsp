@@ -45,9 +45,9 @@ function create(){
                                	<option value="1">请假申请</option>
                                 <option value="2">加班申请</option>
                                 <option value="3">物品申领</option>
-<!--                                 <option value="4">出差申请</option> -->
-<!--                                 <option value="5">辞职申请</option> -->
-<!--                                 <option value="6">报销申请</option> -->
+                                <option value="4">出差申请</option>
+                                <option value="5">辞职申请</option>
+                                <option value="6">报销申请</option>
                             </select>
                         
                          </td>

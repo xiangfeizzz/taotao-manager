@@ -15,18 +15,17 @@ td{
 }
 </style>
 <script type="text/javascript">
-var userId='${userId}';
-var flowId='${flowId}';
-var param={userId:userId};
-
 function save(){
-	var url="${pageContext.request.contextPath}/holiday/holidayAdd";
-	var startTime=$("input[name='startTime'][type='date']").val();
-	$("input[name='startTime'][type='hidden']").val(startTime);
-	var endTime=$("input[name='endTime'][type='date']").val();
-	$("input[name='endTime'][type='hidden']").val(endTime);
+	var holidayStartTime=$("input[name='holidayStartTime'][type='date']").val();
+	$("input[name='holidayStartTime'][type='hidden']").val(holidayStartTime);
+	var holidayEndTime=$("input[name='holidayEndTime'][type='date']").val();
+	$("input[name='holidayEndTime'][type='hidden']").val(holidayEndTime);
 	
-	$("input[name='flowId']").val(flowId);
+	if(!check()){
+		return false;
+	}
+	
+	var url="${pageContext.request.contextPath}/holiday/holidayAdd";
 	
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
 	
@@ -40,6 +39,7 @@ function save(){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		alert("提交成功");
+	    	 	window.location.href="${pageContext.request.contextPath}/page/choiceFlow?preffix=flow";
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
@@ -48,12 +48,44 @@ function save(){
 	return false;
 }
 
+function check(){
+	var holidayType=$("select[name='holidayType'] option:selected").val();
+	if(holidayType==""){
+		alert("请选择请假类型");
+		return false;
+	}
+	var holidayHours=$("input[name='holidayHours']").val();
+	if(isNaN(holidayHours) || holidayHours.trim()==""){
+		alert("请假时长不合法");
+		return false;
+	}
+	var holidayStartTime=$("input[name='holidayStartTime']").val();
+	if(holidayStartTime==""){
+		alert("请选择开始日期");
+		return false;
+	}
+	var holidayEndTime=$("input[name='holidayEndTime']").val();
+	if(holidayEndTime==""){
+		alert("请选择结束日期");
+		return false;
+	}
+	
+	var holidayDesc=$("textArea[name='holidayDesc']").val();
+	if(holidayDesc==""){
+		alert("请填写请假事由");
+		return false;
+	}
+	return true;
+}
+
 </script>
 <body>
 
 <div id="Title_bar">
     <div id="Title_bar_Head">
         <div id="Title_Head"></div>
+        
+        
         <div id="Title">
             <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 请假申请
         </div>
@@ -67,16 +99,14 @@ function save(){
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 请假申请</div> 
         </div>
         
-        <input type="hidden" name="flowId" />
-        
         <div class="ItemBlockBorder">
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
                         <td>请假类型</td>
                         <td>
-                        	 <select name="type" >
-                                <option value="" selected="selected">请假类型</option>
+                        	 <select name="holidayType" >
+                                <option value="" selected="selected" >请选择请假类型</option>
                                	<option value="1">事假</option>
                                 <option value="2">病假</option>
                                 <option value="3">婚假</option>
@@ -88,25 +118,28 @@ function save(){
                     </tr>
                     <tr>
                      <td>请假时长</td>
-                        <td><input type="text" name="datetime"></input> </td>
+                        <td><input type="text" name="holidayHours" 	></input> <font>*</font></td> 
                       <td>剩余年假</td>
-                        <td><input type="text" name="holiday" disabled="disabled" value="4"></input> </td>
+                        <td><input type="text" name="holiday" disabled="disabled" value="4"></input> <font>*</font></td>
                     </tr>
                      <tr>
                         <td>开始日期</td>
                         <td>
-                        	<input type="date" name="startTime" ></input> 
-                        	<input type="hidden" name="startTime" ></input>
+                        	<input type="date" name="holidayStartTime" ></input> 
+                        	<input type="hidden" name="holidayStartTime" ></input>
+                        	<font>*</font>
                         </td>
                         <td>结束日期</td>
                         <td>
-                        	<input type="date" name="endTime"></input>
-                        	<input type="hidden" name="endTime"></input>
+                        	<input type="date" name="holidayEndTime" ></input>
+                        	<input type="hidden" name="holidayEndTime" ></input>
+                        	<font>*</font>
                         </td>
                     </tr>
                     <tr>
                         <td>请假事由</td>
-                        <td colspan="3"><input type="textArea" type="text" cols="100" rows="5" name="desc"></input> </td>
+                        <td colspan="3"><textArea type="text" cols="120" rows="4" name="holidayDesc" /></textArea> 
+                        <font>*</font></td>
                     </tr>
                 </table>
             </div>
