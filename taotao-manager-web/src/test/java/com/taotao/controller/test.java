@@ -24,5 +24,8 @@ public static void main(String[] args) throws ParseException {
 		calendar.add(Calendar.DAY_OF_MONTH, -5);
 		date = calendar.getTime();
 		System.out.println(sdf.format(date));
+		
+		
+		System.out.println(199/100);
 }
 }

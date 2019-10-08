@@ -11,8 +11,10 @@ function create(){
 	var flowId=$("select[name='flowId'] option:selected").val();
 	if(flowId==""){
 		alert("请选择流程");
-	}else{
+	}else if(flowId=="1"){
 		window.location.href="${pageContext.request.contextPath}/page/holidayAdd?preffix=flow&flowId="+flowId+"&userId="+userId;
+	}else if(flowId=="2"){
+		window.location.href="${pageContext.request.contextPath}/page/workextAdd?preffix=flow&flowId="+flowId+"&userId="+userId;
 	}
 }
 </script>

@@ -19,6 +19,16 @@ public class TbFlow {
 
     private String holidayDesc;
 
+    private String workextStartTime;
+
+    private String workextEndTime;
+
+    private String isLegalDay;
+
+    private String workextHours;
+
+    private String workextDesc;
+
     private Integer userId;
 
     private String createTime;
@@ -95,6 +105,46 @@ public class TbFlow {
 
     public void setHolidayDesc(String holidayDesc) {
         this.holidayDesc = holidayDesc == null ? null : holidayDesc.trim();
+    }
+
+    public String getWorkextStartTime() {
+        return workextStartTime;
+    }
+
+    public void setWorkextStartTime(String workextStartTime) {
+        this.workextStartTime = workextStartTime == null ? null : workextStartTime.trim();
+    }
+
+    public String getWorkextEndTime() {
+        return workextEndTime;
+    }
+
+    public void setWorkextEndTime(String workextEndTime) {
+        this.workextEndTime = workextEndTime == null ? null : workextEndTime.trim();
+    }
+
+    public String getIsLegalDay() {
+        return isLegalDay;
+    }
+
+    public void setIsLegalDay(String isLegalDay) {
+        this.isLegalDay = isLegalDay == null ? null : isLegalDay.trim();
+    }
+
+    public String getWorkextHours() {
+        return workextHours;
+    }
+
+    public void setWorkextHours(String workextHours) {
+        this.workextHours = workextHours == null ? null : workextHours.trim();
+    }
+
+    public String getWorkextDesc() {
+        return workextDesc;
+    }
+
+    public void setWorkextDesc(String workextDesc) {
+        this.workextDesc = workextDesc == null ? null : workextDesc.trim();
     }
 
     public Integer getUserId() {

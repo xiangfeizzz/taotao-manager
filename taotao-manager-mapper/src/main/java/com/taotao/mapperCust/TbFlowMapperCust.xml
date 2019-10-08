@@ -5,6 +5,7 @@
   <select id="getFlowList" resultType="Map" parameterType="Map" >
     SELECT
 		f.flow_id AS flowId,
+		f.flow_type as flowType,
 		f.flow_name AS flowName,
 		f.flow_status AS flowStatus,
 		f.create_time AS createTime,

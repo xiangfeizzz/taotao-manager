@@ -57,8 +57,9 @@ function search(pNum){
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
 	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
-	    			var hrefInfo="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&userId=";
-	    			tfont.find("a[name='info']").attr("href",hrefInfo+userId);
+	    			var flowType=v["flowType"];
+	    			var hrefInfo=loadUrl(flowType);
+	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -66,6 +67,16 @@ function search(pNum){
 	    	}
 	    }
 	});
+}
+
+function loadUrl(flowType){
+	var hrefInfo="";
+	if(flowType=="1"){
+		hrefInfo="${pageContext.request.contextPath}/page/holidayInfo?preffix=flow&flowId=";
+	}else if(flowType=="2"){
+		hrefInfo="${pageContext.request.contextPath}/page/workextInfo?preffix=flow&flowId=";
+	}
+	return hrefInfo;
 }
 
 </script>

@@ -28,9 +28,27 @@ public class FlowController extends BaseController{
 		request.setAttribute("basePrefix", "user");
 	}
 	
+	@RequestMapping("/getFlowInfo")
+	@ResponseBody
+	public Map<String,Object>  getFlowInfo(@RequestBody Map<String,String> map,HttpServletRequest request) {
+		return flowService.getFlowInfo(map,request);
+	}
+	
 	@RequestMapping("/getFlowList")
 	@ResponseBody
 	public Map<String,Object>  getFlowList(@RequestBody Map<String,String> map,HttpServletRequest request) {
 		return flowService.getFlowList(map,request);
+	}
+	
+	@RequestMapping("/holidayAdd")
+	@ResponseBody
+	public Map<String,Object>  holidayAdd(@RequestBody Map<String,String> map,HttpServletRequest request) {
+		return flowService.holidayAdd(map,request);
+	}
+	
+	@RequestMapping("/workextAdd")
+	@ResponseBody
+	public Map<String,Object>  workextAdd(@RequestBody Map<String,String> map,HttpServletRequest request) {
+		return flowService.workextAdd(map,request);
 	}
 }

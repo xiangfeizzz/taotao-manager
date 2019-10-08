@@ -724,6 +724,356 @@ public class TbFlowExample {
             return (Criteria) this;
         }
 
+        public Criteria andWorkextStartTimeIsNull() {
+            addCriterion("workext_start_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeIsNotNull() {
+            addCriterion("workext_start_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeEqualTo(String value) {
+            addCriterion("workext_start_time =", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeNotEqualTo(String value) {
+            addCriterion("workext_start_time <>", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeGreaterThan(String value) {
+            addCriterion("workext_start_time >", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("workext_start_time >=", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeLessThan(String value) {
+            addCriterion("workext_start_time <", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeLessThanOrEqualTo(String value) {
+            addCriterion("workext_start_time <=", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeLike(String value) {
+            addCriterion("workext_start_time like", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeNotLike(String value) {
+            addCriterion("workext_start_time not like", value, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeIn(List<String> values) {
+            addCriterion("workext_start_time in", values, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeNotIn(List<String> values) {
+            addCriterion("workext_start_time not in", values, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeBetween(String value1, String value2) {
+            addCriterion("workext_start_time between", value1, value2, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextStartTimeNotBetween(String value1, String value2) {
+            addCriterion("workext_start_time not between", value1, value2, "workextStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeIsNull() {
+            addCriterion("workext_end_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeIsNotNull() {
+            addCriterion("workext_end_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeEqualTo(String value) {
+            addCriterion("workext_end_time =", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeNotEqualTo(String value) {
+            addCriterion("workext_end_time <>", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeGreaterThan(String value) {
+            addCriterion("workext_end_time >", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("workext_end_time >=", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeLessThan(String value) {
+            addCriterion("workext_end_time <", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeLessThanOrEqualTo(String value) {
+            addCriterion("workext_end_time <=", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeLike(String value) {
+            addCriterion("workext_end_time like", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeNotLike(String value) {
+            addCriterion("workext_end_time not like", value, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeIn(List<String> values) {
+            addCriterion("workext_end_time in", values, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeNotIn(List<String> values) {
+            addCriterion("workext_end_time not in", values, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeBetween(String value1, String value2) {
+            addCriterion("workext_end_time between", value1, value2, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextEndTimeNotBetween(String value1, String value2) {
+            addCriterion("workext_end_time not between", value1, value2, "workextEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayIsNull() {
+            addCriterion("is_legal_day is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayIsNotNull() {
+            addCriterion("is_legal_day is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayEqualTo(String value) {
+            addCriterion("is_legal_day =", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayNotEqualTo(String value) {
+            addCriterion("is_legal_day <>", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayGreaterThan(String value) {
+            addCriterion("is_legal_day >", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayGreaterThanOrEqualTo(String value) {
+            addCriterion("is_legal_day >=", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayLessThan(String value) {
+            addCriterion("is_legal_day <", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayLessThanOrEqualTo(String value) {
+            addCriterion("is_legal_day <=", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayLike(String value) {
+            addCriterion("is_legal_day like", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayNotLike(String value) {
+            addCriterion("is_legal_day not like", value, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayIn(List<String> values) {
+            addCriterion("is_legal_day in", values, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayNotIn(List<String> values) {
+            addCriterion("is_legal_day not in", values, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayBetween(String value1, String value2) {
+            addCriterion("is_legal_day between", value1, value2, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLegalDayNotBetween(String value1, String value2) {
+            addCriterion("is_legal_day not between", value1, value2, "isLegalDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursIsNull() {
+            addCriterion("workext_hours is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursIsNotNull() {
+            addCriterion("workext_hours is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursEqualTo(String value) {
+            addCriterion("workext_hours =", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursNotEqualTo(String value) {
+            addCriterion("workext_hours <>", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursGreaterThan(String value) {
+            addCriterion("workext_hours >", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursGreaterThanOrEqualTo(String value) {
+            addCriterion("workext_hours >=", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursLessThan(String value) {
+            addCriterion("workext_hours <", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursLessThanOrEqualTo(String value) {
+            addCriterion("workext_hours <=", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursLike(String value) {
+            addCriterion("workext_hours like", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursNotLike(String value) {
+            addCriterion("workext_hours not like", value, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursIn(List<String> values) {
+            addCriterion("workext_hours in", values, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursNotIn(List<String> values) {
+            addCriterion("workext_hours not in", values, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursBetween(String value1, String value2) {
+            addCriterion("workext_hours between", value1, value2, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextHoursNotBetween(String value1, String value2) {
+            addCriterion("workext_hours not between", value1, value2, "workextHours");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescIsNull() {
+            addCriterion("workext_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescIsNotNull() {
+            addCriterion("workext_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescEqualTo(String value) {
+            addCriterion("workext_desc =", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescNotEqualTo(String value) {
+            addCriterion("workext_desc <>", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescGreaterThan(String value) {
+            addCriterion("workext_desc >", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescGreaterThanOrEqualTo(String value) {
+            addCriterion("workext_desc >=", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescLessThan(String value) {
+            addCriterion("workext_desc <", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescLessThanOrEqualTo(String value) {
+            addCriterion("workext_desc <=", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescLike(String value) {
+            addCriterion("workext_desc like", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescNotLike(String value) {
+            addCriterion("workext_desc not like", value, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescIn(List<String> values) {
+            addCriterion("workext_desc in", values, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescNotIn(List<String> values) {
+            addCriterion("workext_desc not in", values, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescBetween(String value1, String value2) {
+            addCriterion("workext_desc between", value1, value2, "workextDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkextDescNotBetween(String value1, String value2) {
+            addCriterion("workext_desc not between", value1, value2, "workextDesc");
+            return (Criteria) this;
+        }
+
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;

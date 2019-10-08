@@ -15,68 +15,38 @@ td{
 }
 </style>
 <script type="text/javascript">
-function save(){
-	var holidayStartTime=$("input[name='holidayStartTime'][type='date']").val();
-	$("input[name='holidayStartTime'][type='hidden']").val(holidayStartTime);
-	var holidayEndTime=$("input[name='holidayEndTime'][type='date']").val();
-	$("input[name='holidayEndTime'][type='hidden']").val(holidayEndTime);
-	
-	if(!check()){
-		return false;
-	}
-	
-	var url="${pageContext.request.contextPath}/flow/holidayAdd";
-	
-	var jsonObj = $("#MainArea").serializeObject(); // json对象
-	
+$(function(){
+	var flowId='${flowId}';
+	var param={flowId:flowId};
+	var url="${pageContext.request.contextPath}/flow/getFlowInfo";
 	$.ajax({
 	    url : url,
 	    type : "POST",
 	    async : true,
 	    contentType: "application/json; charset=utf-8",
-	    data : JSON.stringify(jsonObj),
+	    data : JSON.stringify(param),
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
-	    		alert("提交成功");
-	    	 	window.location.href="${pageContext.request.contextPath}/page/choiceFlow?preffix=flow";
+	    		var flow=data.data.tbFlow;
+	    		$.each($("input").not($("input[type='radio']")),function(n,v){
+	    			var name=$(v).attr("name");
+	    			var value=flow[name];
+	    			$(v).val(value);
+	    		});
+	    		$("[name='holidayDesc']").val(flow['holidayDesc']);
+	    		$("select[name='holidayType'][option[value='"+flow.holidayType+"']").attr("selected", true);
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
-	return false;
-}
-
-function check(){
-	var holidayType=$("select[name='holidayType'] option:selected").val();
-	if(holidayType==""){
-		alert("请选择请假类型");
-		return false;
-	}
-	var holidayHours=$("input[name='holidayHours']").val();
-	if(isNaN(holidayHours) || holidayHours.trim()==""){
-		alert("请假时长不合法");
-		return false;
-	}
-	var holidayStartTime=$("input[name='holidayStartTime']").val();
-	if(holidayStartTime==""){
-		alert("请选择开始日期");
-		return false;
-	}
-	var holidayEndTime=$("input[name='holidayEndTime']").val();
-	if(holidayEndTime==""){
-		alert("请选择结束日期");
-		return false;
-	}
 	
-	var holidayDesc=$("textArea[name='holidayDesc']").val();
-	if(holidayDesc==""){
-		alert("请填写请假事由");
-		return false;
-	}
-	return true;
-}
+	$("#MainArea").find("input,textarea,select,radio").attr('disabled',"disabled");
+	
+});
+
+
 
 </script>
 <body>
@@ -124,15 +94,13 @@ function check(){
                     </tr>
                      <tr>
                         <td>开始日期</td>
-                        <td>
-                        	<input type="date" name="holidayStartTime" ></input> 
-                        	<input type="hidden" name="holidayStartTime" ></input>
+                        <td> 	
+                        	<input type="date" name="holidayStartTime" value=""></input>
                         	<font>*</font>
                         </td>
                         <td>结束日期</td>
                         <td>
-                        	<input type="date" name="holidayEndTime" ></input>
-                        	<input type="hidden" name="holidayEndTime" ></input>
+                        	<input type="date" name="holidayEndTime" value=""></input>
                         	<font>*</font>
                         </td>
                     </tr>
@@ -143,10 +111,6 @@ function check(){
                     </tr>
                 </table>
             </div>
-        </div>
-        
-         <div id="InputDetailBar" style="float: left">
-            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return save();" />
         </div>
         
    </div>
