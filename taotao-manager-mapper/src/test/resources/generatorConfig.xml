@@ -44,6 +44,8 @@
 		<!-- 指定数据库表 -->
 		<table schema="root" tableName="tb_dept"></table>
 		<table schema="root" tableName="tb_flow"></table>
+		<table schema="root" tableName="tb_flow_conf"></table>
+		<table schema="root" tableName="tb_flow_log"></table>
 		<table schema="root" tableName="tb_menu"></table>
 		<table schema="root" tableName="tb_position"></table>
 		<table schema="root" tableName="tb_role"></table>

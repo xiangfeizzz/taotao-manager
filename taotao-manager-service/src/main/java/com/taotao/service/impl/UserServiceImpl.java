@@ -180,15 +180,10 @@ public class UserServiceImpl implements UserService {
 		String qryUserName = map.get("qryUserName");
 		String pageNum = map.get("pageNum");
 		String pageSize = map.get("pageSize");
-		HttpSession session = request.getSession();
-		String sessionId = session.getId();
-		TbUser user= JSONObject.parseObject(JeditCommon.get(sessionId), TbUser.class);
-		Integer roleId = user.getRoleId();
 		//添加查询条件
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
   		TbUserExample example = new TbUserExample();
   		Criteria criteria = example.createCriteria();
-  		criteria.andRoleIdEqualTo(roleId);
 		criteria.andIsDeleteNotEqualTo("-1");
 		if(StringUtils.isNotBlank(qryUserName)){
 			criteria.andUserNameLike("%"+qryUserName+"%");

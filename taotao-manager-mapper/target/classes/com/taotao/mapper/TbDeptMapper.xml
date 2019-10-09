@@ -5,8 +5,6 @@
     <id column="dept_id" property="deptId" jdbcType="INTEGER" />
     <result column="dept_addr" property="deptAddr" jdbcType="VARCHAR" />
     <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
-    <result column="deptmanager" property="deptmanager" jdbcType="VARCHAR" />
-    <result column="up_dept_id" property="upDeptId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    dept_id, dept_addr, dept_name, deptmanager, up_dept_id
+    dept_id, dept_addr, dept_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbDeptExample" >
     select
@@ -100,10 +98,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbDept" >
-    insert into tb_dept (dept_id, dept_addr, dept_name, 
-      deptmanager, up_dept_id)
-    values (#{deptId,jdbcType=INTEGER}, #{deptAddr,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
-      #{deptmanager,jdbcType=VARCHAR}, #{upDeptId,jdbcType=INTEGER})
+    insert into tb_dept (dept_id, dept_addr, dept_name
+      )
+    values (#{deptId,jdbcType=INTEGER}, #{deptAddr,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbDept" >
     insert into tb_dept
@@ -117,12 +115,6 @@
       <if test="deptName != null" >
         dept_name,
       </if>
-      <if test="deptmanager != null" >
-        deptmanager,
-      </if>
-      <if test="upDeptId != null" >
-        up_dept_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="deptId != null" >
@@ -133,12 +125,6 @@
       </if>
       <if test="deptName != null" >
         #{deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="deptmanager != null" >
-        #{deptmanager,jdbcType=VARCHAR},
-      </if>
-      <if test="upDeptId != null" >
-        #{upDeptId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -160,12 +146,6 @@
       <if test="record.deptName != null" >
         dept_name = #{record.deptName,jdbcType=VARCHAR},
       </if>
-      <if test="record.deptmanager != null" >
-        deptmanager = #{record.deptmanager,jdbcType=VARCHAR},
-      </if>
-      <if test="record.upDeptId != null" >
-        up_dept_id = #{record.upDeptId,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -175,9 +155,7 @@
     update tb_dept
     set dept_id = #{record.deptId,jdbcType=INTEGER},
       dept_addr = #{record.deptAddr,jdbcType=VARCHAR},
-      dept_name = #{record.deptName,jdbcType=VARCHAR},
-      deptmanager = #{record.deptmanager,jdbcType=VARCHAR},
-      up_dept_id = #{record.upDeptId,jdbcType=INTEGER}
+      dept_name = #{record.deptName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -191,21 +169,13 @@
       <if test="deptName != null" >
         dept_name = #{deptName,jdbcType=VARCHAR},
       </if>
-      <if test="deptmanager != null" >
-        deptmanager = #{deptmanager,jdbcType=VARCHAR},
-      </if>
-      <if test="upDeptId != null" >
-        up_dept_id = #{upDeptId,jdbcType=INTEGER},
-      </if>
     </set>
     where dept_id = #{deptId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbDept" >
     update tb_dept
     set dept_addr = #{deptAddr,jdbcType=VARCHAR},
-      dept_name = #{deptName,jdbcType=VARCHAR},
-      deptmanager = #{deptmanager,jdbcType=VARCHAR},
-      up_dept_id = #{upDeptId,jdbcType=INTEGER}
+      dept_name = #{deptName,jdbcType=VARCHAR}
     where dept_id = #{deptId,jdbcType=INTEGER}
   </update>
 </mapper>

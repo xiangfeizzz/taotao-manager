@@ -69,6 +69,7 @@ function update(){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		alert("修改成功");
+	    		window.history.back(-1); 
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}

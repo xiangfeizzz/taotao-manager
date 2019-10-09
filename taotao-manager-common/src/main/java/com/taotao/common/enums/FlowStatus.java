@@ -1,10 +1,11 @@
 package com.taotao.common.enums;
 
 public enum FlowStatus {
-	flowStatus_0("0","待审核"),
-	flowStatus_1("1","审核中"),
-	flowStatus_2("2","审核通过"),
-	flowStatus_3("3"," 审核拒绝");
+	flowStatus_0("0","起草"),
+	flowStatus_1("1","待审核"),
+	flowStatus_2("2","审核中"),
+	flowStatus_3("3","审核通过"),
+	flowStatus_4("4"," 审核拒绝");
 	
 	private String code;
 	private String desc;

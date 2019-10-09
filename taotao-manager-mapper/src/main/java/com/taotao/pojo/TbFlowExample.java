@@ -374,6 +374,76 @@ public class TbFlowExample {
             return (Criteria) this;
         }
 
+        public Criteria andFlowOrderIsNull() {
+            addCriterion("flow_order is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderIsNotNull() {
+            addCriterion("flow_order is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderEqualTo(String value) {
+            addCriterion("flow_order =", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderNotEqualTo(String value) {
+            addCriterion("flow_order <>", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderGreaterThan(String value) {
+            addCriterion("flow_order >", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderGreaterThanOrEqualTo(String value) {
+            addCriterion("flow_order >=", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderLessThan(String value) {
+            addCriterion("flow_order <", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderLessThanOrEqualTo(String value) {
+            addCriterion("flow_order <=", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderLike(String value) {
+            addCriterion("flow_order like", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderNotLike(String value) {
+            addCriterion("flow_order not like", value, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderIn(List<String> values) {
+            addCriterion("flow_order in", values, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderNotIn(List<String> values) {
+            addCriterion("flow_order not in", values, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderBetween(String value1, String value2) {
+            addCriterion("flow_order between", value1, value2, "flowOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlowOrderNotBetween(String value1, String value2) {
+            addCriterion("flow_order not between", value1, value2, "flowOrder");
+            return (Criteria) this;
+        }
+
         public Criteria andHolidayTypeIsNull() {
             addCriterion("holiday_type is null");
             return (Criteria) this;

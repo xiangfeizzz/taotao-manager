@@ -9,6 +9,8 @@ public class TbFlow {
 
     private String flowName;
 
+    private String flowOrder;
+
     private String holidayType;
 
     private String holidayStartTime;
@@ -65,6 +67,14 @@ public class TbFlow {
 
     public void setFlowName(String flowName) {
         this.flowName = flowName == null ? null : flowName.trim();
+    }
+
+    public String getFlowOrder() {
+        return flowOrder;
+    }
+
+    public void setFlowOrder(String flowOrder) {
+        this.flowOrder = flowOrder == null ? null : flowOrder.trim();
     }
 
     public String getHolidayType() {

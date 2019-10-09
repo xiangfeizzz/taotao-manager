@@ -7,10 +7,6 @@ public class TbDept {
 
     private String deptName;
 
-    private String deptmanager;
-
-    private Integer upDeptId;
-
     public Integer getDeptId() {
         return deptId;
     }
@@ -33,21 +29,5 @@ public class TbDept {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName == null ? null : deptName.trim();
-    }
-
-    public String getDeptmanager() {
-        return deptmanager;
-    }
-
-    public void setDeptmanager(String deptmanager) {
-        this.deptmanager = deptmanager == null ? null : deptmanager.trim();
-    }
-
-    public Integer getUpDeptId() {
-        return upDeptId;
-    }
-
-    public void setUpDeptId(Integer upDeptId) {
-        this.upDeptId = upDeptId;
     }
 }

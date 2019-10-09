@@ -11,6 +11,8 @@ public class TbUser {
 
     private String email;
 
+    private String userName;
+
     private String loginName;
 
     private String idNo;
@@ -26,8 +28,6 @@ public class TbUser {
     private String sex;
 
     private String edu;
-
-    private String userName;
 
     private String mobile;
 
@@ -85,6 +85,14 @@ public class TbUser {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getLoginName() {
@@ -149,14 +157,6 @@ public class TbUser {
 
     public void setEdu(String edu) {
         this.edu = edu == null ? null : edu.trim();
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getMobile() {
