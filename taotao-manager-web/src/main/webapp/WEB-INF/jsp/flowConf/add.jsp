@@ -16,6 +16,10 @@ td{
 </style>
 <script type="text/javascript">
 var userId='${userId}';
+var choiceUserId="";
+var choiceUserName="";
+var choiceDeptId="";
+var choicePositionId="";
 var param={userId:userId};
 $(function(){
 	loadDept($("select[name='deptId']"));
@@ -25,7 +29,6 @@ $(function(){
 
 function save(){
 	var url="${pageContext.request.contextPath}/flowConf/add";
-	
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
 	$.ajax({
 	    url : url,
@@ -43,6 +46,28 @@ function save(){
 	    }
 	});
 	return false;
+}
+
+function choiceUser(){
+	var url="${pageContext.request.contextPath}/page/choiceUser?preffix=flowConf";
+	openWindow(url,"",780,400);
+	return false;
+}
+
+function openWindow(url,name,iWidth,iHeight){
+	 var url;                            //转向网页的地址;
+	 var name;                           //网页名称，可为空;
+	 var iWidth;                         //弹出窗口的宽度;
+	 var iHeight;                        //弹出窗口的高度;
+	 var iTop = (window.screen.height-30-iHeight)/2;       //获得窗口的垂直位置;
+	 var iLeft = (window.screen.width-10-iWidth)/2;        //获得窗口的水平位置;
+	 window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+}
+
+function choiceClose(){
+	$("input[name='userId']").val(choiceUserName);
+	$("select[name='deptId'] option[value="+choiceDeptId+"]").attr("selected", true); 
+	$("select[name='positionId'] option[value="+choicePositionId+"]").attr("selected", true); 
 }
 
 </script>
@@ -80,9 +105,15 @@ function save(){
                                 <option value="6">报销申请</option>
                             </select><font>*</font>
 						</td>
+						<td>选择员工</td>  
+						<td>
+                    		<input type="text" name="userId" readonly="readonly"></input>
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(1);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return cancelUser(1);" />
+						</td>
 					 </tr>
                      <tr>
-						<td>所属部门</td>
+						<td>部门</td>
                         <td>
                         	 <select name="deptId" >
                                 <option value="" selected="selected">请选择部门</option>
@@ -95,6 +126,15 @@ function save(){
                             </select><font>*</font>
                         </td>
                     </tr>
+                    <tr>
+                    	<td>选择审核人</td>
+                    	<td>
+                    		<input type="text" name="userIdOrder" readonly="readonly"></input>
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(2);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return cancelUser(2);" />
+        				</td>
+                    </tr>
+                    
                 </table>
             </div>
         </div>
@@ -108,8 +148,8 @@ function save(){
 
 <div class="Description">
 验证规则：</br>
-1，流程类型、所属部门、职位不能是已存在的。</br>
-2，流程类型、所属部门、职位 不能为空</br>
+1，流程类型、部门、职位校验唯一性。</br>
+2，流程类型、部门、职位不能为空</br>
 </div>
 </body>
 </html>

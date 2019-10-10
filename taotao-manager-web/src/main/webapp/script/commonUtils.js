@@ -1,3 +1,5 @@
+var dept;
+var position;	
 
 $.fn.serializeObject = function()
 {
@@ -27,6 +29,7 @@ function loadDept(obj,sId){
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
+	    		dept=data.data;
 	    		var option="";
 	    		$.each(data.data,function(n,v){
 	    			 if(v.deptId==sId){
@@ -51,6 +54,7 @@ function loadPosition(obj,sId){
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
+	    		position=data.data;
 	    		var option="";
 	    		$.each(data.data,function(n,v){
 	    			if(v.positionId==sId){
@@ -98,3 +102,5 @@ function getDomain(){
 	var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1); 
 	return localhostPath+projectName;
 }
+
+

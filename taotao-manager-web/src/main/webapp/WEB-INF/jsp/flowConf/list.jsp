@@ -138,7 +138,7 @@ function add(){
                                 <option value="6">报销申请</option>
                             </select>
 						</td>
-						<td>所属部门</td>
+						<td>部门</td>
                         <td>
                         	 <select name="deptId" >
                                 <option value="" selected="selected">请选择部门</option>
