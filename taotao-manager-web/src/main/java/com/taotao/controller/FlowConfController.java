@@ -40,4 +40,22 @@ public class FlowConfController extends BaseController{
 		return flowConfService.getFlowConfList(map,request);
 	}
 	
+	@RequestMapping("/del")
+	@ResponseBody
+	public Map<String,Object>  del(@RequestBody Map<String,String> map) {
+		return flowConfService.del(map);
+	}
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public Map<String,Object>  add(@RequestBody Map<String,String> map) {
+		return flowConfService.add(map);
+	}
+	
+	@RequestMapping("/upd")
+	@ResponseBody
+	public Map<String,Object>  upd(@RequestBody Map<String,String> map) {
+		return flowConfService.upd(map);
+	}
+	
 }

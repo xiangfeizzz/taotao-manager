@@ -4,15 +4,18 @@
 <title>员工查询</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
 </head>
 <script type="text/javascript" async="async">
 
-var userId='${userId}';
+var loginName='${loginName}';
 var page;
 var pageNum=1;
 var pageSize=10;
 
 $(function(){
+	loadDept($("select[name='deptId']"));
+	loadPosition($("select[name='positionId']"));
 	search();
 });
 
@@ -23,12 +26,11 @@ function search(pNum){
 		}
 		pageNum=pNum;
 	}
-	var userName=$("input[name='userName']").val();
 	var flowType=$("select[name='flowType'] option:selected").val();
-	var flowStatus=$("select[name='flowStatus'] option:selected").val();
-	var rangeTime=$("select[name='rangeTime'] option:selected").val();
-	var param={userName:userName,flowType:flowType,flowStatus:flowStatus,rangeTime:rangeTime,pageNum:pageNum,pageSize:pageSize};
-	var url="${pageContext.request.contextPath}/flow/getFlowList";
+	var deptId=$("select[name='deptId'] option:selected").val();
+	var positionId=$("select[name='positionId']").val();
+	var param={flowType:flowType,deptId:deptId,positionId:positionId,pageNum:pageNum,pageSize:pageSize};
+	var url="${pageContext.request.contextPath}/flowConf/getFlowConfList";
 	$.ajax({
 	    url : url,
 	    type : "POST",
@@ -51,15 +53,16 @@ function search(pNum){
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot").clone();
-	    			var flowId=v["flowId"];
-	    			tfont.find("label[name='flowId']").text(flowId);
+	    			var confId=v["confId"];
+	    			tfont.find("label[name='confId']").text(confId);
+	    			tfont.find("label[name='deptName']").text(v["deptName"]);
+	    			tfont.find("label[name='positionName']").text(v["positionName"]);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
-	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
+	    			tfont.find("label[name='userNameOrder']").text(v["userNameOrder"]);
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
-	    			var flowType=v["flowType"];
-	    			var hrefInfo=loadUrl(flowType);
-	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
+	    			var hrefUpd="${pageContext.request.contextPath}/page/upd?preffix=flowConf&confId=";
+	    			tfont.find("a[name='upd']").attr("href",hrefUpd+confId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -69,15 +72,34 @@ function search(pNum){
 	});
 }
 
-function loadUrl(flowType){
-	var hrefInfo="";
-	if(flowType=="1"){
-		hrefInfo="${pageContext.request.contextPath}/page/holidayInfo?preffix=flow&flowId=";
-	}else if(flowType=="2"){
-		hrefInfo="${pageContext.request.contextPath}/page/workextInfo?preffix=flow&flowId=";
-	}
-	return hrefInfo;
+function del(obj){
+	if(window.confirm('确定删除么')){
+		var confId=$(obj).parent().parent().find("label[name='confId']").text();
+		var param={confId:confId};
+		var url="${pageContext.request.contextPath}/flowConf/del";
+		$.ajax({
+		    url : url,
+		    type : "POST",
+		    async : true,
+		    contentType: "application/json; charset=utf-8",
+		    data : JSON.stringify(param),
+		    dataType : 'json',
+		    success : function(data) {
+		    	if(data.resultCode=="000000"){
+		    		$(obj).parent().parent().remove();
+		    		alert("删除成功");
+		    	}else{
+		    		alert(data.resultMsg)
+		    	}
+		    }
+		});
+     }
 }
+
+function add(){
+	window.location.href="${pageContext.request.contextPath}/page/add?preffix=flowConf";
+}
+
 
 </script>
 <body>
@@ -104,9 +126,9 @@ function loadUrl(flowType){
 			<div class="ItemBlock">
 				<table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
-						<td>姓名<input type="text" name="userName" style="width: 45%" /></td>
-						<td>流程类型
-						 <select name="flowType"  >
+						<td>流程类型</td>
+						<td>
+							<select name="flowType"  >
                                 <option value="" selected="selected">请选择流程</option>
                                	<option value="1">请假申请</option>
                                 <option value="2">加班申请</option>
@@ -116,31 +138,24 @@ function loadUrl(flowType){
                                 <option value="6">报销申请</option>
                             </select>
 						</td>
-						<td>流程状态
-						 <select name="flowStatus" style="width: 60%">
-                                <option value="" selected="selected">请选择流程状态</option>
-                               	<option value="0">起草</option>
-                               	<option value="1">待审核</option>
-                               	<option value="2">审核中</option>
-                               	<option value="3">申请通过</option>
-                                <option value="4">申请拒绝</option>
+						<td>所属部门</td>
+                        <td>
+                        	 <select name="deptId" >
+                                <option value="" selected="selected">请选择部门</option>
                             </select>
-						</td>
-						
-						<td>时长
-						 <select name="rangeTime" style="width: 60%">
-                                <option value="" selected="selected">请选择时长</option>
-                               	<option value="3">近三个月</option>
-                               	<option value="6">近半年</option>
-                                <option value="12">近一年</option>
+                        </td>
+                        <td>职位</td>
+                        <td>
+                        	 <select name="positionId" >
+                                <option value="" selected="selected">请选择职位&nbsp;&nbsp;</option>
                             </select>
-						</td>
-						<td>
-						 <div id="InputDetailBar" > 
+                        </td>
+                        <td>
+							 <div id="InputDetailBar" style="float: left"> 
 					            <input type="image" src="${pageContext.request.contextPath}/style/images/button/query.PNG"  onclick="search(1)" />
+					            <input type="image" src="${pageContext.request.contextPath}/style/images/button/createNew.png"  onclick="add()" />
 					        </div>
 						</td>
-						</tr> 
 					</tr>
 				</table>
 			</div>
@@ -152,10 +167,12 @@ function loadUrl(flowType){
          </div>
 			<thead>
 				<tr align=center valign=middle id=TableTitle>
-					<td style="display:none">流程id</td> 
-					<td >姓名</td>
+					<td style="display:none">流程配置编号</td> 
+					<td >部门</td> 
+					<td >职位</td>
+					<td >员工姓名</td>
 					<td >流程类型</td>
-					<td >流程状态</td>
+					<td >审核人</td>
 					<td >创建时间</td>
 					<td >操作</td>
 				</tr>
@@ -165,13 +182,16 @@ function loadUrl(flowType){
 			</tbody>
 			<tfoot class="TableDetail1 template" style="display:none">
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
-					<td style="display:none"><label name="flowId"></label></td>
+					<td style="display:none"><label name="confId"></label></td>
+					<td><label name="deptName"></label></td>
+					<td><label name="positionName"></label></td>
 					<td><label name="userName"></label></td>
 					<td><label name="flowName"></label></td>
-					<td><label name="flowStatus"></label></td>
+					<td><label name="userNameOrder"></label></td>
 					<td><label name="createTime"></label></td>
 					<td> 
-						<a name="info" href="" >查看</a> 
+						<a onclick="del(this)">删除</a> 
+						<a name="upd"  href="" >修改</a> 
 					</td>
 				</tr>
 			</tfoot>

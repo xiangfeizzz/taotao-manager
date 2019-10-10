@@ -1,6 +1,5 @@
 package com.taotao.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,17 +33,9 @@ import com.taotao.pojo.TbUser;
 import com.taotao.pojo.TbUserExample;
 import com.taotao.pojo.TbUserExample.Criteria;
 import com.taotao.service.UserService;
-import com.taotao.validate.UserValidate;
+import com.taotao.validate.Validate;
 
-/**
- * 商品管理Service
- * <p>Title: ItemServiceImpl</p>
- * <p>Description: </p>
- * <p>Company: www.itcast.com</p> 
- * @author	入云龙
- * @date	2015年9月2日上午10:47:14
- * @version 1.0
- */
+
 @Service
 public class UserServiceImpl implements UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -59,6 +50,8 @@ public class UserServiceImpl implements UserService {
 	TbRoleMapper tbRoleMapper;
 	@Autowired
 	TbMenuMapperCust tbMenuMapperCust;
+	@Autowired
+	Validate validate;
 	
 	BaseResult baseResult = new BaseResult();
 	
@@ -211,10 +204,9 @@ public class UserServiceImpl implements UserService {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
-			UserValidate valid=new UserValidate();
-			String errorMsg=valid.validate(user);
+			String errorMsg=validate.validateUser(user);
 			if(StringUtils.isNotBlank(errorMsg)){
-				baseResult.getErrorJsonObj(errorMsg);
+				return baseResult.getErrorJsonObj(errorMsg);
 			}
 			user.setCreateTime(DateUtil.getDateAndTime());
 			user.setIsDelete("0");
@@ -243,10 +235,9 @@ public class UserServiceImpl implements UserService {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
-			UserValidate valid=new UserValidate();
-			String errorMsg=valid.validate(user);
+			String errorMsg=validate.validateUser(user);
 			if(StringUtils.isNotBlank(errorMsg)){
-				baseResult.getErrorJsonObj(errorMsg);
+				return baseResult.getErrorJsonObj(errorMsg);
 			}
 			user.setUpdateTime(DateUtil.getDateAndTime());
 			String birth = user.getBirth();
@@ -264,9 +255,5 @@ public class UserServiceImpl implements UserService {
 			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
 		}
 	}
-
-
-	
-
 
 }

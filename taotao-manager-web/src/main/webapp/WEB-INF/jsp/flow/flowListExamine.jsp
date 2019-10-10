@@ -50,7 +50,7 @@ function search(pNum){
 	    		$("label[name='total']").text(data.data.total);
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
-	    			var tfont=$("#table").find("tfoot");
+	    			var tfont=$("#table").find("tfoot").clone();
 	    			var flowId=v["flowId"];
 	    			tfont.find("label[name='flowId']").text(flowId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
@@ -105,7 +105,7 @@ function loadUrl(flowType){
 				<table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
 						<td>姓名<input type="text" name="userName" style="width: 45%" /></td>
-						<td>流程名称
+						<td>流程类型
 						 <select name="flowType"  >
                                 <option value="" selected="selected">请选择流程</option>
                                	<option value="1">请假申请</option>
@@ -154,7 +154,7 @@ function loadUrl(flowType){
 				<tr align=center valign=middle id=TableTitle>
 					<td style="display:none">流程id</td> 
 					<td >姓名</td>
-					<td >流程名称</td>
+					<td >流程类型</td>
 					<td >流程状态</td>
 					<td >创建时间</td>
 					<td >操作</td>
