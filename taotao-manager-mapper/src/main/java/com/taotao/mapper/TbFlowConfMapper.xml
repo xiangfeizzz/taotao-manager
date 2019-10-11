@@ -7,8 +7,8 @@
     <result column="position_id" property="positionId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="flow_type" property="flowType" jdbcType="VARCHAR" />
-    <result column="user_id_order" property="userIdOrder" jdbcType="INTEGER" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="user_id_order" property="userIdOrder" jdbcType="VARCHAR" />
+    <result column="conf_desc" property="confDesc" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    conf_id, dept_id, position_id, user_id, flow_type, user_id_order, desc, create_time, 
+    conf_id, dept_id, position_id, user_id, flow_type, user_id_order, conf_desc, create_time, 
     update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowConfExample" >
@@ -107,11 +107,11 @@
   <insert id="insert" parameterType="com.taotao.pojo.TbFlowConf" >
     insert into tb_flow_conf (conf_id, dept_id, position_id, 
       user_id, flow_type, user_id_order, 
-      desc, create_time, update_time
+      conf_desc, create_time, update_time
       )
     values (#{confId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{flowType,jdbcType=VARCHAR}, #{userIdOrder,jdbcType=INTEGER}, 
-      #{desc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
+      #{userId,jdbcType=INTEGER}, #{flowType,jdbcType=VARCHAR}, #{userIdOrder,jdbcType=VARCHAR}, 
+      #{confDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlowConf" >
@@ -135,8 +135,8 @@
       <if test="userIdOrder != null" >
         user_id_order,
       </if>
-      <if test="desc != null" >
-        desc,
+      <if test="confDesc != null" >
+        conf_desc,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -162,10 +162,10 @@
         #{flowType,jdbcType=VARCHAR},
       </if>
       <if test="userIdOrder != null" >
-        #{userIdOrder,jdbcType=INTEGER},
+        #{userIdOrder,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
+      <if test="confDesc != null" >
+        #{confDesc,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
@@ -200,10 +200,10 @@
         flow_type = #{record.flowType,jdbcType=VARCHAR},
       </if>
       <if test="record.userIdOrder != null" >
-        user_id_order = #{record.userIdOrder,jdbcType=INTEGER},
+        user_id_order = #{record.userIdOrder,jdbcType=VARCHAR},
       </if>
-      <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.confDesc != null" >
+        conf_desc = #{record.confDesc,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=VARCHAR},
@@ -223,8 +223,8 @@
       position_id = #{record.positionId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       flow_type = #{record.flowType,jdbcType=VARCHAR},
-      user_id_order = #{record.userIdOrder,jdbcType=INTEGER},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      user_id_order = #{record.userIdOrder,jdbcType=VARCHAR},
+      conf_desc = #{record.confDesc,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -247,10 +247,10 @@
         flow_type = #{flowType,jdbcType=VARCHAR},
       </if>
       <if test="userIdOrder != null" >
-        user_id_order = #{userIdOrder,jdbcType=INTEGER},
+        user_id_order = #{userIdOrder,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="confDesc != null" >
+        conf_desc = #{confDesc,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=VARCHAR},
@@ -267,8 +267,8 @@
       position_id = #{positionId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       flow_type = #{flowType,jdbcType=VARCHAR},
-      user_id_order = #{userIdOrder,jdbcType=INTEGER},
-      desc = #{desc,jdbcType=VARCHAR},
+      user_id_order = #{userIdOrder,jdbcType=VARCHAR},
+      conf_desc = #{confDesc,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=VARCHAR}
     where conf_id = #{confId,jdbcType=INTEGER}

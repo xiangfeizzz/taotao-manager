@@ -28,6 +28,10 @@ $(function(){
 });
 
 function save(){
+	
+	if(!check()){
+		return false;
+	}
 	var url="${pageContext.request.contextPath}/flowConf/add";
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
 	$.ajax({
@@ -48,8 +52,8 @@ function save(){
 	return false;
 }
 
-function choiceUser(){
-	var url="${pageContext.request.contextPath}/page/choiceUser?preffix=flowConf";
+function choiceUser(flag){
+	var url="${pageContext.request.contextPath}/page/choiceUser?preffix=flowConf&flag="+flag;
 	openWindow(url,"",780,400);
 	return false;
 }
@@ -64,10 +68,64 @@ function openWindow(url,name,iWidth,iHeight){
 	 window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
 }
 
-function choiceClose(){
-	$("input[name='userId']").val(choiceUserName);
-	$("select[name='deptId'] option[value="+choiceDeptId+"]").attr("selected", true); 
-	$("select[name='positionId'] option[value="+choicePositionId+"]").attr("selected", true); 
+function choiceClose(flag){
+	if(flag=="1"){
+		$("input[name='userName']").val(choiceUserName);
+		$("input[name='userId']").val(choiceUserId);
+		$("select[name='deptId'] option[value="+choiceDeptId+"]").attr("selected", true); 
+		$("select[name='positionId'] option[value="+choicePositionId+"]").attr("selected", true); 
+	}else if(flag=="2"){
+		var userNameOrder=$("input[name='userNameOrder']").val();
+		var userIdOrder=$("input[name='userIdOrder']").val();
+		var userNames=userNameOrder+","+choiceUserName;
+		var userIds=userIdOrder+","+choiceUserId;
+		if(userNames.indexOf(",")==0){
+			userNames=userNames.substring(1);
+			userIds=userIds.substring(1);
+		}
+		$("input[name='userNameOrder']").val(userNames);
+		$("input[name='userIdOrder']").val(userIds);
+	}
+}
+
+function deleteUser(flag){
+	if(flag=="1"){
+		$("input[name='userName']").val("");
+		$("input[name='userId']").val("");
+	}else if(flag=="2"){
+		var userNameOrder=$("input[name='userNameOrder']").val();
+		var userIdOrder=$("input[name='userIdOrder']").val();
+		userNameOrder=userNameOrder.substring(0,userNameOrder.lastIndexOf(","));
+		userIdOrder=userIdOrder.substring(0,userIdOrder.lastIndexOf(","));
+		$("input[name='userNameOrder']").val(userNameOrder);
+		$("input[name='userIdOrder']").val(userIdOrder);
+	}
+	return false;
+}
+
+
+function check(){
+	var flowType=$("select[name='flowType'] option:selected").val();
+	if(flowType==""){
+		alert("请选择流程类型");
+		return false;
+	}
+	var deptId=$("select[name='deptId'] option:selected").val();
+	if(deptId==""){
+		alert("请选择部门");
+		return false;
+	}
+	var positionId=$("select[name='positionId'] option:selected").val();
+	if(positionId==""){
+		alert("请选择职位");
+		return false;
+	}
+	var userIdOrder=$("input[name='userIdOrder']").val();
+	if(userIdOrder==""){
+		alert("请填选择审核人");
+		return false;
+	}
+	return true;
 }
 
 </script>
@@ -107,9 +165,10 @@ function choiceClose(){
 						</td>
 						<td>选择员工</td>  
 						<td>
-                    		<input type="text" name="userId" readonly="readonly"></input>
+                    		<input type="text" name="userName" readonly="readonly"></input>
+                    		<input type="hidden" name="userId" ></input>
                     		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(1);" />
-                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return cancelUser(1);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return deleteUser(1);" />
 						</td>
 					 </tr>
                      <tr>
@@ -129,9 +188,10 @@ function choiceClose(){
                     <tr>
                     	<td>选择审核人</td>
                     	<td>
-                    		<input type="text" name="userIdOrder" readonly="readonly"></input>
+                    		<input type="text" name="userNameOrder" readonly="readonly"></input>
+                    		<input type="hidden" name="userIdOrder" ></input>
                     		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(2);" />
-                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return cancelUser(2);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return deleteUser(2);" />
         				</td>
                     </tr>
                     

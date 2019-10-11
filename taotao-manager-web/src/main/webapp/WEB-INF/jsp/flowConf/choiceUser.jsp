@@ -8,6 +8,7 @@
 <script type="text/javascript" async="async">
 
 var loginName='${loginName}';
+var flag='${flag}';
 var page;
 var pageNum=1;
 var pageSize=5;
@@ -79,17 +80,17 @@ function search(pNum){
 }
 
 function choice(){
-	var checked=$("input[type='checkbox']:checked");
-	var userId=$(checked).parent().parent().find("label[name='userId']").text();
-	var userName=$(checked).parent().parent().find("label[name='userName']").text();
-	var deptId=$(checked).parent().parent().find("input[name='deptId']").val();
-	var positionId=$(checked).parent().parent().find("input[name='positionId']").val();
-	window.opener.window.choiceUserId=userId;
-	window.opener.window.choiceUserName=userName;
-	window.opener.window.choicePositionId=positionId;
-	window.opener.window.choiceDeptId=deptId;
-	window.opener.window.choiceClose();
-	window.close();
+		var checked=$("input[type='checkbox']:checked");
+		var userId=$(checked).parent().parent().find("label[name='userId']").text();
+		var userName=$(checked).parent().parent().find("label[name='userName']").text();
+		var deptId=$(checked).parent().parent().find("input[name='deptId']").val();
+		var positionId=$(checked).parent().parent().find("input[name='positionId']").val();
+		window.opener.window.choiceUserId=userId;
+		window.opener.window.choiceUserName=userName;
+		window.opener.window.choicePositionId=positionId;
+		window.opener.window.choiceDeptId=deptId;
+		window.opener.window.choiceClose(flag);
+		window.close();
 }
 
 

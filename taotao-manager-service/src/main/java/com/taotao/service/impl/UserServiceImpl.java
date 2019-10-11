@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -203,6 +204,7 @@ public class UserServiceImpl implements UserService {
 	public Map<String, Object> userAdd(Map<String, String> map){
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
 			String errorMsg=validate.validateUser(user);
 			if(StringUtils.isNotBlank(errorMsg)){
@@ -234,6 +236,7 @@ public class UserServiceImpl implements UserService {
 	public Map<String, Object> userUpd(Map<String, String> map){
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbUser user = objectMapper.convertValue(map, TbUser.class);
 			String errorMsg=validate.validateUser(user);
 			if(StringUtils.isNotBlank(errorMsg)){

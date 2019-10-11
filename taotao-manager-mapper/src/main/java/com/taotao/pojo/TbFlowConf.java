@@ -11,9 +11,9 @@ public class TbFlowConf {
 
     private String flowType;
 
-    private Integer userIdOrder;
+    private String userIdOrder;
 
-    private String desc;
+    private String confDesc;
 
     private String createTime;
 
@@ -59,20 +59,20 @@ public class TbFlowConf {
         this.flowType = flowType == null ? null : flowType.trim();
     }
 
-    public Integer getUserIdOrder() {
+    public String getUserIdOrder() {
         return userIdOrder;
     }
 
-    public void setUserIdOrder(Integer userIdOrder) {
-        this.userIdOrder = userIdOrder;
+    public void setUserIdOrder(String userIdOrder) {
+        this.userIdOrder = userIdOrder == null ? null : userIdOrder.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getConfDesc() {
+        return confDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setConfDesc(String confDesc) {
+        this.confDesc = confDesc == null ? null : confDesc.trim();
     }
 
     public String getCreateTime() {

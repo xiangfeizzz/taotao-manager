@@ -424,123 +424,133 @@ public class TbFlowConfExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderEqualTo(Integer value) {
+        public Criteria andUserIdOrderEqualTo(String value) {
             addCriterion("user_id_order =", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderNotEqualTo(Integer value) {
+        public Criteria andUserIdOrderNotEqualTo(String value) {
             addCriterion("user_id_order <>", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderGreaterThan(Integer value) {
+        public Criteria andUserIdOrderGreaterThan(String value) {
             addCriterion("user_id_order >", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUserIdOrderGreaterThanOrEqualTo(String value) {
             addCriterion("user_id_order >=", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderLessThan(Integer value) {
+        public Criteria andUserIdOrderLessThan(String value) {
             addCriterion("user_id_order <", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderLessThanOrEqualTo(Integer value) {
+        public Criteria andUserIdOrderLessThanOrEqualTo(String value) {
             addCriterion("user_id_order <=", value, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderIn(List<Integer> values) {
+        public Criteria andUserIdOrderLike(String value) {
+            addCriterion("user_id_order like", value, "userIdOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdOrderNotLike(String value) {
+            addCriterion("user_id_order not like", value, "userIdOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdOrderIn(List<String> values) {
             addCriterion("user_id_order in", values, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderNotIn(List<Integer> values) {
+        public Criteria andUserIdOrderNotIn(List<String> values) {
             addCriterion("user_id_order not in", values, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdOrderBetween(String value1, String value2) {
             addCriterion("user_id_order between", value1, value2, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdOrderNotBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdOrderNotBetween(String value1, String value2) {
             addCriterion("user_id_order not between", value1, value2, "userIdOrder");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andConfDescIsNull() {
+            addCriterion("conf_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andConfDescIsNotNull() {
+            addCriterion("conf_desc is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andConfDescEqualTo(String value) {
+            addCriterion("conf_desc =", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andConfDescNotEqualTo(String value) {
+            addCriterion("conf_desc <>", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andConfDescGreaterThan(String value) {
+            addCriterion("conf_desc >", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andConfDescGreaterThanOrEqualTo(String value) {
+            addCriterion("conf_desc >=", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andConfDescLessThan(String value) {
+            addCriterion("conf_desc <", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andConfDescLessThanOrEqualTo(String value) {
+            addCriterion("conf_desc <=", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andConfDescLike(String value) {
+            addCriterion("conf_desc like", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andConfDescNotLike(String value) {
+            addCriterion("conf_desc not like", value, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andConfDescIn(List<String> values) {
+            addCriterion("conf_desc in", values, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andConfDescNotIn(List<String> values) {
+            addCriterion("conf_desc not in", values, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andConfDescBetween(String value1, String value2) {
+            addCriterion("conf_desc between", value1, value2, "confDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andConfDescNotBetween(String value1, String value2) {
+            addCriterion("conf_desc not between", value1, value2, "confDesc");
             return (Criteria) this;
         }
 

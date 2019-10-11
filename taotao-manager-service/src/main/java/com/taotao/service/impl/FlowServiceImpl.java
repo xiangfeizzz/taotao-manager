@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -142,6 +143,7 @@ public class FlowServiceImpl implements FlowService {
 	public Map<String, Object> holidayAdd(Map<String, String> map ,HttpServletRequest request) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
 			flow.setCreateTime(DateUtil.getDateAndTime());
 			String startTime = flow.getHolidayStartTime();
@@ -174,6 +176,7 @@ public class FlowServiceImpl implements FlowService {
 	public Map<String, Object> workextAdd(Map<String, String> map, HttpServletRequest request) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
 			flow.setCreateTime(DateUtil.getDateAndTime());
 			String startTime = flow.getWorkextStartTime();

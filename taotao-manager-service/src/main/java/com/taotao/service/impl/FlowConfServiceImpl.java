@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,6 +22,7 @@ import com.taotao.mapperCust.TbFlowConfMapperCust;
 import com.taotao.pojo.TbFlowConf;
 import com.taotao.pojo.TbUser;
 import com.taotao.service.FlowConfService;
+import com.taotao.validate.Validate;
 
 @Service
 public class FlowConfServiceImpl implements FlowConfService {
@@ -31,6 +33,8 @@ public class FlowConfServiceImpl implements FlowConfService {
 	TbFlowConfMapperCust tbFlowConfMapperCust;
 	@Autowired
 	TbUserMapper tbUserMapper;
+	@Autowired
+	Validate validate;
 	
 	BaseResult baseResult = new BaseResult();
 
@@ -75,7 +79,12 @@ public class FlowConfServiceImpl implements FlowConfService {
 	public Map<String, Object> add(Map<String, String> map) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlowConf conf = objectMapper.convertValue(map, TbFlowConf.class);
+			String errorMsg=validate.validateFlowConf(conf);
+			if(StringUtils.isNotBlank(errorMsg)){
+				return baseResult.getErrorJsonObj(errorMsg);
+			}
 			conf.setCreateTime(DateUtil.getDateAndTime());
 			tbFlowConfMapper.insertSelective(conf);
 			return baseResult.getSuccMap();
@@ -89,7 +98,12 @@ public class FlowConfServiceImpl implements FlowConfService {
 	public Map<String, Object> upd(Map<String, String> map) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlowConf conf = objectMapper.convertValue(map, TbFlowConf.class);
+			String errorMsg=validate.validateFlowConf(conf);
+			if(StringUtils.isNotBlank(errorMsg)){
+				return baseResult.getErrorJsonObj(errorMsg);
+			}
 			conf.setUpdateTime(DateUtil.getDateAndTime());
 			tbFlowConfMapper.updateByPrimaryKeySelective(conf);
 			return baseResult.getSuccMap();
