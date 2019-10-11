@@ -18,8 +18,6 @@ public class CommonTrans {
 	@Autowired
 	TbFlowCheckMapper tbFlowCheckMapper;
 	
-
-
 	public void flowAdd(TbFlow flow, TbFlowCheck check) {
 		try {
 			if(flow.getFlowId()!=null){

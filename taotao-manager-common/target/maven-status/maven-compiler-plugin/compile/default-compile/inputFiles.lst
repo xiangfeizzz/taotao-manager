@@ -4,6 +4,7 @@ E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\t
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\redis\JeditCommon.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\JsonUtils.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\IDUtils.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\enums\FlowType.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\Constants.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\CookieUtils.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\ExceptionUtil.java
@@ -12,4 +13,5 @@ E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\t
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\StringProcUtils.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\DateUtil.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\utils\HttpClientUtil.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\enums\FlowStatus.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-common\src\main\java\com\taotao\common\pojo\BaseResult.java

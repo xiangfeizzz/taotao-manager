@@ -47,7 +47,7 @@ function search(pNum){
 	    		$("label[name='total']").text(data.data.total);
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
-	    			var tfont=$("#table").find("tfoot");
+	    			var tfont=$("#table").find("tfoot").clone();
 	    			var userId=v["userId"];
 	    			tfont.find("label[name='userId']").text(userId);
 	    			tfont.find("label[name='loginName']").text(v["loginName"]);
@@ -57,8 +57,8 @@ function search(pNum){
 	    			tfont.find("label[name='eamil']").text(v["eamil"]);
 	    			var hrefInfo="${pageContext.request.contextPath}/user/page/userInfo?preffix=user&userId=";
 	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userUpd?preffix=user&userId=";
-	    			tfont.find("a[name='userInfo']").attr("href",hrefInfo+userId);
-	    			tfont.find("a[name='userUpd']").attr("href",hrefUpd+userId);
+	    			tfont.find("a[name='info']").attr("href",hrefInfo+userId);
+	    			tfont.find("a[name='upd']").attr("href",hrefUpd+userId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -68,7 +68,7 @@ function search(pNum){
 	});
 }
 
-function userDel(obj){
+function del(obj){
 	if(window.confirm('确定删除么')){
 		var userId=$(obj).parent().parent().find("label[name='userId']").text();
 		var param={userId:userId,loginName:loginName};
@@ -90,10 +90,6 @@ function userDel(obj){
 		    }
 		});
      }
-}
-
-function userAdd(){
-	window.location.href="${pageContext.request.contextPath}/user/page/userAdd?preffix=user&userName="+loginName;
 }
 
 </script>
@@ -144,7 +140,7 @@ function userAdd(){
 					<td >性别</td>
 					<td >手机</td>
 					<td >邮箱</td>
-					<td >相关操作</td>
+					<td >操作</td>
 				</tr>
 			</thead>
 			<tbody id="TableData" class="dataContainer" datakey="userList">
@@ -152,16 +148,16 @@ function userAdd(){
 			</tbody>
 			<tfoot class="TableDetail1 template" style="display:none">
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
-					<td style="display:none"><label name="userId">1</label></td>
-					<td><label name="loginName">xucc</label></td>
-					<td><label name="userName">xucc</label></td>
-					<td><label name="sex">男</label></td>
-					<td><label name="mobile">15150476209</label></td>
-					<td><label name="eamil">15150476209@139.com</label></td>
+					<td style="display:none"><label name="userId"></label></td>
+					<td><label name="loginName"></label></td>
+					<td><label name="userName"></label></td>
+					<td><label name="sex"></label></td>
+					<td><label name="mobile"></label></td>
+					<td><label name="eamil"></label></td>
 					<td> 
-						<a name="userInfo" href="" >查看</a> 
-						<a onclick="userDel(this)">删除</a> 
-						<a name="userUpd"  href="" >修改</a> 
+						<a name="info" href="" >查看</a> 
+						<a onclick="del(this)">删除</a> 
+						<a name="upd"  href="" >修改</a> 
 					</td>
 				</tr>
 			</tfoot>

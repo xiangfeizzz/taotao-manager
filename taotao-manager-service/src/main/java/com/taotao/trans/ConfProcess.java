@@ -64,7 +64,7 @@ public class ConfProcess {
 		TbUser u = tbUserMapper.selectByPrimaryKey(Integer.parseInt(id));
 		StringBuffer sb=new StringBuffer();
 		sb.append("待 ").append(u.getUserName()).append(" 审核");
-		check.setFlowDesc(sb.toString());
+		check.setCheckDesc(sb.toString());
 		
 		check.setCreateTime(DateUtil.getDateAndTime());
 		check.setUpdateTime(DateUtil.getDateAndTime());
