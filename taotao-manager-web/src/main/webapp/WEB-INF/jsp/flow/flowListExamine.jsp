@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <html>
 <head>
-<title>员工查询</title>
+<title>审批流转</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 </head>
@@ -89,7 +89,7 @@ function loadUrl(flowType){
 				<!--页面标题-->
 				<input type="image" border="0" width="13" height="13"
 					src="${pageContext.request.contextPath}/style/images/title_arrow.gif" />
-					员工查询
+					待我审批
 			</div>
 			<div id="Title_End"></div>
 		</div>
@@ -110,9 +110,9 @@ function loadUrl(flowType){
                                 <option value="" selected="selected">请选择流程</option>
                                	<option value="1">请假申请</option>
                                 <option value="2">加班申请</option>
-                                <option value="3">物品申领</option>
-                                <option value="4">出差申请</option>
-                                <option value="5">辞职申请</option>
+                                <option value="3">出差申请</option>
+                                <option value="4">离职申请</option>
+                                <option value="5">物品申领</option>
                                 <option value="6">报销申请</option>
                             </select>
 						</td>

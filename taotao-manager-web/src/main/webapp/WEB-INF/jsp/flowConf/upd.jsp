@@ -1,10 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>个人信息</title>
+	<title>流程配置</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/flowConf.js" charset="utf-8"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script type="text/javascript">
     </script>
@@ -15,11 +16,11 @@ td{
 }
 </style>
 <script type="text/javascript">
+var confId='${confId}';
 $(function(){
-	var userId='${userId}';
-	var type='${type}';
-	var param={userId:userId};
-	var url="${pageContext.request.contextPath}/user/getUserInfo";
+	$("input[name='confId']").val(confId);
+	var param={confId:confId};
+	var url="${pageContext.request.contextPath}/flowConf/getFlowConfInfo";
 	$.ajax({
 	    url : url,
 	    type : "POST",
@@ -29,20 +30,15 @@ $(function(){
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
-	    		var user=data.data.tbUser;
+	    		var conf=data.data.tbFlowConf;
 	    		$.each($("input").not($("input[type='radio']")),function(n,v){
 	    			var name=$(v).attr("name");
-	    			var value=user[name];
+	    			var value=conf[name];
 	    			$(v).val(value);
 	    		});
-	    		var dept=data.data.tbDept;
-	    		var role=data.data.tbRole;
-	    		var position=data.data.tbPosition;
-	    		loadDept($("select[name='deptId']"),dept.deptId);
-	    		loadPosition($("select[name='positionId']"),position.positionId);
-	    		loadRole($("select[name='roleId']"),role.roleId);
-	    		$("input[name='sex'][value='"+user.sex+"']").attr("checked", true);
-	    		$("select[name='edu'][option[value='"+user.edu+"']").attr("selected", true);
+	    		loadDept($("select[name='deptId']"),conf.deptId);
+	    		loadPosition($("select[name='positionId']"),conf.positionId);
+	    		$("select[name='flowType'][option[value='"+conf.flowType+"']").attr("selected", true);
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
@@ -51,14 +47,12 @@ $(function(){
 });
 
 function update(){
-	var url="${pageContext.request.contextPath}/user/userUpd";
-	var birth=$("input[name='birth'][type='date']").val();
-	$("input[name='birth'][type='hidden']").val(birth);
-	var hireDate=$("input[name='hireDate'][type='date']").val();
-	$("input[name='hireDate'][type='hidden']").val(hireDate);
 	
+	if(!check()){
+		return false;
+	}
+	var url="${pageContext.request.contextPath}/flowConf/upd";
 	var jsonObj = $("#MainArea").serializeObject(); // json对象
-	console.log(jsonObj);
 	$.ajax({
 	    url : url,
 	    type : "POST",
@@ -69,7 +63,6 @@ function update(){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		alert("修改成功");
-	    		window.history.back(-1); 
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
@@ -78,7 +71,6 @@ function update(){
 	return false;
 }
 
-
 </script>
 <body>
 
@@ -86,125 +78,83 @@ function update(){
     <div id="Title_bar_Head">
         <div id="Title_Head"></div>
         <div id="Title">
-            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 个人信息
+            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 流程配置修改
         </div>
         <div id="Title_End"></div>
     </div>
 </div>
 
-<form id=MainArea>
+<form id="MainArea" >
 <div style="padding-left: 50px;">
        <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 用户信息 </div> 
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 流程配置修改</div> 
         </div>
         
-        <input type="hidden" name="userId" />
+         <input type="hidden" name="confId" />
         
-          <div class="ItemBlockBorder">
+        <div class="ItemBlockBorder">
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
-                        <td>姓名</td>
-                        <td><input type="text" name="userName"></input></td>
-                        <td>登录账号</td>
-                        <td><input type="text" name="loginName"></input> </td>
-                    </tr>
+                       <td>流程类型</td>
+						<td>
+							<select name="flowType"  >
+                                <option value="" selected="selected">请选择流程</option>
+                               	<option value="1">请假申请</option>
+                                <option value="2">加班申请</option>
+                                <option value="3">出差申请</option>
+                                <option value="4">离职申请</option>
+                                <option value="5">物品申领</option>
+                                <option value="6">报销申请</option>
+                            </select><font>*</font>
+						</td>
+						<td>选择员工</td>  
+						<td>
+                    		<input type="text" name="userName" readonly="readonly"></input>
+                    		<input type="hidden" name="userId" ></input>
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(1);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return deleteUser(1);" />
+						</td>
+					 </tr>
                      <tr>
-                        <td>性别</td>
-                        <td>
-                        	<input type="radio" name="sex" value="1">男</input>
-                        	<input type="radio" name="sex" value="0">女</input>
-                         </td>
-                        <td>联系地址</td>
-                        <td><input type="text" name="address"></input> </td>
-                    </tr>
-                    <tr>
-                        <td>身份证号</td>
-                        <td><input type="text" name="idNo"></input> </td>
-                        <td>银行卡号</td>
-                        <td><input type="text" name="bankNo"></input> </td>
-                    </tr>
-                     <tr>
-                        <td>手机号码</td>
-                        <td><input type="text" name="mobile"></input> </td>
-                        <td>邮箱</td>
-                        <td><input type="text" name="email"></input> </td>
-                    </tr>
-                     <tr>
-                        <td>生日</td>
-                        <td>
-                        	<input type="date" name="birth" ></input> 
-                        	<input type="hidden" name="birth" ></input>
-                        </td>
-                        <td>入职日期</td>
-                        <td>
-                        	<input type="date" name="hireDate"></input>
-                        	<input type="hidden" name="hireDate"></input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>毕业学校</td>
-                        <td><input type="text" name="school"></input> </td>
-                        <td>学历</td>
-                        <td>
-                       		 <select name="edu" >
-                                <option value="" selected="selected">请选择学历</option>
-                                <option value="1">初中</option>
-                                <option value="2">高中</option>
-                                <option value="3">中专</option>
-                                <option value="4">大专</option>
-                                <option value="5">本科</option>
-                                <option value="6">研究生</option>
-                                <option value="7">博士</option>
-                            </select>
-                        
-                         </td>
-                    </tr>
-                    <tr>
-                        <td>部门</td>
+						<td>部门</td>
                         <td>
                         	 <select name="deptId" >
                                 <option value="" selected="selected">请选择部门</option>
-                            </select>
+                            </select><font>*</font>
                         </td>
                         <td>职位</td>
                         <td>
                         	 <select name="positionId" >
                                 <option value="" selected="selected">请选择职位&nbsp;&nbsp;</option>
-                            </select>
+                            </select><font>*</font>
                         </td>
                     </tr>
                     <tr>
-                        <td>角色</td>
-                        <td>
-                        	 <select name="roleId" >
-                                <option value="" selected="selected">请选择角色</option>
-                            </select>
-                        </td>
-                        <td>薪资</td>
-                        <td><input type="text" name="salary"></input> </td>
+                    	<td>选择审核人</td>
+                    	<td>
+                    		<input type="text" name="userNameOrder" readonly="readonly"></input>
+                    		<input type="hidden" name="userIdOrder" ></input>
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/point.gif"  onclick="return choiceUser(2);" />
+                    		<input type="image" src="${pageContext.request.contextPath}/style/images/time_cancel.gif"  onclick="return deleteUser(2);" />
+        				</td>
                     </tr>
-                    <tr>
-                        <td>年假</td>
-                        <td><input type="text" name="holiday"></input> </td>
-                    </tr>
+                    
                 </table>
             </div>
         </div>
         
-         <div id="InputDetailBar" style="float: left">
+          <div id="InputDetailBar" style="float: left">
             <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return update();" />
         </div>
         
-        
-        
    </div>
 </form>
+
 <div class="Description">
 验证规则：</br>
-1，登录账号不能为空，不能是已存在的。</br>
-2，手机号码，邮箱，身份证号，银行卡号，薪资，年假等必须输入正确的格式。</br>
+1，流程类型、部门、职位校验唯一性。</br>
+2，流程类型、部门、职位不能为空</br>
 </div>
-
 </body>
 </html>

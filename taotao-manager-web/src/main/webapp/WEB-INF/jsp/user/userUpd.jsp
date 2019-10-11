@@ -17,7 +17,6 @@ td{
 <script type="text/javascript">
 $(function(){
 	var userId='${userId}';
-	var type='${type}';
 	var param={userId:userId};
 	var url="${pageContext.request.contextPath}/user/getUserInfo";
 	$.ajax({

@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <html>
 <head>
-<title>员工查询</title>
+<title>审批流转</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 </head>

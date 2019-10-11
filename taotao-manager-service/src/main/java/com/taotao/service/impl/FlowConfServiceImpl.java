@@ -1,5 +1,6 @@
 package com.taotao.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,10 @@ import com.taotao.common.utils.DateUtil;
 import com.taotao.mapper.TbFlowConfMapper;
 import com.taotao.mapper.TbUserMapper;
 import com.taotao.mapperCust.TbFlowConfMapperCust;
+import com.taotao.pojo.TbDept;
 import com.taotao.pojo.TbFlowConf;
+import com.taotao.pojo.TbPosition;
+import com.taotao.pojo.TbRole;
 import com.taotao.pojo.TbUser;
 import com.taotao.service.FlowConfService;
 import com.taotao.validate.Validate;
@@ -40,8 +44,45 @@ public class FlowConfServiceImpl implements FlowConfService {
 
 	@Override
 	public Map<String, Object> getFlowConfInfo(Map<String, String> map, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+		    String confId = map.get("confId").toString();
+		    TbFlowConf conf = tbFlowConfMapper.selectByPrimaryKey(Integer.parseInt(confId));
+	  		if (conf != null ) {
+	  			Map<String,Object> m=new HashMap<String, Object>();
+	  			Integer userId = conf.getUserId();
+	  			TbUser u = tbUserMapper.selectByPrimaryKey(userId);
+	  			if(u!=null){
+	  				String userName = u.getUserName();
+	  				m.put("userId", userId);
+	  				m.put("userName", userName);
+	  			}
+	  			String userIdOrder = conf.getUserIdOrder();
+	  			if(StringUtils.isNotBlank(userIdOrder)){
+	  				StringBuffer userNameOrder=new StringBuffer();
+	  				for(String id:userIdOrder.split(",")){
+	  					TbUser user = tbUserMapper.selectByPrimaryKey(Integer.parseInt(id));
+	  					userNameOrder.append(user.getUserName()).append(",");
+	  				}
+	  				m.put("userIdOrder", userIdOrder);
+	  				m.put("userNameOrder", userNameOrder.deleteCharAt(userNameOrder.length()-1));
+	  			}
+	  			m.put("confId", conf.getConfId());
+	  			m.put("deptId", conf.getDeptId());
+	  			m.put("positionId", conf.getPositionId());
+	  			m.put("flowType", conf.getFlowType());
+	  			m.put("confDesc", conf.getConfDesc());
+	  			m.put("createTime", conf.getCreateTime());
+	  			m.put("updateTime", conf.getUpdateTime());
+	  			Map<String,Object> returnMap=new HashMap<String, Object>();
+	  			returnMap.put("tbFlowConf", m);
+	  			return baseResult.getSuccMap(returnMap);
+	  		}else{
+	  			return baseResult.getErrorJsonObj("该流程不存在");
+	  		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>请假申请</title>
+	<title>加班申请</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
@@ -88,7 +88,7 @@ function check(){
         
         
         <div id="Title">
-            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 请假申请
+            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 加班申请
         </div>
         <div id="Title_End"></div>
     </div>
@@ -97,7 +97,7 @@ function check(){
 <form id="MainArea" >
 <div style="padding-left: 50px;">
        <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 请假申请</div> 
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 加班申请</div> 
         </div>
         
         <div class="ItemBlockBorder">
