@@ -13,5 +13,6 @@ public interface TbFlowMapperCust {
 
 	List<Map> getFlowList(Map<String, String> map);
 
+	String getMaxId();
 
 }

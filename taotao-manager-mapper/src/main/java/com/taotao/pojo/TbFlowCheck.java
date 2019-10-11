@@ -1,7 +1,7 @@
 package com.taotao.pojo;
 
-public class TbFlowLog {
-    private Integer id;
+public class TbFlowCheck {
+    private Integer checkId;
 
     private Integer flowId;
 
@@ -9,18 +9,20 @@ public class TbFlowLog {
 
     private String status;
 
-    private String desc;
+    private Integer indexOf;
+
+    private String checkDesc;
 
     private String createTime;
 
     private String updateTime;
 
-    public Integer getId() {
-        return id;
+    public Integer getCheckId() {
+        return checkId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCheckId(Integer checkId) {
+        this.checkId = checkId;
     }
 
     public Integer getFlowId() {
@@ -47,12 +49,20 @@ public class TbFlowLog {
         this.status = status == null ? null : status.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public Integer getIndexOf() {
+        return indexOf;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setIndexOf(Integer indexOf) {
+        this.indexOf = indexOf;
+    }
+
+    public String getCheckDesc() {
+        return checkDesc;
+    }
+
+    public void setCheckDesc(String checkDesc) {
+        this.checkDesc = checkDesc == null ? null : checkDesc.trim();
     }
 
     public String getCreateTime() {

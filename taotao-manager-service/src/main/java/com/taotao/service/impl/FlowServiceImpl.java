@@ -32,10 +32,13 @@ import com.taotao.mapper.TbUserMapper;
 import com.taotao.mapperCust.TbFlowMapperCust;
 import com.taotao.pojo.TbDept;
 import com.taotao.pojo.TbFlow;
+import com.taotao.pojo.TbFlowCheck;
 import com.taotao.pojo.TbPosition;
 import com.taotao.pojo.TbRole;
 import com.taotao.pojo.TbUser;
 import com.taotao.service.FlowService;
+import com.taotao.trans.CommonTrans;
+import com.taotao.trans.ConfProcess;
 
 @Service
 public class FlowServiceImpl implements FlowService {
@@ -52,6 +55,10 @@ public class FlowServiceImpl implements FlowService {
 	TbRoleMapper tbRoleMapper;
 	@Autowired
 	TbPositionMapper tbPositionMapper;
+	@Autowired
+	ConfProcess confProcess;
+	@Autowired
+	CommonTrans commonTrans;
 	
 	BaseResult baseResult = new BaseResult();
 	
@@ -148,13 +155,14 @@ public class FlowServiceImpl implements FlowService {
 			flow.setCreateTime(DateUtil.getDateAndTime());
 			String startTime = flow.getHolidayStartTime();
 			String endTime = flow.getHolidayEndTime();
+		
+			
   			if(StringUtils.isNotBlank(startTime)){
   				flow.setHolidayStartTime(startTime.replace("-",""));
   			}
   			if(StringUtils.isNotBlank(endTime)){
   				flow.setHolidayEndTime(endTime.replace("-",""));
   			}
-  			flow.setFlowStatus("0"); //待审核
   			flow.setFlowType("1");  //请假申请
   			flow.setFlowName(FlowType.getValue(flow.getFlowType()));
   			HttpSession session = request.getSession();
@@ -163,7 +171,21 @@ public class FlowServiceImpl implements FlowService {
   			flow.setUserId(user.getUserId());
   			flow.setCreateTime(DateUtil.getDateAndTime());
   			flow.setUpdateTime(DateUtil.getDateAndTime());
-  			tbFlowMapper.insertSelective(flow);
+  			
+  			String maxId = tbFlowMapperCust.getMaxId();
+  			flow.setFlowId(Integer.parseInt(maxId));
+  			
+  			TbFlowCheck check=new TbFlowCheck();
+  			String flowStatus = flow.getFlowStatus();
+  			if("1".equals(flowStatus)){  //提交 待审核状态
+  	  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+  				if(StringUtils.isNotBlank(errorMsg)){
+  					return baseResult.getErrorJsonObj(errorMsg);
+  				}
+  			}
+  			
+  			commonTrans.flowAdd(flow,check);
+  			
 			return baseResult.getSuccMap();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -196,7 +218,21 @@ public class FlowServiceImpl implements FlowService {
   			flow.setUserId(user.getUserId());
   			flow.setCreateTime(DateUtil.getDateAndTime());
   			flow.setUpdateTime(DateUtil.getDateAndTime());
-  			tbFlowMapper.insertSelective(flow);
+  			
+  			String maxId = tbFlowMapperCust.getMaxId();
+  			flow.setFlowId(Integer.parseInt(maxId));
+  			
+  			TbFlowCheck check=new TbFlowCheck();
+  			String flowStatus = flow.getFlowStatus();
+  			if("1".equals(flowStatus)){  //提交 待审核状态
+  	  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+  				if(StringUtils.isNotBlank(errorMsg)){
+  					return baseResult.getErrorJsonObj(errorMsg);
+  				}
+  			}
+  			
+  			commonTrans.flowAdd(flow,check);
+  			
 			return baseResult.getSuccMap();
 		} catch (Exception e) {
 			e.printStackTrace();

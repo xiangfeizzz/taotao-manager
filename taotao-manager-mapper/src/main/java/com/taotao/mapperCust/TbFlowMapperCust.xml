@@ -31,4 +31,9 @@
       </if>
     order by f.create_time desc 
   </select>
+  
+  <select id="getMaxId" resultType="String">
+  	select case when isnull(max(flow_id)) then 1 else max(flow_id)+1 end as maxId from tb_flow_check
+  </select>
+  
 </mapper>

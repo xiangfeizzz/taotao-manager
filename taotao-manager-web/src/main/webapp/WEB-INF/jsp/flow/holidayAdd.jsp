@@ -15,7 +15,10 @@ td{
 }
 </style>
 <script type="text/javascript">
-function save(){
+function save(flowStatus){
+	
+	$("input[name='flowStatus']").val(flowStatus);
+	
 	var holidayStartTime=$("input[name='holidayStartTime'][type='date']").val();
 	$("input[name='holidayStartTime'][type='hidden']").val(holidayStartTime);
 	var holidayEndTime=$("input[name='holidayEndTime'][type='date']").val();
@@ -99,6 +102,8 @@ function check(){
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 请假申请</div> 
         </div>
         
+        <input name="flowStatus" type="hidden" />
+        
         <div class="ItemBlockBorder">
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
@@ -146,7 +151,8 @@ function check(){
         </div>
         
          <div id="InputDetailBar" style="float: left">
-            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return save();" />
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return save(1);" />
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/saveToDraftBox.png"  onclick="return save(0);" />
         </div>
         
    </div>

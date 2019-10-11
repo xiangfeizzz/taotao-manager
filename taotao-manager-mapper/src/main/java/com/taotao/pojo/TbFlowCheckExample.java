@@ -3,14 +3,14 @@ package com.taotao.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TbFlowLogExample {
+public class TbFlowCheckExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TbFlowLogExample() {
+    public TbFlowCheckExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,63 +104,63 @@ public class TbFlowLogExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andCheckIdIsNull() {
+            addCriterion("check_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andCheckIdIsNotNull() {
+            addCriterion("check_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andCheckIdEqualTo(Integer value) {
+            addCriterion("check_id =", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andCheckIdNotEqualTo(Integer value) {
+            addCriterion("check_id <>", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andCheckIdGreaterThan(Integer value) {
+            addCriterion("check_id >", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andCheckIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("check_id >=", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andCheckIdLessThan(Integer value) {
+            addCriterion("check_id <", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andCheckIdLessThanOrEqualTo(Integer value) {
+            addCriterion("check_id <=", value, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andCheckIdIn(List<Integer> values) {
+            addCriterion("check_id in", values, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andCheckIdNotIn(List<Integer> values) {
+            addCriterion("check_id not in", values, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andCheckIdBetween(Integer value1, Integer value2) {
+            addCriterion("check_id between", value1, value2, "checkId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andCheckIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("check_id not between", value1, value2, "checkId");
             return (Criteria) this;
         }
 
@@ -354,73 +354,133 @@ public class TbFlowLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andIndexOfIsNull() {
+            addCriterion("index_of is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andIndexOfIsNotNull() {
+            addCriterion("index_of is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andIndexOfEqualTo(Integer value) {
+            addCriterion("index_of =", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andIndexOfNotEqualTo(Integer value) {
+            addCriterion("index_of <>", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andIndexOfGreaterThan(Integer value) {
+            addCriterion("index_of >", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andIndexOfGreaterThanOrEqualTo(Integer value) {
+            addCriterion("index_of >=", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andIndexOfLessThan(Integer value) {
+            addCriterion("index_of <", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andIndexOfLessThanOrEqualTo(Integer value) {
+            addCriterion("index_of <=", value, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andIndexOfIn(List<Integer> values) {
+            addCriterion("index_of in", values, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andIndexOfNotIn(List<Integer> values) {
+            addCriterion("index_of not in", values, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andIndexOfBetween(Integer value1, Integer value2) {
+            addCriterion("index_of between", value1, value2, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andIndexOfNotBetween(Integer value1, Integer value2) {
+            addCriterion("index_of not between", value1, value2, "indexOf");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andCheckDescIsNull() {
+            addCriterion("check_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andCheckDescIsNotNull() {
+            addCriterion("check_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescEqualTo(String value) {
+            addCriterion("check_desc =", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescNotEqualTo(String value) {
+            addCriterion("check_desc <>", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescGreaterThan(String value) {
+            addCriterion("check_desc >", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescGreaterThanOrEqualTo(String value) {
+            addCriterion("check_desc >=", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescLessThan(String value) {
+            addCriterion("check_desc <", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescLessThanOrEqualTo(String value) {
+            addCriterion("check_desc <=", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescLike(String value) {
+            addCriterion("check_desc like", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescNotLike(String value) {
+            addCriterion("check_desc not like", value, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescIn(List<String> values) {
+            addCriterion("check_desc in", values, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescNotIn(List<String> values) {
+            addCriterion("check_desc not in", values, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescBetween(String value1, String value2) {
+            addCriterion("check_desc between", value1, value2, "checkDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckDescNotBetween(String value1, String value2) {
+            addCriterion("check_desc not between", value1, value2, "checkDesc");
             return (Criteria) this;
         }
 
