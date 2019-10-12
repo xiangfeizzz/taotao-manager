@@ -3,9 +3,10 @@
 <head>
 	<title>个人信息</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
+    <script language="javascript" src="${pageContext.request.contextPath}/script/user.js" charset="utf-8"></script>
     <script type="text/javascript">
     </script>
 </head>
@@ -15,38 +16,9 @@ td{
 }
 </style>
 <script type="text/javascript">
+var userId='${userId}';
 $(function(){
-	var userId='${userId}';
-	var param={userId:userId};
-	var url="${pageContext.request.contextPath}/user/getUserInfo";
-	$.ajax({
-	    url : url,
-	    type : "POST",
-	    async : true,
-	    contentType: "application/json; charset=utf-8",
-	    data : JSON.stringify(param),
-	    dataType : 'json',
-	    success : function(data) {
-	    	if(data.resultCode=="000000"){
-	    		var user=data.data.tbUser;
-	    		$.each($("input").not($("input[type='radio']")),function(n,v){
-	    			var name=$(v).attr("name");
-	    			var value=user[name];
-	    			$(v).val(value);
-	    		});
-	    		var dept=data.data.tbDept;
-	    		var role=data.data.tbRole;
-	    		var position=data.data.tbPosition;
-	    		loadDept($("select[name='deptId']"),dept.deptId);
-	    		loadPosition($("select[name='positionId']"),position.positionId);
-	    		loadRole($("select[name='roleId']"),role.roleId);
-	    		$("input[name='sex'][value='"+user.sex+"']").attr("checked", true);
-	    		$("select[name='edu'][option[value='"+user.edu+"']").attr("selected", true);
-	    	}else{
-	    		alert(data.resultMsg)
-	    	}
-	    }
-	});
+	loadUserInfo();
 });
 
 function update(){

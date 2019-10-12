@@ -5,6 +5,7 @@
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/user.js" charset="utf-8"></script>
 </head>
 <script type="text/javascript" async="async">
 
@@ -59,30 +60,6 @@ function search(pNum){
 	    	}
 	    }
 	});
-}
-
-function del(obj){
-	if(window.confirm('确定删除么')){
-		var userId=$(obj).parent().parent().find("label[name='userId']").text();
-		var param={userId:userId,loginName:loginName};
-		var url="${pageContext.request.contextPath}/user/userDel";
-		$.ajax({
-		    url : url,
-		    type : "POST",
-		    async : true,
-		    contentType: "application/json; charset=utf-8",
-		    data : JSON.stringify(param),
-		    dataType : 'json',
-		    success : function(data) {
-		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
-		    		alert("删除成功");
-		    	}else{
-		    		alert(data.resultMsg)
-		    	}
-		    }
-		});
-     }
 }
 
 </script>

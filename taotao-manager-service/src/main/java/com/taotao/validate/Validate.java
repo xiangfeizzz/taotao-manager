@@ -28,12 +28,14 @@ public class Validate {
 	
 	public String validateUser(TbUser user) {
 		String returnMsg = null;
-		TbUserExample example = new TbUserExample();
-		com.taotao.pojo.TbUserExample.Criteria criteria = example.createCriteria();
-  		criteria.andLoginNameEqualTo(user.getLoginName());
-		List<TbUser> list = tbUserMapper.selectByExample(example);
-		if(list!=null && list.size()>0){
-			returnMsg="登录名称已经存在";
+		if(user.getUserId()==null){ //新增的要校验，修改不用校验
+			TbUserExample example = new TbUserExample();
+			com.taotao.pojo.TbUserExample.Criteria criteria = example.createCriteria();
+			criteria.andLoginNameEqualTo(user.getLoginName());
+			List<TbUser> list = tbUserMapper.selectByExample(example);
+			if(list!=null && list.size()>0){
+				returnMsg="登录名称已经存在";
+			}
 		}
 		return returnMsg;
 	}
