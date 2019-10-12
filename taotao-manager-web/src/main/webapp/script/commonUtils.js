@@ -18,6 +18,18 @@ $.fn.serializeObject = function()
    return o;
 };
 
+function loadPageBar(data){
+	$("input[name='firstPage']").val(data.data.firstPage);
+	$("input[name='prePage']").val(data.data.prePage);
+	$("input[name='nextPage']").val(data.data.nextPage);
+	$("input[name='lastPage']").val(data.data.lastPage);
+	
+	$("label[name='pageNum']").text(data.data.pageNum);
+	$("label[name='pages']").text(data.data.pages);
+	$("label[name='pageSize']").text(data.data.pageSize);
+	$("label[name='total']").text(data.data.total);
+}
+
 
 function loadDept(obj,sId){
 	var url=this.getDomain()+"/dept/getDeptList";

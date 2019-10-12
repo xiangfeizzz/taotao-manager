@@ -3,9 +3,10 @@
 <head>
 	<title>加班申请</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
+    <script language="javascript" src="${pageContext.request.contextPath}/script/workext.js" charset="utf-8"></script>
     <script type="text/javascript">
     </script>
 </head>
@@ -51,36 +52,6 @@ function save(flowStatus){
 	return false;
 }
 
-function check(){
-	var workextHours=$("input[name='workextHours']").val();
-	if(isNaN(workextHours) || workextHours.trim()==""){
-		alert("加班时长不合法");
-		return false;
-	}
-	var workextStartTime=$("input[name='workextStartTime']").val();
-	if(workextStartTime==""){
-		alert("请选择开始日期");
-		return false;
-	}
-	var workextEndTime=$("input[name='workextEndTime']").val();
-	if(workextEndTime==""){
-		alert("请选择结束日期");
-		return false;
-	}
-	
-	var isLegalDay=$("select[name='isLegalDay'] option:selected").val();
-	if(isLegalDay==""){
-		alert("请选择是否法定假日");
-		return false;
-	}
-	
-	var workextDesc=$("textArea[name='workextDesc']").val();
-	if(workextDesc==""){
-		alert("请填写加班事由");
-		return false;
-	}
-	return true;
-}
 
 </script>
 <body>

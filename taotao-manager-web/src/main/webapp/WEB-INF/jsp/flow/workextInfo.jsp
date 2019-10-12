@@ -3,9 +3,10 @@
 <head>
 	<title>加班申请</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
+    <script language="javascript" src="${pageContext.request.contextPath}/script/workext.js" charset="utf-8"></script>
     <script type="text/javascript">
     </script>
 </head>
@@ -16,35 +17,10 @@ td{
 </style>
 <script type="text/javascript">
 
+var flowId='${flowId}';
 $(function(){
-	var flowId='${flowId}';
-	var param={flowId:flowId};
-	var url="${pageContext.request.contextPath}/flow/getFlowInfo";
-	$.ajax({
-	    url : url,
-	    type : "POST",
-	    async : true,
-	    contentType: "application/json; charset=utf-8",
-	    data : JSON.stringify(param),
-	    dataType : 'json',
-	    success : function(data) {
-	    	if(data.resultCode=="000000"){
-	    		var flow=data.data.tbFlow;
-	    		$.each($("input").not($("input[type='radio']")),function(n,v){
-	    			var name=$(v).attr("name");
-	    			var value=flow[name];
-	    			$(v).val(value);
-	    		});
-	    		$("[name='workextDesc']").val(flow['workextDesc']);
-	    		$("select[name='isLegalDay'][option[value='"+flow.isLegalDay+"']").attr("selected", true);
-	    	}else{
-	    		alert(data.resultMsg)
-	    	}
-	    }
-	});
-	
+	loadWorkextInfo();
 	$("#MainArea").find("input,textarea,select,radio").attr('disabled',"disabled");
-	
 });
 
 

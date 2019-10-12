@@ -3,9 +3,10 @@
 <head>
 	<title>请假申请</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
     <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
+    <script language="javascript" src="${pageContext.request.contextPath}/script/holiday.js" charset="utf-8"></script>
     <script type="text/javascript">
     </script>
 </head>
@@ -49,36 +50,6 @@ function save(flowStatus){
 	    }
 	});
 	return false;
-}
-
-function check(){
-	var holidayType=$("select[name='holidayType'] option:selected").val();
-	if(holidayType==""){
-		alert("请选择请假类型");
-		return false;
-	}
-	var holidayHours=$("input[name='holidayHours']").val();
-	if(isNaN(holidayHours) || holidayHours.trim()==""){
-		alert("请假时长不合法");
-		return false;
-	}
-	var holidayStartTime=$("input[name='holidayStartTime']").val();
-	if(holidayStartTime==""){
-		alert("请选择开始日期");
-		return false;
-	}
-	var holidayEndTime=$("input[name='holidayEndTime']").val();
-	if(holidayEndTime==""){
-		alert("请选择结束日期");
-		return false;
-	}
-	
-	var holidayDesc=$("textArea[name='holidayDesc']").val();
-	if(holidayDesc==""){
-		alert("请填写请假事由");
-		return false;
-	}
-	return true;
 }
 
 </script>

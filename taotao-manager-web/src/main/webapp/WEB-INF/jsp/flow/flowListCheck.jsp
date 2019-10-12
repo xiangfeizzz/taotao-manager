@@ -4,6 +4,8 @@
 <title>审批流转</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/flowList.js"></script>
 </head>
 <script type="text/javascript" async="async">
 
@@ -38,15 +40,7 @@ function search(pNum){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		var user=data.data.tbUser;
-	    		$("input[name='firstPage']").val(data.data.firstPage);
-	    		$("input[name='prePage']").val(data.data.prePage);
-	    		$("input[name='nextPage']").val(data.data.nextPage);
-	    		$("input[name='lastPage']").val(data.data.lastPage);
-	    		
-	    		$("label[name='pageNum']").text(data.data.pageNum);
-	    		$("label[name='pages']").text(data.data.pages);
-	    		$("label[name='pageSize']").text(data.data.pageSize);
-	    		$("label[name='total']").text(data.data.total);
+	    		loadPageBar(data);
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot").clone();
@@ -59,7 +53,7 @@ function search(pNum){
 	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var flowType=v["flowType"];
-	    			var hrefInfo=loadUrl(flowType);
+	    			var hrefInfo=loadInfoUrl(flowType);
 	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
@@ -70,15 +64,6 @@ function search(pNum){
 	});
 }
 
-function loadUrl(flowType){
-	var hrefInfo="";
-	if(flowType=="1"){
-		hrefInfo="${pageContext.request.contextPath}/page/holidayInfo?preffix=flow&flowId=";
-	}else if(flowType=="2"){
-		hrefInfo="${pageContext.request.contextPath}/page/workextInfo?preffix=flow&flowId=";
-	}
-	return hrefInfo;
-}
 
 </script>
 <body>
