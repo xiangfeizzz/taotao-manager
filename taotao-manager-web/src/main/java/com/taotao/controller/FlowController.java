@@ -40,15 +40,48 @@ public class FlowController extends BaseController{
 		return flowService.getFlowList(map,request);
 	}
 	
+	@RequestMapping("/flowDel")
+	@ResponseBody
+	public Map<String,Object>  flowDel(@RequestBody Map<String,String> map) {
+		return flowService.flowDel(map);
+	}
+	
+	@RequestMapping("/flowBack")
+	@ResponseBody
+	public Map<String,Object>  flowBack(@RequestBody Map<String,String> map) {
+		return flowService.flowBack(map);
+	}
+	
+	@RequestMapping("/flowSubmit")
+	@ResponseBody
+	public Map<String,Object>  flowSubmit(@RequestBody Map<String,String> map) {
+		return flowService.flowSubmit(map);
+	}
+	
 	@RequestMapping("/holidayAdd")
 	@ResponseBody
 	public Map<String,Object>  holidayAdd(@RequestBody Map<String,String> map,HttpServletRequest request) {
 		return flowService.holidayAdd(map,request);
 	}
 	
+	@RequestMapping("/holidayUpd")
+	@ResponseBody
+	public Map<String,Object>  holidayUpd(@RequestBody Map<String,String> map) {
+		return flowService.holidayUpd(map);
+	}
+	
+	
 	@RequestMapping("/workextAdd")
 	@ResponseBody
 	public Map<String,Object>  workextAdd(@RequestBody Map<String,String> map,HttpServletRequest request) {
 		return flowService.workextAdd(map,request);
 	}
+	
+	@RequestMapping("/workextUpd")
+	@ResponseBody
+	public Map<String,Object>  workextUpd(@RequestBody Map<String,String> map) {
+		return flowService.workextUpd(map);
+	}
+	
+	
 }

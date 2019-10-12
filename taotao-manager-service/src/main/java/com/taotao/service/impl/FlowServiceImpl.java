@@ -26,21 +26,23 @@ import com.taotao.common.pojo.BaseResult;
 import com.taotao.common.redis.JeditCommon;
 import com.taotao.common.utils.DateUtil;
 import com.taotao.mapper.TbDeptMapper;
+import com.taotao.mapper.TbFlowCheckMapper;
 import com.taotao.mapper.TbFlowMapper;
 import com.taotao.mapper.TbPositionMapper;
 import com.taotao.mapper.TbRoleMapper;
 import com.taotao.mapper.TbUserMapper;
-import com.taotao.mapperCust.TbFlowConfMapperCust;
 import com.taotao.mapperCust.TbFlowMapperCust;
 import com.taotao.pojo.TbDept;
 import com.taotao.pojo.TbFlow;
 import com.taotao.pojo.TbFlowCheck;
+import com.taotao.pojo.TbFlowCheckExample;
 import com.taotao.pojo.TbPosition;
 import com.taotao.pojo.TbRole;
 import com.taotao.pojo.TbUser;
 import com.taotao.service.FlowService;
 import com.taotao.trans.CommonTrans;
 import com.taotao.trans.ConfProcess;
+import com.taotao.validate.Validate;
 
 @Service
 public class FlowServiceImpl implements FlowService {
@@ -49,6 +51,8 @@ public class FlowServiceImpl implements FlowService {
 	TbFlowMapper tbFlowMapper;
 	@Autowired
 	TbFlowMapperCust tbFlowMapperCust;
+	@Autowired
+	TbFlowCheckMapper tbFlowCheckMapper;
 	@Autowired
 	TbUserMapper tbUserMapper;
 	@Autowired
@@ -61,6 +65,9 @@ public class FlowServiceImpl implements FlowService {
 	ConfProcess confProcess;
 	@Autowired
 	CommonTrans commonTrans;
+	@Autowired
+	Validate validate;
+	
 	
 	BaseResult baseResult = new BaseResult();
 	
@@ -149,7 +156,7 @@ public class FlowServiceImpl implements FlowService {
   		for(Map<String, String> l:list){
   			String flowStatus = l.get("flowStatus");
   			if(StringUtils.isNotBlank(flowStatus)){
-  				l.put("flowStatus", FlowStatus.getValue(flowStatus));
+  				l.put("flowStatusDesc", FlowStatus.getValue(flowStatus));
   			}
   		}
 		PageInfo<Map> pageInfo = new PageInfo<>(list);
@@ -158,12 +165,85 @@ public class FlowServiceImpl implements FlowService {
 
 	
 	@Override
+	public Map<String, Object> flowDel(Map<String, String> map) {
+		String flowId = map.get("flowId");
+		if(StringUtils.isBlank(flowId)){
+			return baseResult.getErrorMap("flowId不能为空");
+		}
+		TbFlow flow = tbFlowMapper.selectByPrimaryKey(Integer.parseInt(flowId));
+		if(flow!=null){
+			if(!FlowStatus.flowStatus_0.getCode().equals(flow.getFlowStatus())){
+				return baseResult.getErrorMap("非起草状态不能删除");
+			}
+			tbFlowMapper.deleteByPrimaryKey(Integer.parseInt(flowId));
+			
+			TbFlowCheckExample example = new TbFlowCheckExample();
+			com.taotao.pojo.TbFlowCheckExample.Criteria criteria = example.createCriteria();
+	  		criteria.andFlowIdEqualTo(Integer.parseInt(flowId));
+			tbFlowCheckMapper.deleteByExample(example);
+		}
+		return baseResult.getSuccMap();
+	}
+	
+
+	@Override
+	public Map<String, Object> flowBack(Map<String, String> map) {
+		String flowId = map.get("flowId");
+		if(StringUtils.isBlank(flowId)){
+			return baseResult.getErrorMap("flowId不能为空");
+		}
+		TbFlow flow = tbFlowMapper.selectByPrimaryKey(Integer.parseInt(flowId));
+		if(flow!=null){
+			if(!FlowStatus.flowStatus_1.getCode().equals(flow.getFlowStatus())){
+				return baseResult.getErrorMap("非待审核状态不能撤回");
+			}
+			flow.setFlowStatus(FlowStatus.flowStatus_0.getCode()); //起草状态
+			flow.setUpdateTime(DateUtil.getDateAndTime());
+			tbFlowMapper.updateByPrimaryKey(flow);
+			
+			//删除审核表的数据
+			TbFlowCheckExample example = new TbFlowCheckExample();
+			com.taotao.pojo.TbFlowCheckExample.Criteria criteria = example.createCriteria();
+	  		criteria.andFlowIdEqualTo(Integer.parseInt(flowId));
+			tbFlowCheckMapper.deleteByExample(example);
+		}
+		return baseResult.getSuccMap();
+	}
+
+
+	@Override
+	public Map<String, Object> flowSubmit(Map<String, String> map) {
+		String flowId = map.get("flowId");
+		if(StringUtils.isBlank(flowId)){
+			return baseResult.getErrorMap("flowId不能为空");
+		}
+		TbFlow flow = tbFlowMapper.selectByPrimaryKey(Integer.parseInt(flowId));
+		if(flow!=null){
+			if(!FlowStatus.flowStatus_0.getCode().equals(flow.getFlowStatus())
+					&& !FlowStatus.flowStatus_4.getCode().equals(flow.getFlowStatus())){
+				return baseResult.getErrorMap("起草状态、审核拒绝状态才能提交");
+			}
+			flow.setFlowStatus(FlowStatus.flowStatus_1.getCode()); //待审核状态
+			flow.setUpdateTime(DateUtil.getDateAndTime());
+			
+			TbFlowCheck check=new TbFlowCheck();
+  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+			if(StringUtils.isNotBlank(errorMsg)){
+				return baseResult.getErrorJsonObj(errorMsg);
+			}
+			
+  			commonTrans.flowSubmit(flow,check);
+		}
+		return baseResult.getSuccMap();
+	}
+	
+	
+	@Override
 	public Map<String, Object> holidayAdd(Map<String, String> map ,HttpServletRequest request) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
-			flow.setCreateTime(DateUtil.getDateAndTime());
 			String startTime = flow.getHolidayStartTime();
 			String endTime = flow.getHolidayEndTime();
 		
@@ -174,7 +254,7 @@ public class FlowServiceImpl implements FlowService {
   			if(StringUtils.isNotBlank(endTime)){
   				flow.setHolidayEndTime(endTime.replace("-",""));
   			}
-  			flow.setFlowType("1");  //请假申请
+  			flow.setFlowType(FlowType.flowType_1.getCode());  //请假申请
   			flow.setFlowName(FlowType.getValue(flow.getFlowType()));
   			HttpSession session = request.getSession();
   			String sessionId = session.getId();
@@ -203,6 +283,37 @@ public class FlowServiceImpl implements FlowService {
 			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
 		}
 	}
+	
+	@Override
+	public Map<String, Object> holidayUpd(Map<String, String> map){
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
+			String errorMsg=validate.validateFlow(flow);
+			if(StringUtils.isNotBlank(errorMsg)){
+				return baseResult.getErrorJsonObj(errorMsg);
+			}
+			
+			String startTime = flow.getHolidayStartTime();
+			String endTime = flow.getHolidayEndTime();
+			
+  			if(StringUtils.isNotBlank(startTime)){
+  				flow.setHolidayStartTime(startTime.replace("-",""));
+  			}
+  			if(StringUtils.isNotBlank(endTime)){
+  				flow.setHolidayEndTime(endTime.replace("-",""));
+  			}
+  			flow.setUpdateTime(DateUtil.getDateAndTime());
+			
+			tbFlowMapper.updateByPrimaryKeySelective(flow);
+			return baseResult.getSuccMap();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
+	}
+	
 	
 
 	@Override
@@ -211,7 +322,6 @@ public class FlowServiceImpl implements FlowService {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
-			flow.setCreateTime(DateUtil.getDateAndTime());
 			String startTime = flow.getWorkextStartTime();
 			String endTime = flow.getWorkextEndTime();
   			if(StringUtils.isNotBlank(startTime)){
@@ -220,7 +330,7 @@ public class FlowServiceImpl implements FlowService {
   			if(StringUtils.isNotBlank(endTime)){
   				flow.setWorkextEndTime(endTime.replace("-",""));
   			}
-  			flow.setFlowType("2");  //加班申请
+  			flow.setFlowType(FlowType.flowType_2.getCode());  //加班申请
   			flow.setFlowName(FlowType.getValue(flow.getFlowType()));
   			HttpSession session = request.getSession();
   			String sessionId = session.getId();
@@ -250,4 +360,33 @@ public class FlowServiceImpl implements FlowService {
 		}
 	}
 	
+	@Override
+	public Map<String, Object> workextUpd(Map<String, String> map){
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			TbFlow flow = objectMapper.convertValue(map, TbFlow.class);
+			String errorMsg=validate.validateFlow(flow);
+			if(StringUtils.isNotBlank(errorMsg)){
+				return baseResult.getErrorJsonObj(errorMsg);
+			}
+			
+			String startTime = flow.getWorkextStartTime();
+			String endTime = flow.getWorkextEndTime();
+  			if(StringUtils.isNotBlank(startTime)){
+  				flow.setWorkextStartTime(startTime.replace("-",""));
+  			}
+  			if(StringUtils.isNotBlank(endTime)){
+  				flow.setWorkextEndTime(endTime.replace("-",""));
+  			}
+  			flow.setUpdateTime(DateUtil.getDateAndTime());
+			
+			tbFlowMapper.updateByPrimaryKeySelective(flow);
+			return baseResult.getSuccMap();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return baseResult.getErrorJsonObj("网络繁忙，请稍后再试");
+		}
+	}
+
 }

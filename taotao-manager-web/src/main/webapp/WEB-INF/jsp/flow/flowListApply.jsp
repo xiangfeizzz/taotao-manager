@@ -54,11 +54,15 @@ function search(pNum){
 	    			tfont.find("label[name='flowId']").text(flowId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
+	    			tfont.find("label[name='flowType']").text(v["flowType"]);
+	    			tfont.find("label[name='flowStatusDesc']").text(v["flowStatusDesc"]);
 	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var flowType=v["flowType"];
-	    			var hrefInfo=loadUrl(flowType);
-	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
+	    			var hrefInfoInfo=loadInfoUrl(flowType);
+	    			var hrefUpdInfo=loadUpdUrl(flowType);
+	    			tfont.find("a[name='info']").attr("href",hrefInfoInfo+flowId);
+	    			tfont.find("a[name='upd']").attr("href",hrefUpdInfo+flowId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -68,14 +72,114 @@ function search(pNum){
 	});
 }
 
-function loadUrl(flowType){
-	var hrefInfo="";
+function loadInfoUrl(flowType){
+	var url="";
 	if(flowType=="1"){
-		hrefInfo="${pageContext.request.contextPath}/page/holidayInfo?preffix=flow&flowId=";
+		url="${pageContext.request.contextPath}/page/holidayInfo?preffix=flow&flowId=";
 	}else if(flowType=="2"){
-		hrefInfo="${pageContext.request.contextPath}/page/workextInfo?preffix=flow&flowId=";
+		url="${pageContext.request.contextPath}/page/workextInfo?preffix=flow&flowId=";
 	}
-	return hrefInfo;
+	return url;
+}
+
+function loadUpdUrl(flowType){
+	var url="";
+	if(flowType=="1"){
+		url="${pageContext.request.contextPath}/page/holidayUpd?preffix=flow&flowId=";
+	}else if(flowType=="2"){
+		url="${pageContext.request.contextPath}/page/workextUpd?preffix=flow&flowId=";
+	}
+	return url;
+}
+
+function del(obj){
+	var flowStatus=$(obj).parent().parent().find("label[name='flowStatus']").text();
+	if(flowStatus!="0"){
+		alert("非起草状态不能删除");
+		return false;
+	}
+	
+	if(window.confirm('确定删除么')){
+		var flowId=$(obj).parent().parent().find("label[name='flowId']").text();
+		var param={flowId:flowId};
+		var url="${pageContext.request.contextPath}/flow/flowDel";
+		$.ajax({
+		    url : url,
+		    type : "POST",
+		    async : true,
+		    contentType: "application/json; charset=utf-8",
+		    data : JSON.stringify(param),
+		    dataType : 'json',
+		    success : function(data) {
+		    	if(data.resultCode=="000000"){
+		    		$(obj).parent().parent().remove();
+		    		alert("删除成功");
+		    	}else{
+		    		alert(data.resultMsg)
+		    	}
+		    }
+		});
+     }
+}
+
+function back(obj){
+	var flowStatus=$(obj).parent().parent().find("label[name='flowStatus']").text();
+	if(flowStatus!="1"){
+		alert("非待审核状态不能撤回");
+		return false;
+	}
+	
+	if(window.confirm('确定撤回么')){
+		var flowId=$(obj).parent().parent().find("label[name='flowId']").text();
+		var param={flowId:flowId};
+		var url="${pageContext.request.contextPath}/flow/flowBack";
+		$.ajax({
+		    url : url,
+		    type : "POST",
+		    async : true,
+		    contentType: "application/json; charset=utf-8",
+		    data : JSON.stringify(param),
+		    dataType : 'json',
+		    success : function(data) {
+		    	if(data.resultCode=="000000"){
+		    		$(obj).parent().parent().remove();
+		    		alert("撤回成功");
+		    	}else{
+		    		alert(data.resultMsg)
+		    	}
+		    }
+		});
+     }
+}
+
+function flowSubmit(obj){
+	var flowStatus=$(obj).parent().parent().find("label[name='flowStatus']").text();
+	if(flowStatus!="0" && flowStatus!="4"){
+		alert("起草状态、审核拒绝状态才能提交");
+		return false;
+	}
+	
+	if(window.confirm('确定提交么')){
+		var flowId=$(obj).parent().parent().find("label[name='flowId']").text();
+		var param={flowId:flowId};
+		var url="${pageContext.request.contextPath}/flow/flowSubmit";
+		$.ajax({
+		    url : url,
+		    type : "POST",
+		    async : true,
+		    contentType: "application/json; charset=utf-8",
+		    data : JSON.stringify(param),
+		    dataType : 'json',
+		    success : function(data) {
+		    	if(data.resultCode=="000000"){
+		    		$(obj).parent().parent().remove();
+		    		alert("提交成功");
+		    	}else{
+		    		alert(data.resultMsg)
+		    	}
+		    }
+		});
+     }
 }
 
 </script>
@@ -121,8 +225,8 @@ function loadUrl(flowType){
                                	<option value="0">起草</option>
                                	<option value="1">待审核</option>
                                	<option value="2">审核中</option>
-                               	<option value="3">申请通过</option>
-                                <option value="4">申请拒绝</option>
+                               	<option value="3">审核通过</option>
+                                <option value="4">审核拒绝</option>
                             </select>
 						</td>
 						
@@ -166,15 +270,15 @@ function loadUrl(flowType){
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
 					<td style="display:none"><label name="flowId"></label></td>
 					<td><label name="userName"></label></td>
-					<td><label name="flowName"></label></td>
-					<td><label name="flowStatus"></label></td>
+					<td><label name="flowName"></label><label name="flowType" style="display:none"></label></td>
+					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>
 					<td><label name="createTime"></label></td>
 					<td> 
 						<a name="info" href="" >查看</a> 
 						<a onclick="del(this)" href="">删除</a> 
-						<a onclick="del(this)" href="">修改</a> 
-						<a onclick="del(this)" href="">撤回</a> 
-						<a onclick="del(this)" href="">提交</a> 
+						<a name="upd"  href="">修改</a> 
+						<a onclick="back(this)" href="">撤回</a> 
+						<a onclick="flowSubmit(this)" href="">提交</a> 
 					</td>
 				</tr>
 			</tfoot>

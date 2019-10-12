@@ -14,4 +14,14 @@ public interface FlowService {
 
 	Map<String, Object> workextAdd(Map<String, String> map, HttpServletRequest request);
 
+	Map<String, Object> flowDel(Map<String, String> map);
+
+	Map<String, Object> flowBack(Map<String, String> map);
+
+	Map<String, Object> flowSubmit(Map<String, String> map);
+
+	Map<String, Object> holidayUpd(Map<String, String> map);
+
+	Map<String, Object> workextUpd(Map<String, String> map);
+
 }

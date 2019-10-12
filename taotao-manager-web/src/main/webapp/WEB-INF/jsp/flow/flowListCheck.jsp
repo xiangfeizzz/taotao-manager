@@ -54,6 +54,8 @@ function search(pNum){
 	    			tfont.find("label[name='flowId']").text(flowId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
+	    			tfont.find("label[name='flowType']").text(v["flowType"]);
+	    			tfont.find("label[name='flowStatusDesc']").text(v["flowStatusDesc"]);
 	    			tfont.find("label[name='flowStatus']").text(v["flowStatus"]);
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var flowType=v["flowType"];
@@ -121,8 +123,8 @@ function loadUrl(flowType){
                                	<option value="-1">待提交</option>
                                	<option value="0">待审核</option>
                                	<option value="1">审核中</option>
-                               	<option value="2">申请通过</option>
-                                <option value="3">申请拒绝</option>
+                               	<option value="2">审核通过</option>
+                                <option value="3">审核拒绝</option>
                             </select>
 						</td>
 						
@@ -166,8 +168,8 @@ function loadUrl(flowType){
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
 					<td style="display:none"><label name="flowId"></label></td>
 					<td><label name="userName"></label></td>
-					<td><label name="flowName"></label></td>
-					<td><label name="flowStatus"></label></td>
+					<td><label name="flowName"></label><label name="flowType" style="display:none"></label></td>
+					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>
 					<td><label name="createTime"></label></td>
 					<td> 
 						<a name="info" href="" >查看</a> 

@@ -6,8 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.taotao.common.enums.FlowStatus;
 import com.taotao.mapper.TbFlowConfMapper;
+import com.taotao.mapper.TbFlowMapper;
 import com.taotao.mapper.TbUserMapper;
+import com.taotao.pojo.TbFlow;
 import com.taotao.pojo.TbFlowConf;
 import com.taotao.pojo.TbFlowConfExample;
 import com.taotao.pojo.TbUser;
@@ -20,6 +23,8 @@ public class Validate {
 	TbUserMapper tbUserMapper;
 	@Autowired
 	TbFlowConfMapper tbFlowConfMapper;
+	@Autowired
+	TbFlowMapper tbFlowMapper;
 	
 	public String validateUser(TbUser user) {
 		String returnMsg = null;
@@ -52,5 +57,19 @@ public class Validate {
 		return returnMsg;
 	}
 
-
+	public String validateFlow(TbFlow f) {
+		String returnMsg=null;
+		Integer flowId = f.getFlowId();
+		if(flowId==null){
+			returnMsg="flowId不能为空";
+		}
+		TbFlow flow = tbFlowMapper.selectByPrimaryKey(flowId);
+		if(flow!=null){
+			if(!FlowStatus.flowStatus_0.getCode().equals(flow.getFlowStatus())
+					&& !FlowStatus.flowStatus_4.getCode().equals(flow.getFlowStatus())){
+				returnMsg="起草状态、审核拒绝状态才能修改";
+			}
+		}
+		return returnMsg;
+	}
 }

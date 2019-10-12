@@ -31,4 +31,19 @@ public class CommonTrans {
 		}
 	}
 
+	public void flowSubmit(TbFlow flow, TbFlowCheck check) {
+		try {
+			if(flow.getFlowId()!=null){
+				tbFlowMapper.updateByPrimaryKey(flow);
+			}
+			if(check.getFlowId()!=null){
+				tbFlowCheckMapper.insertSelective(check);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 }

@@ -192,7 +192,7 @@ function update(){
         </div>
         
          <div id="InputDetailBar" style="float: left">
-            <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return update();" />
+            <input type="image" src="${pageContext.request.contextPath}/style/images/button/save.png"  onclick="return update();" />
         </div>
         
         
