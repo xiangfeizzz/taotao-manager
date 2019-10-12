@@ -10,16 +10,6 @@ function choiceUser(flag){
 	return false;
 }
 
-function openWindow(url,name,iWidth,iHeight){
-	 var url;                            //转向网页的地址;
-	 var name;                           //网页名称，可为空;
-	 var iWidth;                         //弹出窗口的宽度;
-	 var iHeight;                        //弹出窗口的高度;
-	 var iTop = (window.screen.height-30-iHeight)/2;       //获得窗口的垂直位置;
-	 var iLeft = (window.screen.width-10-iWidth)/2;        //获得窗口的水平位置;
-	 window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
-}
-
 function choiceClose(flag){
 	if(flag=="1"){
 		$("input[name='userName']").val(choiceUserName);
@@ -43,7 +33,7 @@ function choiceClose(flag){
 function deleteUser(flag){
 	if(flag=="1"){
 		$("input[name='userName']").val("");
-		$("input[name='userId']").val("");
+		$("input[name='userId']").val("-1");
 	}else if(flag=="2"){
 		var userNameOrder=$("input[name='userNameOrder']").val();
 		var userIdOrder=$("input[name='userIdOrder']").val();

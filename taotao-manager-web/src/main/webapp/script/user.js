@@ -43,7 +43,7 @@ function del(obj){
 		$.ajax({
 		    url : url,
 		    type : "POST",
-		    async : true,
+		    async : false,
 		    contentType: "application/json; charset=utf-8",
 		    data : JSON.stringify(param),
 		    dataType : 'json',

@@ -227,7 +227,7 @@ public class FlowServiceImpl implements FlowService {
 			flow.setUpdateTime(DateUtil.getDateAndTime());
 			
 			TbFlowCheck check=new TbFlowCheck();
-  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+  			String errorMsg=confProcess.addProcess(flow,check);   //添加流程配置
 			if(StringUtils.isNotBlank(errorMsg)){
 				return baseResult.getErrorJsonObj(errorMsg);
 			}
@@ -269,7 +269,7 @@ public class FlowServiceImpl implements FlowService {
   			TbFlowCheck check=new TbFlowCheck();
   			String flowStatus = flow.getFlowStatus();
   			if("1".equals(flowStatus)){  //提交 待审核状态
-  	  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+  	  			String errorMsg=confProcess.addProcess(flow,check);   //添加流程配置
   				if(StringUtils.isNotBlank(errorMsg)){
   					return baseResult.getErrorJsonObj(errorMsg);
   				}
@@ -345,7 +345,7 @@ public class FlowServiceImpl implements FlowService {
   			TbFlowCheck check=new TbFlowCheck();
   			String flowStatus = flow.getFlowStatus();
   			if("1".equals(flowStatus)){  //提交 待审核状态
-  	  			String errorMsg=confProcess.process(flow,check);   //添加流程配置
+  	  			String errorMsg=confProcess.addProcess(flow,check);   //添加流程配置
   				if(StringUtils.isNotBlank(errorMsg)){
   					return baseResult.getErrorJsonObj(errorMsg);
   				}

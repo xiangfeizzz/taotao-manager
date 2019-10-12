@@ -47,11 +47,7 @@ public class Validate {
   		criteria.andDeptIdEqualTo(conf.getDeptId());
   		criteria.andPositionIdEqualTo(conf.getPositionId());
   		criteria.andFlowTypeEqualTo(conf.getFlowType());
-  		if(conf.getUserId()==null){
-  			criteria.andUserIdEqualTo(-1); //数据库中默认是1
-  		}else{
-  			criteria.andUserIdEqualTo(conf.getUserId());
-  		}
+  		criteria.andUserIdEqualTo(conf.getUserId());
 		List<TbFlowConf> list = tbFlowConfMapper.selectByExample(example);
 		if(list!=null && list.size()>0){
 			returnMsg="该流程配置已经存在";

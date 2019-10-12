@@ -24,7 +24,7 @@ public class ConfProcess {
 	TbFlowConfMapper tbFlowConfMapper;
 	
 	
-	public String process(TbFlow flow,TbFlowCheck check) {
+	public String addProcess(TbFlow flow,TbFlowCheck check) {
 		String returnMsg="";
 		
 		Integer userId = flow.getUserId();
@@ -35,19 +35,26 @@ public class ConfProcess {
   		criteria.andDeptIdEqualTo(user.getDeptId());
   		criteria.andPositionIdEqualTo(user.getPositionId());
   		criteria.andFlowTypeEqualTo(flow.getFlowType());
+  		criteria.andUserIdEqualTo(flow.getUserId());
   		
-  		if(flow.getUserId()==null){
-  			criteria.andUserIdEqualTo(-1); //数据库中默认是1
-  		}else{
-  			criteria.andUserIdEqualTo(flow.getUserId());
-  		}
+  		
 		List<TbFlowConf> list = tbFlowConfMapper.selectByExample(example);
-		if(list==null || list.size()==0){
-			returnMsg="审批流程没配置";
-			return returnMsg;
+		if(list==null || list.size()==0){  //如果没有配置特殊用户，查询该部门，该职务的流程
+			TbFlowConfExample example2 = new TbFlowConfExample();
+			com.taotao.pojo.TbFlowConfExample.Criteria criteria2 = example2.createCriteria();
+			criteria2.andDeptIdEqualTo(user.getDeptId());
+			criteria2.andPositionIdEqualTo(user.getPositionId());
+			criteria2.andFlowTypeEqualTo(flow.getFlowType());
+			criteria2.andUserIdEqualTo(-1);
+			list = tbFlowConfMapper.selectByExample(example2);
+			if(list==null || list.size()==0){
+				returnMsg="审批流程没配置";
+				return returnMsg;
+			}
 		}
 		
-		TbFlowConf conf = list.get(0);
+		TbFlowConf conf =list.get(0);
+		
 		String userIdOrder = conf.getUserIdOrder();
 		if(StringUtils.isBlank(userIdOrder)){
 			returnMsg="审核人没配置";
@@ -68,8 +75,6 @@ public class ConfProcess {
 		
 		check.setCreateTime(DateUtil.getDateAndTime());
 		check.setUpdateTime(DateUtil.getDateAndTime());
-		
-		
 		return returnMsg;
 		
 	}

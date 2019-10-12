@@ -158,8 +158,7 @@ function search(pNum){
 					<td><label name="createTime"></label></td>
 					<td> 
 						<a name="info" href="" >查看</a> 
-						<a onclick="del(this)" href="">审核通过</a> 
-						<a onclick="del(this)" href="">审核拒绝</a> 
+						<a onclick="examine(this)" href="">审核</a> 
 					</td>
 				</tr>
 			</tfoot>

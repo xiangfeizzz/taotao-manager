@@ -33,7 +33,7 @@ function del(obj){
 		$.ajax({
 		    url : url,
 		    type : "POST",
-		    async : true,
+		    async : false,
 		    contentType: "application/json; charset=utf-8",
 		    data : JSON.stringify(param),
 		    dataType : 'json',
@@ -63,7 +63,7 @@ function back(obj){
 		$.ajax({
 		    url : url,
 		    type : "POST",
-		    async : true,
+		    async : false,
 		    contentType: "application/json; charset=utf-8",
 		    data : JSON.stringify(param),
 		    dataType : 'json',
@@ -93,7 +93,7 @@ function flowSubmit(obj){
 		$.ajax({
 		    url : url,
 		    type : "POST",
-		    async : true,
+		    async : false,
 		    contentType: "application/json; charset=utf-8",
 		    data : JSON.stringify(param),
 		    dataType : 'json',
@@ -107,4 +107,10 @@ function flowSubmit(obj){
 		    }
 		});
      }
+}
+
+function examine(){
+	var url=this.getDomain()+"/page/flowExamine?preffix=flow&flag="+flag;
+	openWindow(url,"",780,400);
+	return false;
 }
