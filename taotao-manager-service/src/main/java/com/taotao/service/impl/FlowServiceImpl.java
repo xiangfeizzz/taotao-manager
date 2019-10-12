@@ -1,6 +1,7 @@
 package com.taotao.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import com.taotao.mapper.TbFlowMapper;
 import com.taotao.mapper.TbPositionMapper;
 import com.taotao.mapper.TbRoleMapper;
 import com.taotao.mapper.TbUserMapper;
+import com.taotao.mapperCust.TbFlowConfMapperCust;
 import com.taotao.mapperCust.TbFlowMapperCust;
 import com.taotao.pojo.TbDept;
 import com.taotao.pojo.TbFlow;
@@ -117,11 +119,14 @@ public class FlowServiceImpl implements FlowService {
 		String pageNum = map.get("pageNum");
 		String pageSize = map.get("pageSize");
 		String rangeTime = map.get("rangeTime");
+		String type=request.getParameter("type");
+		
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
 		TbUser user= JSONObject.parseObject(JeditCommon.get(sessionId), TbUser.class);
 		Integer userId=user.getUserId();
 		map.put("userId", userId.toString());
+		
 		
 		if(StringUtils.isNotBlank(rangeTime)){
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
@@ -134,7 +139,13 @@ public class FlowServiceImpl implements FlowService {
 		
 		//添加查询条件
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-  		List<Map> list = tbFlowMapperCust.getFlowList(map);
+		List<Map> list=new ArrayList<Map>();
+		if("check".equals(type)){  //查询待我审批
+			list=tbFlowMapperCust.getFlowListCheck(map);
+		}else{ //查询自己申请的
+			list = tbFlowMapperCust.getFlowList(map);
+		}
+		
   		for(Map<String, String> l:list){
   			String flowStatus = l.get("flowStatus");
   			if(StringUtils.isNotBlank(flowStatus)){
@@ -209,7 +220,6 @@ public class FlowServiceImpl implements FlowService {
   			if(StringUtils.isNotBlank(endTime)){
   				flow.setWorkextEndTime(endTime.replace("-",""));
   			}
-  			flow.setFlowStatus("0"); //待审核
   			flow.setFlowType("2");  //加班申请
   			flow.setFlowName(FlowType.getValue(flow.getFlowType()));
   			HttpSession session = request.getSession();

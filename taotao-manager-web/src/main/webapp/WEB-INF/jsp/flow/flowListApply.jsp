@@ -7,7 +7,6 @@
 </head>
 <script type="text/javascript" async="async">
 
-var userId='${userId}';
 var page;
 var pageNum=1;
 var pageSize=10;
@@ -153,7 +152,7 @@ function loadUrl(flowType){
 			<thead>
 				<tr align=center valign=middle id=TableTitle>
 					<td style="display:none">流程id</td> 
-					<td >姓名</td>
+					<td >申请人</td>
 					<td >流程类型</td>
 					<td >流程状态</td>
 					<td >创建时间</td>
@@ -172,6 +171,10 @@ function loadUrl(flowType){
 					<td><label name="createTime"></label></td>
 					<td> 
 						<a name="info" href="" >查看</a> 
+						<a onclick="del(this)" href="">删除</a> 
+						<a onclick="del(this)" href="">修改</a> 
+						<a onclick="del(this)" href="">撤回</a> 
+						<a onclick="del(this)" href="">提交</a> 
 					</td>
 				</tr>
 			</tfoot>

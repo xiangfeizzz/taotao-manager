@@ -15,4 +15,6 @@ public interface TbFlowMapperCust {
 
 	String getMaxId();
 
+	List<Map> getFlowListCheck(Map<String, String> map);
+
 }

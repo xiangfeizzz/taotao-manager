@@ -57,7 +57,7 @@ $(function(){
         
         
         <div id="Title">
-            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 加班申请
+            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/style/images/title_arrow.gif"/> 加班申请详情
         </div>
         <div id="Title_End"></div>
     </div>
@@ -66,7 +66,7 @@ $(function(){
 <form id="MainArea" >
 <div style="padding-left: 50px;">
        <div class="ItemBlock_Title1"><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 加班申请</div> 
+        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/images/item_point.gif"> 加班申请详情</div> 
         </div>
         
         <div class="ItemBlockBorder">
@@ -104,6 +104,12 @@ $(function(){
                 </table>
             </div>
         </div>
+        
+<!--          <div id="InputDetailBar" style="float: left"> -->
+<%--             <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return save(1);" /> --%>
+<%--             <input type="image" src="${pageContext.request.contextPath}/style/images/button/saveToDraftBox.png"  onclick="return save(0);" /> --%>
+<!--         </div> -->
+        
    </div>
 </form>
 
