@@ -64,6 +64,7 @@ public class ConfProcess {
 		String[] userIdArray = userIdOrder.split(",");
 		
 		check.setFlowId(flow.getFlowId());
+		check.setConfId(conf.getConfId());
 		check.setIndexOf(0);
 		String id=userIdArray[check.getIndexOf()];
 		check.setUserId(Integer.parseInt(id));

@@ -109,8 +109,9 @@ function flowSubmit(obj){
      }
 }
 
-function examine(){
-	var url=this.getDomain()+"/page/flowExamine?preffix=flow&flag="+flag;
-	openWindow(url,"",780,400);
+function examine(obj){
+	var checkId=$(obj).parent().parent().find("label[name='checkId']").text();
+	var url=this.getDomain()+"/page/flowExamine?preffix=flow&checkId="+checkId;
+	openWindow(url,"",780,350);
 	return false;
 }

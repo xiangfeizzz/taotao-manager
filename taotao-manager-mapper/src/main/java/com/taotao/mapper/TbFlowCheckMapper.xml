@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbFlowCheck" >
     <id column="check_id" property="checkId" jdbcType="INTEGER" />
     <result column="flow_id" property="flowId" jdbcType="INTEGER" />
+    <result column="conf_id" property="confId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="index_of" property="indexOf" jdbcType="INTEGER" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    check_id, flow_id, user_id, status, index_of, check_desc, create_time, update_time
+    check_id, flow_id, conf_id, user_id, status, index_of, check_desc, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowCheckExample" >
     select
@@ -103,12 +104,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbFlowCheck" >
-    insert into tb_flow_check (check_id, flow_id, user_id, 
-      status, index_of, check_desc, 
-      create_time, update_time)
-    values (#{checkId,jdbcType=INTEGER}, #{flowId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{indexOf,jdbcType=INTEGER}, #{checkDesc,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR})
+    insert into tb_flow_check (check_id, flow_id, conf_id, 
+      user_id, status, index_of, 
+      check_desc, create_time, update_time
+      )
+    values (#{checkId,jdbcType=INTEGER}, #{flowId,jdbcType=INTEGER}, #{confId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{indexOf,jdbcType=INTEGER}, 
+      #{checkDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlowCheck" >
     insert into tb_flow_check
@@ -118,6 +121,9 @@
       </if>
       <if test="flowId != null" >
         flow_id,
+      </if>
+      <if test="confId != null" >
+        conf_id,
       </if>
       <if test="userId != null" >
         user_id,
@@ -144,6 +150,9 @@
       </if>
       <if test="flowId != null" >
         #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="confId != null" >
+        #{confId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
@@ -180,6 +189,9 @@
       <if test="record.flowId != null" >
         flow_id = #{record.flowId,jdbcType=INTEGER},
       </if>
+      <if test="record.confId != null" >
+        conf_id = #{record.confId,jdbcType=INTEGER},
+      </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
@@ -207,6 +219,7 @@
     update tb_flow_check
     set check_id = #{record.checkId,jdbcType=INTEGER},
       flow_id = #{record.flowId,jdbcType=INTEGER},
+      conf_id = #{record.confId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
       index_of = #{record.indexOf,jdbcType=INTEGER},
@@ -222,6 +235,9 @@
     <set >
       <if test="flowId != null" >
         flow_id = #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="confId != null" >
+        conf_id = #{confId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
@@ -247,6 +263,7 @@
   <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbFlowCheck" >
     update tb_flow_check
     set flow_id = #{flowId,jdbcType=INTEGER},
+      conf_id = #{confId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       index_of = #{indexOf,jdbcType=INTEGER},

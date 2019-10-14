@@ -44,8 +44,8 @@ function search(pNum){
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot").clone();
-	    			var flowId=v["flowId"];
-	    			tfont.find("label[name='flowId']").text(flowId);
+	    			var checkId=v["checkId"];
+	    			tfont.find("label[name='checkId']").text(checkId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
 	    			tfont.find("label[name='flowType']").text(v["flowType"]);
@@ -54,7 +54,7 @@ function search(pNum){
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var flowType=v["flowType"];
 	    			var hrefInfo=loadInfoUrl(flowType);
-	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
+	    			tfont.find("a[name='info']").attr("href",hrefInfo+checkId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -151,7 +151,7 @@ function search(pNum){
 			</tbody>
 			<tfoot class="TableDetail1 template" style="display:none">
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
-					<td style="display:none"><label name="flowId"></label></td>
+					<td style="display:none"><label name="checkId"></label></td>
 					<td><label name="userName"></label></td>
 					<td><label name="flowName"></label><label name="flowType" style="display:none"></label></td>
 					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>

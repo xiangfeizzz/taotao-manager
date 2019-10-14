@@ -224,6 +224,66 @@ public class TbFlowCheckExample {
             return (Criteria) this;
         }
 
+        public Criteria andConfIdIsNull() {
+            addCriterion("conf_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdIsNotNull() {
+            addCriterion("conf_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdEqualTo(Integer value) {
+            addCriterion("conf_id =", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdNotEqualTo(Integer value) {
+            addCriterion("conf_id <>", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdGreaterThan(Integer value) {
+            addCriterion("conf_id >", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("conf_id >=", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdLessThan(Integer value) {
+            addCriterion("conf_id <", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdLessThanOrEqualTo(Integer value) {
+            addCriterion("conf_id <=", value, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdIn(List<Integer> values) {
+            addCriterion("conf_id in", values, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdNotIn(List<Integer> values) {
+            addCriterion("conf_id not in", values, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdBetween(Integer value1, Integer value2) {
+            addCriterion("conf_id between", value1, value2, "confId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("conf_id not between", value1, value2, "confId");
+            return (Criteria) this;
+        }
+
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;

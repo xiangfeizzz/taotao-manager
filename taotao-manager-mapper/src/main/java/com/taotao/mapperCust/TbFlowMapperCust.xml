@@ -34,7 +34,10 @@
   
  <select id="getFlowListCheck" resultType="Map" parameterType="Map" >
    	SELECT
-		f.flow_id AS flowId,
+   		c.check_id AS checkId,
+		c.conf_id AS confId,
+		c.user_id as userId,
+		c.flow_id AS flowId,
 		f.flow_type as flowType,
 		f.flow_name AS flowName,
 		f.flow_status AS flowStatus,

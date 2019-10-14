@@ -5,6 +5,8 @@ public class TbFlowCheck {
 
     private Integer flowId;
 
+    private Integer confId;
+
     private Integer userId;
 
     private String status;
@@ -31,6 +33,14 @@ public class TbFlowCheck {
 
     public void setFlowId(Integer flowId) {
         this.flowId = flowId;
+    }
+
+    public Integer getConfId() {
+        return confId;
+    }
+
+    public void setConfId(Integer confId) {
+        this.confId = confId;
     }
 
     public Integer getUserId() {
