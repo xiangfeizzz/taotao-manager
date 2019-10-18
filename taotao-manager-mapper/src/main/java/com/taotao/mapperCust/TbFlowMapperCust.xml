@@ -40,7 +40,7 @@
 		c.flow_id AS flowId,
 		f.flow_type as flowType,
 		f.flow_name AS flowName,
-		f.flow_status AS flowStatus,
+		c.status AS flowStatus,
 		f.create_time AS createTime,
 		u.user_name AS userName 
 	from  tb_flow_check c 

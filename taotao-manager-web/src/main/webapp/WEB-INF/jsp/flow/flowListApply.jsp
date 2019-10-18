@@ -112,6 +112,7 @@ function search(pNum){
                                	<option value="2">审核中</option>
                                	<option value="3">审核通过</option>
                                 <option value="4">审核拒绝</option>
+                                <option value="5">审核完成</option>
                             </select>
 						</td>
 						

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.taotao.common.enums.FlowStatus;
 import com.taotao.common.pojo.BaseResult;
 import com.taotao.common.utils.DateUtil;
 import com.taotao.mapper.TbFlowCheckMapper;
@@ -55,12 +56,16 @@ public class FlowCheckServiceImpl implements FlowCheckService {
 			
 	  		
 			TbFlowCheck check = tbFlowCheckMapper.selectByPrimaryKey(c.getCheckId());
-			String userId = check.getUserId().toString();
+			if(!FlowStatus.flowStatus_1.getCode().equals(check.getStatus())){
+				return baseResult.getErrorMap("待审核状态才能审核");
+			}
+			
 			Integer indexOf = check.getIndexOf();
 			TbFlow flow = tbFlowMapper.selectByPrimaryKey(check.getFlowId());
 			
 			
 			String status = c.getStatus();
+			String checkDesc=c.getCheckDesc();
 			if("3".equals(status)){  //审核通过
 				TbFlowConf conf = tbFlowConfMapper.selectByPrimaryKey(check.getConfId());
 				String userIdOrder = conf.getUserIdOrder();
@@ -70,15 +75,12 @@ public class FlowCheckServiceImpl implements FlowCheckService {
 				if(indexOf<length){
 					flow.setFlowStatus("2");  //审核中
 					String id = split[indexOf];
-					TbFlowCheck checkNew=check;
-					checkNew.setCheckId(null);
-					checkNew.setIndexOf(indexOf);
+					TbFlowCheck checkNew=new TbFlowCheck();
+					checkNew.setFlowId(check.getFlowId());
+					checkNew.setConfId(check.getConfId());
 					checkNew.setUserId(Integer.parseInt(id));
 					checkNew.setStatus("1"); //1待审核 3审核通过 4审核拒绝
-					TbUser u = tbUserMapper.selectByPrimaryKey(Integer.parseInt(id));
-					StringBuffer sb=new StringBuffer();
-					sb.append("待 ").append(u.getUserName()).append(" 审核");
-					checkNew.setCheckDesc(sb.toString());
+					checkNew.setIndexOf(indexOf);
 					checkNew.setCreateTime(DateUtil.getDateAndTime());
 					checkNew.setUpdateTime(DateUtil.getDateAndTime());
 					tbFlowCheckMapper.insertSelective(checkNew);
@@ -90,27 +92,19 @@ public class FlowCheckServiceImpl implements FlowCheckService {
 				}
 				
 				tbFlowMapper.updateByPrimaryKey(flow);
-				
-				TbUser u2 = tbUserMapper.selectByPrimaryKey(check.getUserId());
-				StringBuffer s2=new StringBuffer();
-				s2.append(u2.getUserName()).append(" 已经审核通过");
 				check.setStatus("3");
-				check.setCheckDesc(s2.toString());
+				check.setCheckDesc(checkDesc);
 				check.setUpdateTime(DateUtil.getDateAndTime());
 				tbFlowCheckMapper.updateByPrimaryKey(check);
-				
 			}
 			if("4".equals(status)){
+				flow.setFlowStatus("4");  //审核拒绝
+				tbFlowMapper.updateByPrimaryKey(flow);
 				
-			}
-			
-			
-			if(check.getCheckId()==null){  //第一次新增
-				
-				
-			}else{ //修改的
-				
-				
+				check.setStatus("4");
+				check.setCheckDesc(checkDesc);
+				check.setUpdateTime(DateUtil.getDateAndTime());
+				tbFlowCheckMapper.updateByPrimaryKey(check);
 			}
 			
 			return baseResult.getSuccMap();

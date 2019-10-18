@@ -25,7 +25,8 @@ function save(){
 	    dataType : 'json',
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
-	    		alert("添加成功");
+	    		alert("提交成功");
+	    		window.close();
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}

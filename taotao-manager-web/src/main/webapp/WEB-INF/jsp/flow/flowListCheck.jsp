@@ -45,6 +45,7 @@ function search(pNum){
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot").clone();
 	    			var checkId=v["checkId"];
+	    			var flowId=v["flowId"];
 	    			tfont.find("label[name='checkId']").text(checkId);
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			tfont.find("label[name='flowName']").text(v["flowName"]);
@@ -54,7 +55,7 @@ function search(pNum){
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var flowType=v["flowType"];
 	    			var hrefInfo=loadInfoUrl(flowType);
-	    			tfont.find("a[name='info']").attr("href",hrefInfo+checkId);
+	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
 	    			$("#TableData").prepend(tfont.html());
 	    		});
 	    	}else{
@@ -104,12 +105,13 @@ function search(pNum){
 						</td>
 						<td>流程状态
 						 <select name="flowStatus" style="width: 60%">
-                                <option value="" selected="selected">请选择流程状态</option>
-                               	<option value="-1">待提交</option>
-                               	<option value="0">待审核</option>
-                               	<option value="1">审核中</option>
-                               	<option value="2">审核通过</option>
-                                <option value="3">审核拒绝</option>
+                                <option value="" selected="selected">请选择审核状态</option>
+                               	<option value="0">起草</option>
+                               	<option value="1">待审核</option>
+                               	<option value="2">审核中</option>
+                               	<option value="3">审核通过</option>
+                                <option value="4">审核拒绝</option>
+                                <option value="5">审核完成</option>
                             </select>
 						</td>
 						
@@ -151,7 +153,7 @@ function search(pNum){
 			</tbody>
 			<tfoot class="TableDetail1 template" style="display:none">
 				<tr class="TableDetail1 template" align="center"  style="display:run-in">
-					<td style="display:none"><label name="checkId"></label></td>
+					<td style="display:none"><label name="checkId"></label><label name="flowId"></label></td>
 					<td><label name="userName"></label></td>
 					<td><label name="flowName"></label><label name="flowType" style="display:none"></label></td>
 					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>

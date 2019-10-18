@@ -69,10 +69,6 @@ public class ConfProcess {
 		String id=userIdArray[check.getIndexOf()];
 		check.setUserId(Integer.parseInt(id));
 		check.setStatus("1"); //1待审核 3审核通过 4审核拒绝
-		TbUser u = tbUserMapper.selectByPrimaryKey(Integer.parseInt(id));
-		StringBuffer sb=new StringBuffer();
-		sb.append("待 ").append(u.getUserName()).append(" 审核");
-		check.setCheckDesc(sb.toString());
 		
 		check.setCreateTime(DateUtil.getDateAndTime());
 		check.setUpdateTime(DateUtil.getDateAndTime());

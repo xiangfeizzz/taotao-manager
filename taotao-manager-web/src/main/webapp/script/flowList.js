@@ -111,6 +111,12 @@ function flowSubmit(obj){
 
 function examine(obj){
 	var checkId=$(obj).parent().parent().find("label[name='checkId']").text();
+	var flowStatus=$(obj).parent().parent().find("label[name='flowStatus']").text();
+	if(flowStatus!="1"){
+		alert("待审核状态才能审核");
+		return false;
+	}
+	
 	var url=this.getDomain()+"/page/flowExamine?preffix=flow&checkId="+checkId;
 	openWindow(url,"",780,350);
 	return false;
