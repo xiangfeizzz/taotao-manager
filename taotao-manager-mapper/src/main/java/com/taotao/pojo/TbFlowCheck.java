@@ -9,6 +9,8 @@ public class TbFlowCheck {
 
     private Integer userId;
 
+    private String userName;
+
     private String status;
 
     private Integer indexOf;
@@ -49,6 +51,14 @@ public class TbFlowCheck {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getStatus() {

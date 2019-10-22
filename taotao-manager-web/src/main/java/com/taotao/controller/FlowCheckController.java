@@ -28,4 +28,10 @@ public class FlowCheckController extends BaseController{
 		return flowCheckService.add(map,request);
 	}
 	
+	@RequestMapping("/list")
+	@ResponseBody
+	public Map<String,Object>  list(@RequestBody Map<String,String> map,HttpServletRequest request) {
+		return flowCheckService.list(map,request);
+	}
+	
 }

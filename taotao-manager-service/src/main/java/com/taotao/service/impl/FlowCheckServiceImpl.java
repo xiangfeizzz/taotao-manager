@@ -1,5 +1,6 @@
 package com.taotao.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import com.taotao.mapper.TbFlowMapper;
 import com.taotao.mapper.TbUserMapper;
 import com.taotao.pojo.TbFlow;
 import com.taotao.pojo.TbFlowCheck;
+import com.taotao.pojo.TbFlowCheckExample;
 import com.taotao.pojo.TbFlowConf;
 import com.taotao.pojo.TbUser;
 import com.taotao.service.FlowCheckService;
@@ -114,5 +116,23 @@ public class FlowCheckServiceImpl implements FlowCheckService {
 		}
 	}
 
+	@Override
+	public Map<String, Object> list(Map<String, String> map, HttpServletRequest request) {
+		String flowId=map.get("flowId");
+		
+		TbFlowCheckExample example = new TbFlowCheckExample();
+		com.taotao.pojo.TbFlowCheckExample.Criteria criteria = example.createCriteria();
+  		criteria.andFlowIdEqualTo(Integer.parseInt(flowId));
+  		example.setOrderByClause(" create_time desc ");
+  		List<TbFlowCheck> list = tbFlowCheckMapper.selectByExample(example);
+  		
+  		for(TbFlowCheck c:list){
+  			c.setStatus(FlowStatus.getValue(c.getStatus()));
+  		}
+  		
+		return baseResult.getSuccMap(list);
+		
+		
+	}
 	
 }

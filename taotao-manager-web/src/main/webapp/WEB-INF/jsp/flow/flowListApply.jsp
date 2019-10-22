@@ -57,7 +57,7 @@ function search(pNum){
 	    			var hrefUpdInfo=loadUpdUrl(flowType);
 	    			tfont.find("a[name='info']").attr("href",hrefInfoInfo+flowId);
 	    			tfont.find("a[name='upd']").attr("href",hrefUpdInfo+flowId);
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)
@@ -160,11 +160,11 @@ function search(pNum){
 					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>
 					<td><label name="createTime"></label></td>
 					<td> 
-						<a name="info" href="" >查看</a> 
-						<a onclick="del(this)" href="">删除</a> 
-						<a name="upd"  href="">修改</a> 
-						<a onclick="back(this)" href="">撤回</a> 
-						<a onclick="flowSubmit(this)" href="">提交</a> 
+						<a name="info" href="#" >查看</a> 
+						<a onclick="del(this)" href="#">删除</a> 
+						<a name="upd"  href="#">修改</a> 
+						<a onclick="back(this)" href="#">撤回</a> 
+						<a onclick="flowSubmit(this)" href="#">提交</a> 
 					</td>
 				</tr>
 			</tfoot>

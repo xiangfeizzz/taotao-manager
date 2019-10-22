@@ -65,9 +65,11 @@ public class ConfProcess {
 		
 		check.setFlowId(flow.getFlowId());
 		check.setConfId(conf.getConfId());
-		check.setIndexOf(0);
+			
 		String id=userIdArray[check.getIndexOf()];
 		check.setUserId(Integer.parseInt(id));
+		TbUser user2 = tbUserMapper.selectByPrimaryKey(check.getUserId());
+		check.setUserName(user2.getUserName());
 		check.setStatus("1"); //1待审核 3审核通过 4审核拒绝
 		
 		check.setCreateTime(DateUtil.getDateAndTime());

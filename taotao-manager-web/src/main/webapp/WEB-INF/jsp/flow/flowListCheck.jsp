@@ -56,7 +56,7 @@ function search(pNum){
 	    			var flowType=v["flowType"];
 	    			var hrefInfo=loadInfoUrl(flowType);
 	    			tfont.find("a[name='info']").attr("href",hrefInfo+flowId);
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)
@@ -105,13 +105,10 @@ function search(pNum){
 						</td>
 						<td>流程状态
 						 <select name="flowStatus" style="width: 60%">
-                                <option value="" selected="selected">请选择审核状态</option>
-                               	<option value="0">起草</option>
+                                <option value="" selected="selected" >请选择审核状态</option>
                                	<option value="1">待审核</option>
-                               	<option value="2">审核中</option>
                                	<option value="3">审核通过</option>
                                 <option value="4">审核拒绝</option>
-                                <option value="5">审核完成</option>
                             </select>
 						</td>
 						
@@ -159,8 +156,8 @@ function search(pNum){
 					<td><label name="flowStatusDesc"></label><label name="flowStatus" style="display:none"></label></td>
 					<td><label name="createTime"></label></td>
 					<td> 
-						<a name="info" href="" >查看</a> 
-						<a onclick="examine(this)" href="">审核</a> 
+						<a name="info" href="#" >查看</a> 
+						<a onclick="examine(this)" href="#">审核</a> 
 					</td>
 				</tr>
 			</tfoot>

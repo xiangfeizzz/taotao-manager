@@ -39,8 +39,9 @@ function del(obj){
 		    dataType : 'json',
 		    success : function(data) {
 		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
-		    		alert("删除成功");
+		    		var pageNum=$("label[name='pageNum']").text();
+		    		search(pageNum);
+		    		alert("提交成功");
 		    	}else{
 		    		alert(data.resultMsg)
 		    	}
@@ -69,8 +70,9 @@ function back(obj){
 		    dataType : 'json',
 		    success : function(data) {
 		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
-		    		alert("撤回成功");
+		    		var pageNum=$("label[name='pageNum']").text();
+		    		search(pageNum);
+		    		alert("提交成功");
 		    	}else{
 		    		alert(data.resultMsg)
 		    	}
@@ -99,7 +101,8 @@ function flowSubmit(obj){
 		    dataType : 'json',
 		    success : function(data) {
 		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
+		    		var pageNum=$("label[name='pageNum']").text();
+		    		search(pageNum);
 		    		alert("提交成功");
 		    	}else{
 		    		alert(data.resultMsg)

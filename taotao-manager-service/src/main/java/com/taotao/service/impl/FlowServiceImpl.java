@@ -306,13 +306,6 @@ public class FlowServiceImpl implements FlowService {
   			}
   			flow.setUpdateTime(DateUtil.getDateAndTime());
   			
-  			
-			TbFlow f = tbFlowMapper.selectByPrimaryKey(flow.getFlowId());
-			if(FlowStatus.flowStatus_4.getClass().equals(f.getFlowStatus())){ //审核拒绝的重新开启一个新的申请单
-				
-			}
-
-  			
 			tbFlowMapper.updateByPrimaryKeySelective(flow);
 			return baseResult.getSuccMap();
 		} catch (Exception e) {

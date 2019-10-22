@@ -53,7 +53,7 @@ function search(pNum){
 	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userUpd?preffix=user&userId=";
 	    			tfont.find("a[name='info']").attr("href",hrefInfo+userId);
 	    			tfont.find("a[name='upd']").attr("href",hrefUpd+userId);
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)

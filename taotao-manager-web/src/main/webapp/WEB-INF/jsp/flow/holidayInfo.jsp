@@ -88,11 +88,6 @@ $(function(){
             </div>
         </div>
         
-<!--           <div id="InputDetailBar" style="float: left"> -->
-<%--             <input type="image" src="${pageContext.request.contextPath}/style/images/button/submit.PNG"  onclick="return save(1);" /> --%>
-<%--             <input type="image" src="${pageContext.request.contextPath}/style/images/button/saveToDraftBox.png"  onclick="return save(0);" /> --%>
-<!--         </div> -->
-        
    </div>
 </form>
 

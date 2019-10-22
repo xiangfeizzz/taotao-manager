@@ -55,7 +55,7 @@ function search(pNum){
 	    			tfont.find("label[name='createTime']").text(v["createTime"]);
 	    			var hrefUpd="${pageContext.request.contextPath}/page/upd?preffix=flowConf&confId=";
 	    			tfont.find("a[name='upd']").attr("href",hrefUpd+confId);
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)

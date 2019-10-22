@@ -70,7 +70,7 @@ function search(pNum){
 	    			
 	    			tfont.find("label[name='userName']").text(v["userName"]);
 	    			
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)

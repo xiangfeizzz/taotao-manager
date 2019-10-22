@@ -8,4 +8,6 @@ public interface FlowCheckService {
 
 	Map<String, Object> add(Map<String, String> map,HttpServletRequest request);
 
+	Map<String, Object> list(Map<String, String> map, HttpServletRequest request);
+
 }

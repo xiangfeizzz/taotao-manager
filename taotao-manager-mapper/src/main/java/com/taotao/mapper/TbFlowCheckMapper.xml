@@ -6,6 +6,7 @@
     <result column="flow_id" property="flowId" jdbcType="INTEGER" />
     <result column="conf_id" property="confId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="index_of" property="indexOf" jdbcType="INTEGER" />
     <result column="check_desc" property="checkDesc" jdbcType="VARCHAR" />
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    check_id, flow_id, conf_id, user_id, status, index_of, check_desc, create_time, update_time
+    check_id, flow_id, conf_id, user_id, user_name, status, index_of, check_desc, create_time, 
+    update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowCheckExample" >
     select
@@ -105,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.taotao.pojo.TbFlowCheck" >
     insert into tb_flow_check (check_id, flow_id, conf_id, 
-      user_id, status, index_of, 
-      check_desc, create_time, update_time
-      )
+      user_id, user_name, status, 
+      index_of, check_desc, create_time, 
+      update_time)
     values (#{checkId,jdbcType=INTEGER}, #{flowId,jdbcType=INTEGER}, #{confId,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{indexOf,jdbcType=INTEGER}, 
-      #{checkDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
-      )
+      #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{indexOf,jdbcType=INTEGER}, #{checkDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlowCheck" >
     insert into tb_flow_check
@@ -127,6 +129,9 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
       </if>
       <if test="status != null" >
         status,
@@ -156,6 +161,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -195,6 +203,9 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
       </if>
@@ -221,6 +232,7 @@
       flow_id = #{record.flowId,jdbcType=INTEGER},
       conf_id = #{record.confId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
       index_of = #{record.indexOf,jdbcType=INTEGER},
       check_desc = #{record.checkDesc,jdbcType=VARCHAR},
@@ -241,6 +253,9 @@
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
@@ -265,6 +280,7 @@
     set flow_id = #{flowId,jdbcType=INTEGER},
       conf_id = #{confId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       index_of = #{indexOf,jdbcType=INTEGER},
       check_desc = #{checkDesc,jdbcType=VARCHAR},
