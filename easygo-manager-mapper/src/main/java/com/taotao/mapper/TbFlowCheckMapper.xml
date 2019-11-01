@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.TbFlowCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.TbFlowCheck" >
+    <id column="check_id" property="checkId" jdbcType="INTEGER" />
+    <result column="flow_id" property="flowId" jdbcType="INTEGER" />
+    <result column="conf_id" property="confId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="index_of" property="indexOf" jdbcType="INTEGER" />
+    <result column="check_desc" property="checkDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    check_id, flow_id, conf_id, user_id, user_name, status, index_of, check_desc, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowCheckExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_flow_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_flow_check
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_flow_check
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.TbFlowCheckExample" >
+    delete from tb_flow_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.TbFlowCheck" >
+    insert into tb_flow_check (check_id, flow_id, conf_id, 
+      user_id, user_name, status, 
+      index_of, check_desc, create_time, 
+      update_time)
+    values (#{checkId,jdbcType=INTEGER}, #{flowId,jdbcType=INTEGER}, #{confId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{indexOf,jdbcType=INTEGER}, #{checkDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlowCheck" >
+    insert into tb_flow_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        check_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="confId != null" >
+        conf_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="indexOf != null" >
+        index_of,
+      </if>
+      <if test="checkDesc != null" >
+        check_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="confId != null" >
+        #{confId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="indexOf != null" >
+        #{indexOf,jdbcType=INTEGER},
+      </if>
+      <if test="checkDesc != null" >
+        #{checkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.TbFlowCheckExample" resultType="java.lang.Integer" >
+    select count(*) from tb_flow_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_flow_check
+    <set >
+      <if test="record.checkId != null" >
+        check_id = #{record.checkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowId != null" >
+        flow_id = #{record.flowId,jdbcType=INTEGER},
+      </if>
+      <if test="record.confId != null" >
+        conf_id = #{record.confId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexOf != null" >
+        index_of = #{record.indexOf,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkDesc != null" >
+        check_desc = #{record.checkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_flow_check
+    set check_id = #{record.checkId,jdbcType=INTEGER},
+      flow_id = #{record.flowId,jdbcType=INTEGER},
+      conf_id = #{record.confId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      index_of = #{record.indexOf,jdbcType=INTEGER},
+      check_desc = #{record.checkDesc,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.TbFlowCheck" >
+    update tb_flow_check
+    <set >
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="confId != null" >
+        conf_id = #{confId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="indexOf != null" >
+        index_of = #{indexOf,jdbcType=INTEGER},
+      </if>
+      <if test="checkDesc != null" >
+        check_desc = #{checkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbFlowCheck" >
+    update tb_flow_check
+    set flow_id = #{flowId,jdbcType=INTEGER},
+      conf_id = #{confId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      index_of = #{indexOf,jdbcType=INTEGER},
+      check_desc = #{checkDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+</mapper>

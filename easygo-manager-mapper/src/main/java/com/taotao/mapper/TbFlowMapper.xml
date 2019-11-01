@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.TbFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.TbFlow" >
+    <id column="flow_id" property="flowId" jdbcType="INTEGER" />
+    <result column="flow_status" property="flowStatus" jdbcType="VARCHAR" />
+    <result column="flow_type" property="flowType" jdbcType="VARCHAR" />
+    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+    <result column="flow_order" property="flowOrder" jdbcType="VARCHAR" />
+    <result column="holiday_type" property="holidayType" jdbcType="VARCHAR" />
+    <result column="holiday_start_time" property="holidayStartTime" jdbcType="VARCHAR" />
+    <result column="holiday_end_time" property="holidayEndTime" jdbcType="VARCHAR" />
+    <result column="holiday_hours" property="holidayHours" jdbcType="VARCHAR" />
+    <result column="holiday_desc" property="holidayDesc" jdbcType="VARCHAR" />
+    <result column="workext_start_time" property="workextStartTime" jdbcType="VARCHAR" />
+    <result column="workext_end_time" property="workextEndTime" jdbcType="VARCHAR" />
+    <result column="is_legal_day" property="isLegalDay" jdbcType="VARCHAR" />
+    <result column="workext_hours" property="workextHours" jdbcType="VARCHAR" />
+    <result column="workext_desc" property="workextDesc" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    flow_id, flow_status, flow_type, flow_name, flow_order, holiday_type, holiday_start_time, 
+    holiday_end_time, holiday_hours, holiday_desc, workext_start_time, workext_end_time, 
+    is_legal_day, workext_hours, workext_desc, user_id, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbFlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_flow
+    where flow_id = #{flowId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_flow
+    where flow_id = #{flowId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.TbFlowExample" >
+    delete from tb_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.TbFlow" >
+    insert into tb_flow (flow_id, flow_status, flow_type, 
+      flow_name, flow_order, holiday_type, 
+      holiday_start_time, holiday_end_time, holiday_hours, 
+      holiday_desc, workext_start_time, workext_end_time, 
+      is_legal_day, workext_hours, workext_desc, 
+      user_id, create_time, update_time
+      )
+    values (#{flowId,jdbcType=INTEGER}, #{flowStatus,jdbcType=VARCHAR}, #{flowType,jdbcType=VARCHAR}, 
+      #{flowName,jdbcType=VARCHAR}, #{flowOrder,jdbcType=VARCHAR}, #{holidayType,jdbcType=VARCHAR}, 
+      #{holidayStartTime,jdbcType=VARCHAR}, #{holidayEndTime,jdbcType=VARCHAR}, #{holidayHours,jdbcType=VARCHAR}, 
+      #{holidayDesc,jdbcType=VARCHAR}, #{workextStartTime,jdbcType=VARCHAR}, #{workextEndTime,jdbcType=VARCHAR}, 
+      #{isLegalDay,jdbcType=VARCHAR}, #{workextHours,jdbcType=VARCHAR}, #{workextDesc,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.TbFlow" >
+    insert into tb_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="flowStatus != null" >
+        flow_status,
+      </if>
+      <if test="flowType != null" >
+        flow_type,
+      </if>
+      <if test="flowName != null" >
+        flow_name,
+      </if>
+      <if test="flowOrder != null" >
+        flow_order,
+      </if>
+      <if test="holidayType != null" >
+        holiday_type,
+      </if>
+      <if test="holidayStartTime != null" >
+        holiday_start_time,
+      </if>
+      <if test="holidayEndTime != null" >
+        holiday_end_time,
+      </if>
+      <if test="holidayHours != null" >
+        holiday_hours,
+      </if>
+      <if test="holidayDesc != null" >
+        holiday_desc,
+      </if>
+      <if test="workextStartTime != null" >
+        workext_start_time,
+      </if>
+      <if test="workextEndTime != null" >
+        workext_end_time,
+      </if>
+      <if test="isLegalDay != null" >
+        is_legal_day,
+      </if>
+      <if test="workextHours != null" >
+        workext_hours,
+      </if>
+      <if test="workextDesc != null" >
+        workext_desc,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="flowStatus != null" >
+        #{flowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowOrder != null" >
+        #{flowOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayType != null" >
+        #{holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayStartTime != null" >
+        #{holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayEndTime != null" >
+        #{holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayHours != null" >
+        #{holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDesc != null" >
+        #{holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="workextStartTime != null" >
+        #{workextStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="workextEndTime != null" >
+        #{workextEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isLegalDay != null" >
+        #{isLegalDay,jdbcType=VARCHAR},
+      </if>
+      <if test="workextHours != null" >
+        #{workextHours,jdbcType=VARCHAR},
+      </if>
+      <if test="workextDesc != null" >
+        #{workextDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.TbFlowExample" resultType="java.lang.Integer" >
+    select count(*) from tb_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_flow
+    <set >
+      <if test="record.flowId != null" >
+        flow_id = #{record.flowId,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowStatus != null" >
+        flow_status = #{record.flowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowType != null" >
+        flow_type = #{record.flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowName != null" >
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowOrder != null" >
+        flow_order = #{record.flowOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayType != null" >
+        holiday_type = #{record.holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayStartTime != null" >
+        holiday_start_time = #{record.holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayEndTime != null" >
+        holiday_end_time = #{record.holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayHours != null" >
+        holiday_hours = #{record.holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holidayDesc != null" >
+        holiday_desc = #{record.holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workextStartTime != null" >
+        workext_start_time = #{record.workextStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workextEndTime != null" >
+        workext_end_time = #{record.workextEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLegalDay != null" >
+        is_legal_day = #{record.isLegalDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workextHours != null" >
+        workext_hours = #{record.workextHours,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workextDesc != null" >
+        workext_desc = #{record.workextDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_flow
+    set flow_id = #{record.flowId,jdbcType=INTEGER},
+      flow_status = #{record.flowStatus,jdbcType=VARCHAR},
+      flow_type = #{record.flowType,jdbcType=VARCHAR},
+      flow_name = #{record.flowName,jdbcType=VARCHAR},
+      flow_order = #{record.flowOrder,jdbcType=VARCHAR},
+      holiday_type = #{record.holidayType,jdbcType=VARCHAR},
+      holiday_start_time = #{record.holidayStartTime,jdbcType=VARCHAR},
+      holiday_end_time = #{record.holidayEndTime,jdbcType=VARCHAR},
+      holiday_hours = #{record.holidayHours,jdbcType=VARCHAR},
+      holiday_desc = #{record.holidayDesc,jdbcType=VARCHAR},
+      workext_start_time = #{record.workextStartTime,jdbcType=VARCHAR},
+      workext_end_time = #{record.workextEndTime,jdbcType=VARCHAR},
+      is_legal_day = #{record.isLegalDay,jdbcType=VARCHAR},
+      workext_hours = #{record.workextHours,jdbcType=VARCHAR},
+      workext_desc = #{record.workextDesc,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.TbFlow" >
+    update tb_flow
+    <set >
+      <if test="flowStatus != null" >
+        flow_status = #{flowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        flow_type = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowOrder != null" >
+        flow_order = #{flowOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayType != null" >
+        holiday_type = #{holidayType,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayStartTime != null" >
+        holiday_start_time = #{holidayStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayEndTime != null" >
+        holiday_end_time = #{holidayEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayHours != null" >
+        holiday_hours = #{holidayHours,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDesc != null" >
+        holiday_desc = #{holidayDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="workextStartTime != null" >
+        workext_start_time = #{workextStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="workextEndTime != null" >
+        workext_end_time = #{workextEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isLegalDay != null" >
+        is_legal_day = #{isLegalDay,jdbcType=VARCHAR},
+      </if>
+      <if test="workextHours != null" >
+        workext_hours = #{workextHours,jdbcType=VARCHAR},
+      </if>
+      <if test="workextDesc != null" >
+        workext_desc = #{workextDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where flow_id = #{flowId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbFlow" >
+    update tb_flow
+    set flow_status = #{flowStatus,jdbcType=VARCHAR},
+      flow_type = #{flowType,jdbcType=VARCHAR},
+      flow_name = #{flowName,jdbcType=VARCHAR},
+      flow_order = #{flowOrder,jdbcType=VARCHAR},
+      holiday_type = #{holidayType,jdbcType=VARCHAR},
+      holiday_start_time = #{holidayStartTime,jdbcType=VARCHAR},
+      holiday_end_time = #{holidayEndTime,jdbcType=VARCHAR},
+      holiday_hours = #{holidayHours,jdbcType=VARCHAR},
+      holiday_desc = #{holidayDesc,jdbcType=VARCHAR},
+      workext_start_time = #{workextStartTime,jdbcType=VARCHAR},
+      workext_end_time = #{workextEndTime,jdbcType=VARCHAR},
+      is_legal_day = #{isLegalDay,jdbcType=VARCHAR},
+      workext_hours = #{workextHours,jdbcType=VARCHAR},
+      workext_desc = #{workextDesc,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where flow_id = #{flowId,jdbcType=INTEGER}
+  </update>
+</mapper>

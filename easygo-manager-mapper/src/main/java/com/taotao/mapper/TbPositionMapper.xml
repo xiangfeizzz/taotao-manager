@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.TbPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.TbPosition" >
+    <id column="position_id" property="positionId" jdbcType="INTEGER" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_desc" property="positionDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    position_id, position_name, position_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.TbPositionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.TbPositionExample" >
+    delete from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.TbPosition" >
+    insert into tb_position (position_id, position_name, position_desc
+      )
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{positionDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.TbPosition" >
+    insert into tb_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="positionDesc != null" >
+        position_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionDesc != null" >
+        #{positionDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.TbPositionExample" resultType="java.lang.Integer" >
+    select count(*) from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_position
+    <set >
+      <if test="record.positionId != null" >
+        position_id = #{record.positionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionName != null" >
+        position_name = #{record.positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionDesc != null" >
+        position_desc = #{record.positionDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_position
+    set position_id = #{record.positionId,jdbcType=INTEGER},
+      position_name = #{record.positionName,jdbcType=VARCHAR},
+      position_desc = #{record.positionDesc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.TbPosition" >
+    update tb_position
+    <set >
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionDesc != null" >
+        position_desc = #{positionDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.TbPosition" >
+    update tb_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      position_desc = #{positionDesc,jdbcType=VARCHAR}
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+</mapper>
