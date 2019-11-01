@@ -1,6 +1,7 @@
 com\taotao\controller\FlowConfController.class
 com\taotao\controller\HomeController.class
 com\taotao\controller\BaseController.class
+com\taotao\controller\FlowCheckController.class
 com\taotao\controller\PictureController.class
 com\taotao\controller\LoginController.class
 com\taotao\controller\UserController.class

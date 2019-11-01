@@ -4,6 +4,8 @@
 <title>员工查询</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/css/pageCommon.css" />
 <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/commonUtils.js" charset="utf-8"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/user.js" charset="utf-8"></script>
 </head>
 <script type="text/javascript" async="async">
 
@@ -36,15 +38,7 @@ function search(pNum){
 	    success : function(data) {
 	    	if(data.resultCode=="000000"){
 	    		var user=data.data.tbUser;
-	    		$("input[name='firstPage']").val(data.data.firstPage);
-	    		$("input[name='prePage']").val(data.data.prePage);
-	    		$("input[name='nextPage']").val(data.data.nextPage);
-	    		$("input[name='lastPage']").val(data.data.lastPage);
-	    		
-	    		$("label[name='pageNum']").text(data.data.pageNum);
-	    		$("label[name='pages']").text(data.data.pages);
-	    		$("label[name='pageSize']").text(data.data.pageSize);
-	    		$("label[name='total']").text(data.data.total);
+	    		loadPageBar(data);
 	    		$("#TableData").html("");
 	    		$.each(data.data.list,function(n,v){
 	    			var tfont=$("#table").find("tfoot").clone();
@@ -59,37 +53,13 @@ function search(pNum){
 	    			var hrefUpd="${pageContext.request.contextPath}/user/page/userUpd?preffix=user&userId=";
 	    			tfont.find("a[name='info']").attr("href",hrefInfo+userId);
 	    			tfont.find("a[name='upd']").attr("href",hrefUpd+userId);
-	    			$("#TableData").prepend(tfont.html());
+	    			$("#TableData").append(tfont.html());
 	    		});
 	    	}else{
 	    		alert(data.resultMsg)
 	    	}
 	    }
 	});
-}
-
-function del(obj){
-	if(window.confirm('确定删除么')){
-		var userId=$(obj).parent().parent().find("label[name='userId']").text();
-		var param={userId:userId,loginName:loginName};
-		var url="${pageContext.request.contextPath}/user/userDel";
-		$.ajax({
-		    url : url,
-		    type : "POST",
-		    async : true,
-		    contentType: "application/json; charset=utf-8",
-		    data : JSON.stringify(param),
-		    dataType : 'json',
-		    success : function(data) {
-		    	if(data.resultCode=="000000"){
-		    		$(obj).parent().parent().remove();
-		    		alert("删除成功");
-		    	}else{
-		    		alert(data.resultMsg)
-		    	}
-		    }
-		});
-     }
 }
 
 </script>

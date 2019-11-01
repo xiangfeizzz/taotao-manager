@@ -7,10 +7,12 @@ E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\PositionService.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\FlowService.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\RoleService.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\FlowCheckService.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\FlowConfService.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\PictureService.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\PositionServiceImpl.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\trans\CommonTrans.java
+E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\FlowCheckServiceImpl.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\trans\ConfProcess.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\FlowConfServiceImpl.java
 E:\huiyun\workspace_git\taotao-manager\taotao-manager-service\src\main\java\com\taotao\service\impl\UserServiceImpl.java
